@@ -1,0 +1,14 @@
+# Disable the "core" CHANGEME plugins
+disablePlugins:
+  - lando-php
+
+# Make sure we are dogfooding this plugin for testing purposes
+plugins:
+  "@lando/php": /home/runner/work/php/php
+
+# Disable metrics reporting
+stats:
+  - report: false
+    url: https://metrics.lando.dev
+
+
