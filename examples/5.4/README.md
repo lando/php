@@ -1,4 +1,4 @@
-PHP 5.3 Example
+PHP 5.4 Example
 ===========
 
 This example exists primarily to test the following documentation:
@@ -27,8 +27,8 @@ Verification commands
 Run the following commands to validate things are rolling as they should.
 
 ```bash
-# Should use 5.3 as the default php version
-lando ssh -s defaults -c "php -v" | grep "PHP 5.3"
+# Should use 5.4 as the default php version
+lando ssh -s defaults -c "php -v" | grep "PHP 5.4"
 
 # Should use 9.x as the default postgresql-client version
 lando ssh -s defaults -c "psql -V" | grep "9."
@@ -63,7 +63,7 @@ lando ssh -s custom_nginx -c "curl https://localhost" | grep SERVER | grep PATH_
 lando ssh -s custom_nginx -c "curl https://localhost" | grep SERVER | grep PATH_TRANSLATED
 
 # Should use specified php version if given
-lando ssh -s custom -c "php -v" | grep "PHP 5.3"
+lando ssh -s custom -c "php -v" | grep "PHP 5.4"
 
 # Should install composer 1.x if composer_version is set to true
 lando ssh -s custom -c "composer --version --no-ansi" | grep "Composer version 1."

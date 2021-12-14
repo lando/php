@@ -1,4 +1,4 @@
-name: PHP Tests
+name: PHP 5 Tests
 
 on:
   pull_request:
@@ -12,7 +12,9 @@ jobs:
       matrix:
         leia-tests:
           - examples/5.3
-          - examples/php-extensions
+          - examples/5.4
+          - examples/5.5
+          - examples/5.6
         lando-versions:
           - edge
         os:
@@ -20,7 +22,6 @@ jobs:
         node-version:
           - '14'
     steps:
-
       # Install deps and cache
       # Eventually it would be great if these steps could live in a separate YAML file
       # that could be included in line to avoid code duplication
