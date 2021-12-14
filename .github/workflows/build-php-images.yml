@@ -2,7 +2,7 @@ name: Build PHP Images
 
 on:
   # Uncomment below for testing purposes
-  # pull_request:
+  pull_request:
   push:
    branches:
      - main
@@ -39,30 +39,6 @@ jobs:
           - image: php
             tag: 7.3-apache-4
             context: images/7.3-apache
-          # - image: php
-          #   tag: 7.2-fpm-3
-          #   context: images/7.2-fpm
-          # - image: php
-          #   tag: 7.2-apache-3
-          #   context: images/7.2-apache
-          # - image: php
-          #   tag: 7.1-fpm-3
-          #   context: images/7.1-fpm
-          # - image: php
-          #   tag: 7.1-apache-3
-          #   context: images/7.1-apache
-          # - image: php
-          #   tag: 7.0-fpm-3
-          #   context: images/7.0-fpm
-          # - image: php
-          #   tag: 7.0-apache-3
-          #   context: images/7.0-apache
-          # - image: php
-          #   tag: 5.6-fpm-3
-          #   context: images/5.6-fpm
-          # - image: php
-          #   tag: 5.6-apache-3
-          #   context: images/5.6-apache
 
     steps:
       - name: Checkout code
