@@ -34,13 +34,13 @@ lando ssh -s composer1latest -c "composer --version --no-ansi" | grep "Composer 
 lando ssh -s composer1ver -c "composer --version --no-ansi" | grep "Composer version 1.10.21"
 
 # Should install composer 2.x if composer_version set to 2
-lando ssh -s composer1 -c "composer --version --no-ansi" | grep "Composer version 2."
+lando ssh -s composer2 -c "composer --version --no-ansi" | grep "Composer version 2."
 
 # Should install composer 2.x if composer_version set to 2-latest
-lando ssh -s composer1latest -c "composer --version --no-ansi" | grep "Composer version 2."
+lando ssh -s composer2latest -c "composer --version --no-ansi" | grep "Composer version 2."
 
 # Should install composer 2.1.10 if composer_version set to specific version
-lando ssh -s composer1ver -c "composer --version --no-ansi" | grep "Composer version 2.1.10"
+lando ssh -s composer2ver -c "composer --version --no-ansi" | grep "Composer version 2.1.10"
 ```
 
 Destroy tests
