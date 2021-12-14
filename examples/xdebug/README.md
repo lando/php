@@ -5,7 +5,6 @@ This example exists primarily to test the following documentation:
 
 * [PHP Service](https://docs.lando.dev/config/php.html)
 * [Using XDebug](https://docs.lando.dev/config/php.html#using-xdebug)
-* [Toggling Xdebug](https://docs.lando.dev/guides/lando-phpstorm.html#toggling-xdebug)
 
 And probably other stuff
 
