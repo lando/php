@@ -3,8 +3,8 @@ PHP Custom Example
 
 This example exists primarily to test the following documentation:
 
-* [PHP Service](https://docs.devwithlando.io/tutorials/php.html)
-* [Installing Node in a PHP Service](https://docs.lando.dev/guides/guides/installing-node-in-your-lando-php-service.html)
+* [PHP Service](https://docs.lando.dev/config/php.html)
+* [Installing Node in a PHP Service](https://docs.lando.dev/guides/installing-node-in-your-lando-php-service.html)
 
 And probably other stuff
 

@@ -3,7 +3,8 @@ PHP 8.1 Example
 
 This example exists primarily to test the following documentation:
 
-* [PHP Service](https://docs.devwithlando.io/tutorials/php.html)
+* [PHP Service](https://docs.lando.dev/config/php.html)
+* [Installing Node in a PHP Service](https://docs.lando.dev/guides/installing-node-in-your-lando-php-service.html)
 * [Issue #1990](https://github.com/lando/lando/issues/1990)
 * [Issue #2192](https://github.com/lando/lando/issues/2192)
 
@@ -113,6 +114,9 @@ lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 
 # Should install the latest composer 2.x by default.
 lando ssh -s cliworker -c "composer --version --no-ansi" | grep "Composer version 2."
+
+# Should have node14 installed in cli service
+lando node -v | grep v14.
 ```
 
 Destroy tests
