@@ -75,10 +75,12 @@ jobs:
           sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
       
       - name: Build Local Docker Apache Image
+        shell: bash
         run: |
           cd ./images/${{ matrix.php-versions }}-apache
           docker build -t devwithlando/php:${{ matrix.php-versions }}-apache-2 .
       - name: Build Local Docker Nginx Image
+        shell: bash
         run: |
           cd ./images/${{ matrix.php-versions }}-fpm
           docker build -t devwithlando/php:${{ matrix.php-versions }}-fpm-2 .
