@@ -3,9 +3,9 @@ name: Build PHP Images
 on:
   # Uncomment below for testing purposes
   # pull_request:
-  # push:
-  #   branches:
-  #     - main
+  push:
+   branches:
+     - main
 
 jobs:
   buildx:

@@ -10,12 +10,9 @@ jobs:
       TERM: xterm
     strategy:
       matrix:
-        leia-tests:
-          - examples/7.0
-          - examples/7.1
-          - examples/7.2
-          - examples/7.3
-          - examples/7.4
+        php-versions:
+          - '7.3'
+          - '7.4'
         lando-versions:
           - edge
         os:
@@ -74,6 +71,15 @@ jobs:
           sudo apt-get remove mysql-server --purge
           sudo apt-get install apparmor-profiles
           sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
+
+      - name: Build Local Docker Apache Image
+        run: |
+          cd ./images/${{ matrix.php-versions }}-apache
+          docker build -t devwithlando/php:${{ matrix.php-versions }}-apache-4 .
+      - name: Build Local Docker Nginx Image
+        run: |
+          cd ./images/${{ matrix.php-versions }}-fpm
+          docker build -t devwithlando/php:${{ matrix.php-versions }}-fpm-4 .
       - name: Run leia tests
         shell: bash
-        run: yarn leia "./${{ matrix.leia-tests }}/README.md" -c 'Destroy tests' --stdin --shell bash
+        run: yarn leia "./examples/${{ matrix.php-versions }}/README.md" -c 'Destroy tests' --stdin --shell bash

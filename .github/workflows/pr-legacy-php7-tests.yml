@@ -1,4 +1,4 @@
-name: Legacy PHP 5 Tests
+name: Legacy PHP 7 Tests
 
 on:
   pull_request:
@@ -10,11 +10,10 @@ jobs:
       TERM: xterm
     strategy:
       matrix:
-        php-versions:
-          - '5.3'
-          - '5.4'
-          - '5.5'
-          - '5.6'
+        leia-tests:
+          - examples/7.0
+          - examples/7.1
+          - examples/7.2
         lando-versions:
           - edge
         os:
@@ -73,17 +72,6 @@ jobs:
           sudo apt-get remove mysql-server --purge
           sudo apt-get install apparmor-profiles
           sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
-      
-      - name: Build Local Docker Apache Image
-        shell: bash
-        run: |
-          cd ./images/${{ matrix.php-versions }}-apache
-          docker build -t devwithlando/php:${{ matrix.php-versions }}-apache-2 .
-      - name: Build Local Docker Nginx Image
-        shell: bash
-        run: |
-          cd ./images/${{ matrix.php-versions }}-fpm
-          docker build -t devwithlando/php:${{ matrix.php-versions }}-fpm-2 .
       - name: Run leia tests
         shell: bash
-        run: yarn leia "./examples/${{ matrix.php-versions }}/README.md" -c 'Destroy tests' --stdin --shell bash
+        run: yarn leia "./${{ matrix.leia-tests }}/README.md" -c 'Destroy tests' --stdin --shell bash
