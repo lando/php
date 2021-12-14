@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         leia-tests:
-          - examples/php
+          - examples/5.3
           - examples/php-extensions
         lando-versions:
           - edge
