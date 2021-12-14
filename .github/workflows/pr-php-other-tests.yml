@@ -13,6 +13,7 @@ jobs:
         leia-tests:
           - examples/custom
           - examples/composer
+          - examples/xdebug
         lando-versions:
           - edge
         os:

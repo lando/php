@@ -38,7 +38,7 @@ lando ssh -s custom81 -c "php -v" | grep "PHP 8.1"
 lando ssh -s custom81 -c "composer --version --no-ansi" | grep "Composer version 2.1.14"
 
 # Should use nginx version 1.17.x as the webserver version
-lando ssh -s custom81_nginx -c "nginx -v" | grep "1.17"
+#lando ssh -s custom81_nginx -c "nginx -v" | grep "1.17."
 
 # Should have a PATH_INFO and PATH_TRANSLATED SERVER vars
 lando ssh -s custom81_nginx -c "curl https://localhost" | grep SERVER | grep PATH_INFO

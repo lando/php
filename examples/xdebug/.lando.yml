@@ -1,0 +1,25 @@
+name: lando-phpxdebug
+services:
+  xdebug2:
+    type: php:5.6
+    xdebug: true
+  xdebug3on:
+    type: php
+    xdebug: true
+  xdebug3off:
+    type: php
+    xdebug: false
+  xdebug3:
+    type: php
+    xdebug: "debug,develop"
+  manual:
+    type: php
+    xdebug: true
+    build_as_root:
+      - pecl uninstall xdebug
+      - pecl install xdebug-3.0.4
+
+# This is important because it lets lando know to test against the plugin in this repo
+# DO NOT REMOVE THIS!
+plugins:
+  "@lando/php": ./../../
