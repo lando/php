@@ -1,4 +1,4 @@
-PHP 8.1 Example
+PHP Custom Example
 ===========
 
 This example exists primarily to test the following documentation:

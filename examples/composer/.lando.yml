@@ -1,0 +1,25 @@
+name: lando-phpcomposer
+services:
+  composer1:
+    type: php
+    composer_version: 1
+  composer2:
+    type: php
+    composer_version: 2
+  composer1latest:
+    type: php
+    composer_version: 1-latest
+  composer2latest:
+    type: php
+    composer_version: 2-latest
+  composer1ver:
+    type: php
+    composer_version: '1.10.21'
+  composer2ver:
+    type: php
+    composer_version: '2.1.10'
+
+# This is important because it lets lando know to test against the plugin in this repo
+# DO NOT REMOVE THIS!
+plugins:
+  "@lando/php": ./../../
