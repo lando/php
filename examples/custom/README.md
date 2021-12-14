@@ -1,0 +1,50 @@
+PHP 8.1 Example
+===========
+
+This example exists primarily to test the following documentation:
+
+* [PHP Service](https://docs.devwithlando.io/tutorials/php.html)
+* [Installing Node in a PHP Service](https://docs.lando.dev/guides/guides/installing-node-in-your-lando-php-service.html)
+
+And probably other stuff
+
+Start up tests
+--------------
+
+Run the following commands to get up and running with this example.
+
+```bash
+# Should start up successfully
+lando poweroff
+lando start
+```
+
+Verification commands
+---------------------
+
+Run the following commands to validate things are rolling as they should.
+
+```bash
+# Should have node12 installed in withnode service
+lando node -v -h withnode | grep v12.
+
+# Should use 7.4 as the php version
+lando ssh -s withnode -c "php -v" | grep "PHP 7.4"
+
+# Should use 8.1 as the php version
+lando ssh -s custom81 -c "php -v" | grep "PHP 8.1"
+
+# Should install composer 2.1.14 if version number is set
+lando ssh -s custom81 -c "composer --version --no-ansi" | grep "Composer version 2.1.14"
+```
+
+Destroy tests
+-------------
+
+Run the following commands to trash this app like nothing ever happened.
+
+```bash
+# Should be destroyed with success
+lando destroy -y
+lando poweroff
+```

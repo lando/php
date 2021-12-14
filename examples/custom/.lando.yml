@@ -1,0 +1,29 @@
+name: lando-phpcustom
+services:
+  withnode:
+    type: php:custom
+    composer_version: false
+    overrides:
+      image: lando/php:7.4-with-node12
+      build:
+        context: ./
+        dockerfile: Dockerfile.node
+  custom81:
+    type: php:custom
+    composer_version: '2.1.14'
+    overrides:
+      image: devwithlando/php:8.1-fpm-4
+tooling:
+  node:
+    service: :host
+    options:
+      host:
+        description: The service to use
+        default: withnode
+        alias:
+          - h
+
+# This is important because it lets lando know to test against the plugin in this repo
+# DO NOT REMOVE THIS!
+plugins:
+  "@lando/php": ./../../
