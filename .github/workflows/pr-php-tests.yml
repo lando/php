@@ -10,13 +10,15 @@ jobs:
       TERM: xterm
     strategy:
       matrix:
+        leia-tests:
+          - examples/php-example
+          - examples/php-extensions-example
+        lando-versions:
+          - edge
         os:
           - ubuntu-20.04
         node-version:
           - '14'
-        leia-tests:
-          - php-example
-          - php-extensions-example
     steps:
 
       # Install deps and cache
