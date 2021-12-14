@@ -114,9 +114,6 @@ lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 
 # Should install the latest composer 1.x by default.
 lando ssh -s cliworker -c "composer --version --no-ansi" | grep "Composer version 1."
-
-# Should have node14 installed in cli service
-lando node -v | grep v14.
 ```
 
 Destroy tests

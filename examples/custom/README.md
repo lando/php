@@ -4,7 +4,7 @@ PHP Custom Example
 This example exists primarily to test the following documentation:
 
 * [PHP Service](https://docs.lando.dev/config/php.html)
-* [Installing Node in a PHP Service](https://docs.lando.dev/guides/installing-node-in-your-lando-php-service.html)
+* [Service Overrides](https://docs.lando.dev/config/services.html#advanced)
 
 And probably other stuff
 

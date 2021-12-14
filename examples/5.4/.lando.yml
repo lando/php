@@ -10,10 +10,6 @@ services:
     type: php:5.4
     composer_version: false
     via: cli
-    build_as_root:
-      - curl -sL https://deb.nodesource.com/setup_14.x | bash -
-      - apt-get update -y
-      - apt-get install -y nodejs
   cliworker:
     type: php:5.4
     composer_version: false
@@ -43,14 +39,6 @@ services:
 tooling:
   php:
     service: defaults
-  node:
-    service: :host
-    options:
-      host:
-        description: The service to use
-        default: cli
-        alias:
-          - h
 
 # This is important because it lets lando know to test against the plugin in this repo
 # DO NOT REMOVE THIS!

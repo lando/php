@@ -3,7 +3,8 @@ PHP Composer Example
 
 This example exists primarily to test the following documentation:
 
-* [PHP Service](https://docs.devwithlando.io/tutorials/php.html)
+* [PHP Service](https://docs.lando.dev/config/php.html)
+* [Installing Composer](https://docs.lando.dev/config/php.html#installing-composer)
 
 And probably other stuff
 
