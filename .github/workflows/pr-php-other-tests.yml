@@ -1,4 +1,4 @@
-name: PHP Custom/Other Tests
+name: PHP Other Tests
 
 on:
   pull_request:

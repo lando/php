@@ -41,6 +41,17 @@ lando ssh -s composer2latest -c "composer --version --no-ansi" | grep "Composer 
 
 # Should install composer 2.1.10 if composer_version set to specific version
 lando ssh -s composer2ver -c "composer --version --no-ansi" | grep "Composer version 2.1.10"
+
+# Should install compose global dependencies if specified by user and have them available in PATH
+lando ssh -s dependencies -c "phpunit --version"
+lando ssh -s dependencies -c "which phpunit" | grep "/var/www/.composer/vendor/bin/phpunit"
+
+# Should PATH prefer composer dependency binaries installed in /app/vendor over global ones
+lando ssh -s dependencies -c "composer require phpunit/phpunit"
+lando ssh -s dependencies -c "phpunit --version"
+lando ssh -s dependencies -c "which phpunit" | grep "/app/vendor/bin/phpunit"
+lando ssh -s dependencies -c "composer remove phpunit/phpunit"
+lando ssh -s dependencies -c "which phpunit" | grep "/var/www/.composer/vendor/bin/phpunit"
 ```
 
 Destroy tests
