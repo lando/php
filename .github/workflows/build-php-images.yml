@@ -68,3 +68,15 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.pr.outputs.TAG_SUFFIX }}
+      - name: Test Edge Images on PR
+        if: ${{ github.event_name == 'pull_request' }}
+        shell: bash
+        run: |
+          docker rm --force devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.pr.outputs.TAG_SUFFIX }}
+          yarn leia "./examples/images-edge/${{ matrix.tag }}/README.md" -c 'Destroy tests' --stdin --shell bash
+      - name: Test Stable Images on Push
+        if: ${{ github.event_name == 'push' }}
+        shell: bash
+        run: |
+          docker rm --force devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.pr.outputs.TAG_SUFFIX }}
+          yarn leia "./examples/images-stable/${{ matrix.tag }}/README.md" -c 'Destroy tests' --stdin --shell bash
