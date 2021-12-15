@@ -14,12 +14,6 @@ jobs:
       TERM: xterm
     strategy:
       matrix:
-        lando-versions:
-          - edge
-        os:
-          - ubuntu-20.04
-        node-version:
-          - '14'
         include:
           - image: php
             tag: 8.1-fpm-4
@@ -76,10 +70,10 @@ jobs:
       #     tags: devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.pr.outputs.TAG_SUFFIX }}
 
       # Handle Lando Install to test the images after build
-      - name: Install node ${{ matrix.node-version }}
+      - name: Install node 14
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '14'
       - name: Get Yarn cache directory
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -88,12 +82,12 @@ jobs:
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+          key: ubuntu-20.04-yarn-14-${{ hashFiles('**/yarn.lock') }}
       - name: Install Yarn dependencies
         run: yarn install --prefer-offline --frozen-lockfile
       - name: Grab latest edge Lando CLI
         run: |
-          sudo curl -fsSL -o /usr/local/bin/lando "https://files.lando.dev/cli/lando-linux-x64-${{ matrix.lando-versions }}"
+          sudo curl -fsSL -o /usr/local/bin/lando "https://files.lando.dev/cli/lando-linux-x64-edge"
           sudo chmod +x /usr/local/bin/lando
       - name: Move in lando config appropriate for testing
         run: |
@@ -116,7 +110,7 @@ jobs:
           sudo apt-get install apparmor-profiles
           sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
 
-
+      # Test newly built images.
       - name: Test Edge Images on PR
         if: ${{ github.event_name == 'pull_request' }}
         shell: bash
