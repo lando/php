@@ -1,0 +1,14 @@
+name: lando-php-edge80nginx
+services:
+  default:
+    type: php:8.0
+    composer_version: false
+    via: nginx
+    ssl: true
+    overrides:
+      image: devwithlando/php:8.0-fpm-4-edge
+
+# This is important because it lets lando know to test against the plugin in this repo
+# DO NOT REMOVE THIS!
+plugins:
+  "@lando/php": ./../../
