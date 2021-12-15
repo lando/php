@@ -32,7 +32,7 @@ lando ssh -s default -c "php -v" | grep "PHP 7.4"
 lando ssh -s default -c "psql -V" | grep "10."
 
 # Should use nginx 1. as the default webserver version
-lando ssh -s default_nginx -c "nginx -v" | grep "nginx/1"
+lando ssh -s default_nginx -c "nginx -v 2>&1 | grep 1.17"
 
 # Should install composer 1.x by default
 lando ssh -s default -c "composer --version --no-ansi" | grep "Composer version 1."
