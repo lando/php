@@ -8,7 +8,7 @@ services:
     composer_version: false
   cli:
     type: php:7.4
-    composer_version: false
+    composer_version: 1-latest
     via: cli
     build_as_root:
       - curl -sL https://deb.nodesource.com/setup_14.x | bash -
