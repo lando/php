@@ -23,6 +23,10 @@
 
 # We need this so preview environments and the base site look ok on their own
 [[redirects]]
-  from = "/*"
-  to = "/php/:splat"
+  from = "/"
+  to = "/php"
+  status = 200
+[[redirects]]
+  from = "/php/*"
+  to = "/:splat"
   status = 200
