@@ -1,4 +1,4 @@
-# php Lando Plugin
+# PHP Lando Plugin
 
 This is the _official_ [Lando](https://lando.dev) plugin for [PHP](https://php.net). When installed it...
 
