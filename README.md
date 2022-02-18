@@ -23,11 +23,9 @@ services:
 
 For more info you should check out the [docs](https://docs.lando.dev/php):
 
-* [Getting Started](https://docs.lando.dev/php/getting-started.html)
+* [Getting Started](https://docs.lando.dev/php/)
 * [Configuration](https://docs.lando.dev/php/config.html)
-* [Tooling](https://docs.lando.dev/php/tooling.html)
-* [Syncing](https://docs.lando.dev/php/syncing.html)
-* [Guides](https://docs.lando.dev/php/adding-more-tooling.html)
+* [Guides](https://docs.lando.dev/php/accessing-logs.html)
 * [Examples](https://github.com/lando/php/tree/main/examples)
 * [Development](https://docs.lando.dev/php/development.html)
 
