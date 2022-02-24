@@ -1,7 +1,3 @@
-const {path} = require('@vuepress/utils');
-const yaml = require('js-yaml');
-const fs = require('fs');
-
 module.exports = {
   lang: 'en-US',
   title: 'Lando',
