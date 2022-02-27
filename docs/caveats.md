@@ -25,4 +25,4 @@ Lando will set the `PATH` hierarchy for this service as follows:
 ]
 ```
 
-This is useful to note if you are not using absolute paths in any [tooling routes](https://docs.lando.dev/config/tooling.md) and are getting the unexpected version of a particular utility.
+This is useful to note if you are not using absolute paths in any [tooling routes](https://docs.lando.dev/config/tooling.html) and are getting the unexpected version of a particular utility.

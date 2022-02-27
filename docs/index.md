@@ -45,7 +45,7 @@ You can still run these versions with Lando but for all intents and purposes the
 
 Because we use our own custom images for `php`, specifying a patch version is not currently supported.
 
-If you **really** need to lock down to a patch version, you could consider using either a [custom compose service](https://docs.lando.dev/config/compose.html) or a service [overrides](https://docs.lando.dev/config/services.html#overrides).
+If you **really** need to lock down to a patch version, you could consider using either a [custom compose service](https://docs.lando.dev/compose) or a service [overrides](https://docs.lando.dev/config/services.html#overrides).
 
 ## Custom Installation
 

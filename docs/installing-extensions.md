@@ -15,7 +15,7 @@ mailchimp:
   button: Sign me up!
 ---
 
-You may wish to add additional PHP extensions to your Lando [PHP service](./../config/php.md). There are a few different ways you can do this:
+You may wish to add additional PHP extensions to your Lando [PHP service](https://docs.lando.dev/php). There are a few different ways you can do this:
 
 [[toc]]
 
@@ -25,7 +25,7 @@ Also note that you may need to adapt these slightly depending on the PHP version
 
 ## 1. Using build steps
 
-If installing your PHP extension is fairly trivial and not a long-running operation you may wish to simply use Lando [build-steps](./../config/services.md#build-steps)
+If installing your PHP extension is fairly trivial and not a long-running operation you may wish to simply use Lando [build-steps](https://docs.lando.dev/config/services.html#build-steps)
 
 Here is an example that uses build-steps to install the `xsl` and `stats` extensions.
 
