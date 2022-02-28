@@ -436,16 +436,9 @@
     mocha "^5.2.0"
     object-hash "^2.2.0"
 
-<<<<<<< HEAD
-"@lando/vuepress-theme-default-plus@lando/vuepress-theme-default-plus", "@lando/vuepress-theme-default-plus@lando/vuepress-theme-default-plus#main":
+"@lando/vuepress-theme-default-plus@lando/vuepress-theme-default-plus#main":
   version "1.0.0-beta.17"
-  resolved "https://codeload.github.com/lando/vuepress-theme-default-plus/tar.gz/8904a95e81f8e62548f41e3176c34d2973d843d5"
-=======
-"@lando/vuepress-theme-default-plus@1.0.0-beta.17":
-  version "1.0.0-beta.17"
-  resolved "https://registry.yarnpkg.com/@lando/vuepress-theme-default-plus/-/vuepress-theme-default-plus-1.0.0-beta.17.tgz#4909e6c4cb822cb6b1e3f8b13135a8550f1ed704"
-  integrity sha512-CSB1WbyT/LXReOFKswMgf2iPLzn95PQ6jaumQEG+chzLSIWLtQQM6j5Sd20bu7tSdjbBFB5zD8YTdcS2JjGiTA==
->>>>>>> 90aab83d6411aecff3bb340b0d0a0e3da25db5bd
+  resolved "https://codeload.github.com/lando/vuepress-theme-default-plus/tar.gz/9cc0df779653234e170cf9642f9c0f5aea74d0d0"
   dependencies:
     "@octokit/core" "^3.5.1"
     "@octokit/plugin-paginate-rest" "^2.17.0"
