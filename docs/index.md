@@ -1,6 +1,7 @@
 ---
 title: PHP Lando Plugin
 description: Add a highly configurable php service to Lando for local development with all the power of Docker and Docker Compose; comes with composer, xdebug and multiple versions for lols.
+next: ./config.html
 ---
 
 # PHP
