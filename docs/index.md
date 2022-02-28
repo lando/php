@@ -8,7 +8,7 @@ next: ./config.html
 
 [PHP](http://php.net/) is a popular scripting language that is especially suited for web development. It is often served by either [apache](https://docs.lando.dev/config/apache.html) or [nginx](https://docs.lando.dev/config/nginx.html).
 
-You can easily add it to your Lando app by adding an entry to the [services](https://docs.lando.dev/config/services.html) top-level config in your [Landofile](https://docs.lando.dev/config/lando.html).
+You can easily add it to your Lando app by adding an entry to the [services](https://docs.lando.dev/config/services.html) top-level config in your [Landofile](https://docs.lando.dev/config).
 
 ```yaml
 services:
