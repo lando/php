@@ -1,6 +1,7 @@
 ---
 title: PHP Lando Plugin
 description: Add a highly configurable php service to Lando for local development with all the power of Docker and Docker Compose; comes with composer, xdebug and multiple versions for lols.
+next: ./config.html
 ---
 
 # PHP
@@ -45,7 +46,7 @@ You can still run these versions with Lando but for all intents and purposes the
 
 Because we use our own custom images for `php`, specifying a patch version is not currently supported.
 
-If you **really** need to lock down to a patch version, you could consider using either a [custom compose service](https://docs.lando.dev/config/compose.html) or a service [overrides](https://docs.lando.dev/config/services.html#overrides).
+If you **really** need to lock down to a patch version, you could consider using either a [custom compose service](https://docs.lando.dev/compose) or a service [overrides](https://docs.lando.dev/config/services.html#overrides).
 
 ## Custom Installation
 

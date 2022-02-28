@@ -26,33 +26,33 @@ module.exports = {
     sidebar: [
       {
         text: 'Getting Started',
-        link: '/index.md',
+        link: '/index.html',
       },
-      '/config.md',
-      '/caveats.md',
-      '/extensions.md',
+      '/config.html',
+      '/caveats.html',
+      '/extensions.html',
       {
         text: 'Guides',
         collapsible: true,
         children: [
           {
             text: 'Accessing PHP Logs',
-            link: '/accessing-logs.md',
+            link: '/accessing-logs.html',
           },
           {
             text: 'Installing extensions',
-            link: '/installing-extensions.md',
+            link: '/installing-extensions.html',
           },
           {
             text: 'Installing node',
-            link: '/installing-node.md',
+            link: '/installing-node.html',
           },
         ],
       },
-      '/support.md',
+      '/support.html',
       {text: 'Examples', link: 'https://github.com/lando/php/tree/main/examples'},
       {text: 'Release Notes', link: 'https://github.com/lando/php/releases'},
-      '/development.md',
+      '/development.html',
     ],
   },
 };

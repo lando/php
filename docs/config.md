@@ -151,7 +151,7 @@ The first part of a pathmap will be the location of your code in the container. 
 
 **VSCODE**
 
-[Setup XDebug in Visual Studio Code Guide](https://docs.lando.dev/guides/lando-with-vscode.md)
+[Setup XDebug in Visual Studio Code Guide](https://docs.lando.dev/guides/lando-with-vscode.html)
 
 ### Troubleshooting Xdebug
 
@@ -232,7 +232,7 @@ services:
 
 ## Using custom config files
 
-You may need to override our [default php config](https://github.com/lando/cli/tree/main/plugins/lando-services/services/php) with your own.
+You may need to override our [default php config](https://github.com/lando/php/tree/main/services/php) with your own.
 
 If you do this, you must use files that exist inside your application and express them relative to your project root as shown below:
 
