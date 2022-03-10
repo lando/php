@@ -447,7 +447,7 @@
 
 "@lando/vuepress-theme-default-plus@lando/vuepress-theme-default-plus#main":
   version "1.0.0-beta.21"
-  resolved "https://codeload.github.com/lando/vuepress-theme-default-plus/tar.gz/0ff124cd5c09aca5538fc43a13e2598c7529a8b8"
+  resolved "https://codeload.github.com/lando/vuepress-theme-default-plus/tar.gz/10003e1d880925562ac9fdd40da93abfb122e263"
   dependencies:
     "@octokit/core" "^3.5.1"
     "@octokit/plugin-paginate-rest" "^2.17.0"
