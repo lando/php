@@ -19,7 +19,6 @@ module.exports = {
     docsBranch: 'main',
     repo: 'lando/php',
     sidebarHeader: {
-      enabled: true,
       title: 'PHP Plugin',
       icon: '/images/phpicon.png',
     },
