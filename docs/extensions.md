@@ -67,7 +67,7 @@ description: Learn what extensions are installed in the Lando PHP plugin
 
 Note that `xdebug` is off by default but you can enable it by setting your `php` services config to `xdebug: true`. Read more about this in "Configuration" above.
 
-### Adding or removing extensions
+## Adding or removing extensions
 
 There are a few ways you can extend or modify our php images below:
 
