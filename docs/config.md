@@ -236,7 +236,7 @@ You may need to override our [default php config](https://github.com/lando/php/t
 
 If you do this, you must use files that exist inside your application and express them relative to your project root as shown below:
 
-Note that the default files may change based on how you set both `ssl` and `via`. Also note that the `vhosts` and `server` config will be either for `apache` or `nginx` depending on how you set `via`. We *highly recommend* you check out both the [apache](https://docs.lando.dev/config/apache.html#configuration) and [nginx](https://docs.lando.dev/config/nginx.html#configuration) if you plan to use a custom `vhosts` or `server` config.
+Note that the default files may change based on how you set both `ssl` and `via`. Also note that the `vhosts` and `server` config will be either for `apache` or `nginx` depending on how you set `via`. We *highly recommend* you check out both the [apache](https://docs.lando.dev/apache) and [nginx](https://docs.lando.dev/nginx) if you plan to use a custom `vhosts` or `server` config.
 
 If you set `via: cli` then, as you might suspect, `vhosts` and/or `server` is not going to do anything.
 
