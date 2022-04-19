@@ -112,8 +112,8 @@ lando ssh -s defaults -c "curl http://localhost/path_info.php/a/b.php" | grep SC
 # Should allow cli services to specify a boot up command
 lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 
-# Should install the latest composer 1.x by default.
-lando ssh -s cliworker -c "composer --version --no-ansi" | grep "Composer version 1."
+# Should install the composer 2.x using the false flag
+lando ssh -s cliworker -c "composer --version --no-ansi" | grep "Composer version 2."
 
 # Should have node14 installed in cli service
 lando node -v | grep v14.
