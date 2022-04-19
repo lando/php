@@ -34,8 +34,8 @@ lando ssh -s default -c "psql -V" | grep "10."
 # Should use apache 2.4 as the default webserver version
 lando ssh -s default -c "apachectl -V" | grep "2.4."
 
-# Should install composer 1.x by default
-lando ssh -s default -c "composer --version --no-ansi" | grep "Composer version 1."
+# Should install composer 2.x by default
+lando ssh -s default -c "composer --version --no-ansi" | grep "Composer version 2."
 ```
 
 Destroy tests
