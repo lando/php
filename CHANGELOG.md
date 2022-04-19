@@ -4,7 +4,7 @@
 
 Lando is **free** and **open source** software that relies on contributions from developers like you! If you like Lando then help us spend more time making, updating and supporting it by [contributing](https://github.com/sponsors/lando).
 
-* Update default composer versions for PHP 7.3+ images [PR #33](https://github.com/lando/php/pull/33)
+* Update default composer version (Addresses [CVE-2022-24828](https://blog.packagist.com/cve-2022-24828-composer-command-injection-vulnerability/)) [PR #33](https://github.com/lando/php/pull/33) 
 
 ## v0.5.2 - [March 2, 2022](https://github.com/lando/php/releases/tag/v0.5.2)
 
