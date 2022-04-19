@@ -80,8 +80,8 @@ lando ssh -s custom -c "php -m" | grep "xdebug"
 # Should not serve port 80 for cli
 lando ssh -s cli -c "curl http://localhost" || echo $? | grep 1
 
-# Should install the latest composer 1.x using the 1 flag
-lando ssh -s cli -c "composer --version --no-ansi" | grep "Composer version 1."
+# Should install the composer 2.x using the false flag
+lando ssh -s cli -c "composer --version --no-ansi" | grep "Composer version 2."
 
 # Should use custom php ini if specified
 lando ssh -s custom -c "php -i | grep memory_limit | grep 514"
