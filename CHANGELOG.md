@@ -1,5 +1,11 @@
 ## IN DEVELOPMENT
 
+## v0.5.4 - [April 21, 2022](https://github.com/lando/php/releases/tag/v0.5.4)
+
+Lando is **free** and **open source** software that relies on contributions from developers like you! If you like Lando then help us spend more time making, updating and supporting it by [contributing](https://github.com/sponsors/lando).
+
+* Clean up unused dependencies
+
 ## v0.5.3 - [April 19, 2022](https://github.com/lando/php/releases/tag/v0.5.3)
 
 Lando is **free** and **open source** software that relies on contributions from developers like you! If you like Lando then help us spend more time making, updating and supporting it by [contributing](https://github.com/sponsors/lando).
