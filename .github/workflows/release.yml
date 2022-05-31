@@ -51,4 +51,3 @@ jobs:
           fi
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_DEPLOY_TOKEN}}
-Change release workflow to trigger on releases
