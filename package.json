@@ -2,7 +2,7 @@
   "name": "@lando/php",
   "description": "A Lando plugin that provides a tight integration with PHP.",
   "version": "0.5.4",
-  "author": "John Ouellet @labboy0276",
+  "author": "Mike Pirog @pirog",
   "license": "GPL-3.0",
   "repository": "lando/php",
   "bugs": "https://github.com/lando/php/issues/new/choose",
@@ -10,11 +10,14 @@
   "keywords": [
     "lando",
     "lando-plugin",
+    "lando-service",
     "php"
   ],
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   },
+  "bundledDependencies": true,
+  "lando": {},
   "main": "index.js",
   "nyc": {
     "include": [
@@ -41,8 +44,8 @@
     "test": "yarn lint && yarn test:unit"
   },
   "dependencies": {
-    "js-yaml": "^3.4.6",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "semver": "^7.3.7"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.0",
