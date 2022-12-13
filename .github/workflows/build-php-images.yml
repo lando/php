@@ -15,8 +15,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version:
-          - '16'
         include:
           - image: php
             tag: 8.1-fpm-4
@@ -77,10 +75,10 @@ jobs:
       # Handle Lando Install to test the images after build
       # We are hardcoding the dtaa normally included in the matrix
       # due to how this testing is setup
-      - name: Install node ${{ matrix.node-version }}
+      - name: Install node 16
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '16'
           registry-url: https://registry.npmjs.org
           cache: yarn
       - name: Install Yarn dependencies
