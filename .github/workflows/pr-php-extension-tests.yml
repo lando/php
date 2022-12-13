@@ -20,8 +20,6 @@ jobs:
         node-version:
           - '16'
     steps:
-
-
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install node ${{ matrix.node-version }}
