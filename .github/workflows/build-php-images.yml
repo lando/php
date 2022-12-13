@@ -13,6 +13,7 @@ jobs:
     env:
       TERM: xterm
     strategy:
+      fail-fast: false
       matrix:
         include:
           - image: php
@@ -72,7 +73,7 @@ jobs:
           tags: devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.pr.outputs.TAG_SUFFIX }}
 
       # Handle Lando Install to test the images after build
-      # We are hardcoding the dtaa normally included in the matrix 
+      # We are hardcoding the dtaa normally included in the matrix
       # due to how this testing is setup
       - name: Install node 14
         uses: actions/setup-node@v2
