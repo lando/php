@@ -1,7 +1,7 @@
 {
   "name": "@lando/php",
   "description": "A Lando plugin that provides a tight integration with PHP.",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "author": "Mike Pirog @pirog",
   "license": "GPL-3.0",
   "repository": "lando/php",
@@ -16,7 +16,10 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "bundledDependencies": true,
+  "bundledDependencies": [
+    "lodash",
+    "semver"
+  ],
   "lando": {},
   "main": "index.js",
   "nyc": {
@@ -38,7 +41,7 @@
     "docs:build": "vuepress build docs",
     "docs:lint": "eslint -c docs/.eslintrc.json --quiet docs/.vuepress",
     "lint": "eslint --quiet . && yarn docs:lint",
-    "release": "bump --prompt --tag --all --push",
+    "release": "bundle-dependencies update && bump --prompt --tag --all --push",
     "test:unit": "nyc --reporter=html --reporter=text mocha --timeout 5000 test/**/*.spec.js",
     "test:leia": "yarn leia \"examples/**/README.md\" -c 'Destroy tests' --stdin",
     "test": "yarn lint && yarn test:unit"
@@ -51,6 +54,7 @@
     "@babel/eslint-parser": "^7.16.0",
     "@lando/leia": "^0.6.4",
     "@lando/vuepress-theme-default-plus": "1.0.0-beta.44",
+    "bundle-dependencies": "^1.0.2",
     "chai": "^4.3.4",
     "command-line-test": "^1.0.10",
     "eslint": "^7.32.0",

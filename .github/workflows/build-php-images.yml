@@ -13,6 +13,7 @@ jobs:
     env:
       TERM: xterm
     strategy:
+      fail-fast: false
       matrix:
         include:
           - image: php
@@ -78,21 +79,14 @@ jobs:
           tags: devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.pr.outputs.TAG_SUFFIX }}
 
       # Handle Lando Install to test the images after build
-      # We are hardcoding the dtaa normally included in the matrix 
+      # We are hardcoding the dtaa normally included in the matrix
       # due to how this testing is setup
-      - name: Install node 14
+      - name: Install node 16
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
-      - name: Get Yarn cache directory
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Use Yarn cache
-        uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ubuntu-20.04-yarn-14-${{ hashFiles('**/yarn.lock') }}
+          node-version: '16'
+          registry-url: https://registry.npmjs.org
+          cache: yarn
       - name: Install Yarn dependencies
         run: yarn install --prefer-offline --frozen-lockfile
       - name: Grab latest edge Lando CLI
@@ -108,7 +102,8 @@ jobs:
       - name: Verify Lando works and we are dogfooding this plugin for tests
         run: |
           lando version
-          lando config --path plugins | grep php | grep /home/runner/work/php/php || echo "::error:: Not dogfooding this plugin correctly! "
+          lando config --path plugins | grep php | grep /home/runner/work/php/php || (echo "::error:: Not dogfooding this plugin correctly! " && exit 1)
+
       # This block should eventually become use lando/actions-leia@v2
       # @NOTE? Do we want a way for our leia-action to configure apparmor since
       # this might break a whole bunch of tests? or is this literally just a thing
