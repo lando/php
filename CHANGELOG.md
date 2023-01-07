@@ -1,6 +1,9 @@
+## v0.7.1 - [January 6th, 2022](https://github.com/lando/php/releases/tag/v0.7.1)
+* Added support for PHP 8.2 [#51](https://github.com/lando/php/pull/51)
+
 ## v0.7.0 - [December 12, 2022](https://github.com/lando/php/releases/tag/v0.7.0)
-  * Added bundle-dependencies to release process.
-  * Fixed bug in plugin dogfooding test.
+* Added bundle-dependencies to release process.
+* Fixed bug in plugin dogfooding test.
 
 ## v0.6.0 - [September 7, 2022](https://github.com/lando/php/releases/tag/v0.6.0)
 
