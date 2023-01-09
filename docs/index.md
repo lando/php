@@ -21,10 +21,8 @@ services:
 ## Supported versions
 
 *   [8.2](https://hub.docker.com/r/devwithlando/php)
-*   [8.1](https://hub.docker.com/r/devwithlando/php)
+*   **[8.1](https://hub.docker.com/r/devwithlando/php)** **(default)**
 *   [8.0](https://hub.docker.com/r/devwithlando/php)
-*   **[7.4](https://hub.docker.com/r/devwithlando/php)** **(default)**
-*   [7.3](https://hub.docker.com/r/devwithlando/php)
 *   [custom](https://docs.lando.dev/config/services.html#advanced)
 
 ## Legacy versions
@@ -35,6 +33,8 @@ While you can currently use some [EOL php version](http://php.net/supported-vers
 
 You can still run these versions with Lando but for all intents and purposes they should be considered deprecated (e.g. YMMV and do not expect a ton of support if you have an issue).
 
+*   [7.4](https://hub.docker.com/r/devwithlando/php)
+*   [7.3](https://hub.docker.com/r/devwithlando/php)
 *   [7.2](https://hub.docker.com/r/devwithlando/php)
 *   [7.1](https://hub.docker.com/r/devwithlando/php)
 *   [7.0](https://hub.docker.com/r/devwithlando/php)
