@@ -1,3 +1,6 @@
+## v0.7.2 - [January 19th, 2022](https://github.com/lando/php/releases/tag/v0.7.2)
+* Switched default PHP to 8.1, marked 7.x as legacy. [#53](https://github.com/lando/php/pull/53)
+
 ## v0.7.1 - [January 6th, 2022](https://github.com/lando/php/releases/tag/v0.7.1)
 * Added support for PHP 8.2 [#51](https://github.com/lando/php/pull/51)
 
