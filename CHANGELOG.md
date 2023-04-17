@@ -1,4 +1,7 @@
-## v0.7.1 - [January 6th, 2022](https://github.com/lando/php/releases/tag/v0.7.1)
+## v0.7.2 - [April 17th, 2023](https://github.com/lando/php/releases/tag/v0.7.2)
+* Bumped Redis plugin to redis-5.3.7. [#57](https://github.com/lando/php/pull/57)
+
+## v0.7.1 - [January 6th, 2023](https://github.com/lando/php/releases/tag/v0.7.1)
 * Added support for PHP 8.2 [#51](https://github.com/lando/php/pull/51)
 
 ## v0.7.0 - [December 12, 2022](https://github.com/lando/php/releases/tag/v0.7.0)
