@@ -11,6 +11,7 @@ services:
     composer_version: false
     via: cli
     build_as_root:
+      - echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
       - curl -sL https://deb.nodesource.com/setup_14.x | bash -
       - apt-get update -y
       - apt-get install -y nodejs
