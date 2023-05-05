@@ -25,7 +25,7 @@ jobs:
         run: yarn install --prefer-offline --frozen-lockfile
 
       # Run tests
-      # - name: Run linter
-      #   run: yarn docs:lint
-      # - name: Test build
-      #   run: yarn docs:build
+      - name: Run linter
+        run: yarn docs:lint
+      - name: Test build
+        run: yarn docs:build
