@@ -54,7 +54,7 @@ jobs:
       - name: Run Leia Tests
         uses: lando/run-leia-action@v2
         with:
-          leia-test: "./${{ matrix.php-versions }}/README.md"
+          leia-test: "./examples/${{ matrix.php-versions }}/README.md"
           debug: true
           cleanup-header: "Destroy tests"
           shell: bash
