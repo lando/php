@@ -15,6 +15,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        lando-version:
+          - 3-edge
         include:
           - image: php
             tag: 8.2-fpm-4
@@ -91,16 +93,13 @@ jobs:
           cache: yarn
       - name: Install Yarn dependencies
         run: yarn install --prefer-offline --frozen-lockfile
-      - name: Grab latest edge Lando CLI
-        run: |
-          sudo curl -fsSL -o /usr/local/bin/lando "https://files.lando.dev/cli/lando-linux-x64-edge"
-          sudo chmod +x /usr/local/bin/lando
-      - name: Move in lando config appropriate for testing
-        run: |
-          mkdir -p ~/.lando/cache
-          cp -f actions-lando-config.yml ~/.lando/config.yml
-          echo false > ~/.lando/cache/report_errors
-          lando --clear
+      - name: Setup lando ${{ matrix.lando-version }}
+        uses: lando/setup-lando@v2
+        with:
+          lando-version: ${{ matrix.lando-version }}
+          config: |
+            plugins.@lando/php=/home/runner/work/php/php
+          telemetry: false
       - name: Verify Lando works and we are dogfooding this plugin for tests
         run: |
           lando version
