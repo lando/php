@@ -16,7 +16,7 @@ jobs:
           - '8.1'
           - '8.2'
         lando-version:
-          - 3-edge
+          - 3-dev
         os:
           - ubuntu-22.04
         node-version:
