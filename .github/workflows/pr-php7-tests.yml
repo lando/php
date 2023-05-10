@@ -15,7 +15,7 @@ jobs:
           - '7.3'
           - '7.4'
         lando-version:
-          - 3-edge
+          - 3-dev
         os:
           - ubuntu-22.04
         node-version:

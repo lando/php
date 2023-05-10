@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         lando-version:
-          - 3-edge
+          - 3-dev
         include:
           - image: php
             tag: 8.2-fpm-4

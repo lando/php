@@ -17,7 +17,7 @@ jobs:
           - examples/5.5
           - examples/5.6
         lando-version:
-          - 3-edge
+          - 3-dev
         os:
           - ubuntu-22.04
         node-version:
