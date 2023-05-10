@@ -45,7 +45,6 @@ jobs:
         uses: lando/run-leia-action@v2
         with:
           leia-test: "./${{ matrix.leia-tests }}/README.md"
-          debug: true
           cleanup-header: "Destroy tests"
           shell: bash
           stdin: true
