@@ -1,3 +1,8 @@
+## v0.9.0 - [July 3, 2023](https://github.com/lando/php/releases/tag/v0.9.0)
+  * Removed bundle-dependencies and version-bump-prompt from plugin.
+  * Updated package to use prepare-release-action.
+  * Updated documentation to reflect new release process.
+
 ## v0.8.0 - [April 17th, 2023](https://github.com/lando/php/releases/tag/v0.8.0)
 * Bumped Redis plugin to redis-5.3.7. [#57](https://github.com/lando/php/pull/57)
 
