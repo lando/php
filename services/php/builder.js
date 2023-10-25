@@ -191,7 +191,8 @@ module.exports = {
         // Set another lando service we can pass down the stream
         const nginxOpts = nginxConfig(options);
         // Merge in any user specifified
-        const LandoNginx = factory.get('nginx');
+        const {builder, config, parent} = require('@lando/nginx/services/nginx/builder');
+        const LandoNginx = builder(factory.get(parent), config);
         const data = new LandoNginx(nginxOpts.name, nginxOpts);
         // If the user has overriden this service lets make sure we include that as well
         const userOverrides = _.get(options, `_app.config.services.${nginxOpts.name}.overrides`, {});

@@ -474,6 +474,13 @@
     mocha "^5.2.0"
     object-hash "^2.2.0"
 
+"@lando/nginx@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@lando/nginx/-/nginx-0.9.0.tgz#527b68ce5e0b7eb62e69f7426660174adab0e33e"
+  integrity sha512-b+2owYglucsRSGX6Hl63nudzs3UD+v6Wm7Os2KAYbAL/4nIEe0IjpAnQG71lLkwSbms4fU4xCfKHYorS9UKd0w==
+  dependencies:
+    lodash "^4.17.21"
+
 "@lando/vuepress-theme-default-plus@1.0.0-beta.49":
   version "1.0.0-beta.49"
   resolved "https://registry.yarnpkg.com/@lando/vuepress-theme-default-plus/-/vuepress-theme-default-plus-1.0.0-beta.49.tgz#857476a02680845522ff9db06316e6f22143a2a6"
