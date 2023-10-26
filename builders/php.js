@@ -4,8 +4,7 @@
 const _ = require('lodash');
 const path = require('path');
 const semver = require('semver');
-const utils = require('./../../lib/utils');
-
+const addBuildStep = require('./../utils/add-build-step');
 /*
  * Helper to get nginx config
  */
@@ -18,7 +17,7 @@ const nginxConfig = options => ({
   info: {managed: true},
   home: options.home,
   name: `${options.name}_nginx`,
-  overrides: utils.cloneOverrides(options.overrides),
+  overrides: require('../utils/clone-overrides')(options.overrides),
   project: options.project,
   root: options.root,
   ssl: options.nginxSsl,
@@ -108,7 +107,7 @@ module.exports = {
       '/var/www/.composer/vendor/bin',
       '/helpers',
     ],
-    confSrc: __dirname,
+    confSrc: path.resolve(__dirname, '..', 'config'),
     command: ['sh -c \'a2enmod rewrite && apache2-foreground\''],
     composer_version: '2.2.18',
     image: 'apache',
@@ -171,19 +170,19 @@ module.exports = {
 
       // Add our composer things to run step
       if (!_.isEmpty(options.composer)) {
-        const commands = utils.getInstallCommands(options.composer, pkger, ['composer', 'global', 'require', '-n']);
-        utils.addBuildStep(commands, options._app, options.name, 'build_internal');
+        const commands = require('../utils/get-install-commands')(['composer', 'global', 'require', '-n']);
+        addBuildStep(commands, options._app, options.name, 'build_internal');
       }
 
       // Add activate steps for xdebug
       if (options.xdebug) {
-        utils.addBuildStep(['docker-php-ext-enable xdebug'], options._app, options.name, 'build_as_root_internal');
+        addBuildStep(['docker-php-ext-enable xdebug'], options._app, options.name, 'build_as_root_internal');
       }
 
       // Install the desired composer version
       if (options.composer_version) {
         const commands = [`/helpers/install-composer.sh ${options.composer_version}`];
-        utils.addBuildStep(commands, options._app, options.name, 'build_internal', true);
+        addBuildStep(commands, options._app, options.name, 'build_internal', true);
       }
 
       // Add in nginx if we need to
