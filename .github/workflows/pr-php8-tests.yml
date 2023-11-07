@@ -38,8 +38,7 @@ jobs:
         with:
           lando-version: ${{ matrix.lando-version }}
           config: |
-            setup.skipCommonPlugins=true
-            setup..plugins.@lando/php=/home/runner/work/php/php
+            setup.plugins.@lando/php=/home/runner/work/php/php
           telemetry: false
       - name: Build Local Docker Apache Image
         run: |
