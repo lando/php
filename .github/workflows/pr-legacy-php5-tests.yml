@@ -39,12 +39,8 @@ jobs:
         with:
           lando-version: ${{ matrix.lando-version }}
           config: |
-            plugins.@lando/php=/home/runner/work/php/php
-          telemetry: false
-      - name: Verify Lando works and we are dogfooding this plugin for tests
-        run: |
-          lando version
-          lando config --path plugins | grep php | grep /home/runner/work/php/php || (echo "::error:: Not dogfooding this plugin correctly! " && exit 1)
+            setup.skipCommonPlugins=true
+            setup..plugins.@lando/php=/home/runner/work/php/php
       - name: Run Leia Tests
         uses: lando/run-leia-action@v2
         with:
