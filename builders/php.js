@@ -21,7 +21,7 @@ const nginxConfig = options => ({
   project: options.project,
   root: options.root,
   ssl: options.nginxSsl,
-  type: 'nginx',
+  type: 'php-nginx',
   userConfRoot: options.userConfRoot,
   webroot: options.webroot,
   version: options.via.split(':')[1],
