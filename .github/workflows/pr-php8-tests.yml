@@ -20,7 +20,7 @@ jobs:
         os:
           - ubuntu-22.04
         node-version:
-          - '16'
+          - '18'
     steps:
 
       - name: Checkout code
@@ -38,7 +38,9 @@ jobs:
         with:
           lando-version: ${{ matrix.lando-version }}
           config: |
+            setup.skipCommonPlugins=true
             setup.plugins.@lando/php=/home/runner/work/php/php
+          telemetry: false
           telemetry: false
       - name: Build Local Docker Apache Image
         run: |
