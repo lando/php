@@ -98,12 +98,9 @@ jobs:
         with:
           lando-version: ${{ matrix.lando-version }}
           config: |
-            plugins.@lando/php=/home/runner/work/php/php
+            setup.skipCommonPlugins=true
+            setup.plugins.@lando/php=/home/runner/work/php/php
           telemetry: false
-      - name: Verify Lando works and we are dogfooding this plugin for tests
-        run: |
-          lando version
-          lando config --path plugins | grep php | grep /home/runner/work/php/php || (echo "::error:: Not dogfooding this plugin correctly! " && exit 1)
 
       # This block should eventually become use lando/actions-leia@v2
       # @NOTE? Do we want a way for our leia-action to configure apparmor since

@@ -41,7 +41,6 @@ jobs:
             setup.skipCommonPlugins=true
             setup.plugins.@lando/php=/home/runner/work/php/php
           telemetry: false
-          telemetry: false
       - name: Build Local Docker Apache Image
         run: |
           cd ./images/${{ matrix.php-versions }}-apache
