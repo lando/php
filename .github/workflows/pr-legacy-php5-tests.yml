@@ -50,4 +50,4 @@ jobs:
           shell: bash
           stdin: true
       - name: Get Docker Log
-        run: docker logs
+        run: docker logs landophp53_custom_nginx_1

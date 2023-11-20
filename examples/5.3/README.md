@@ -121,4 +121,7 @@ Destroy tests
 
 Run the following commands to trash this app like nothing ever happened.
 
-
+```bash
+# Should print out docker logs
+docker logs landophp53_custom_nginx_1
+```
