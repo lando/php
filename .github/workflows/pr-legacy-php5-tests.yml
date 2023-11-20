@@ -49,5 +49,6 @@ jobs:
           cleanup-header: "Destroy tests"
           shell: bash
           stdin: true
-      - name: Get Docker Log
-        run: docker logs landophp53_custom_nginx_1
+      - name: Dump docker logs on failure
+        if: failure()
+        uses: jwalton/gh-docker-logs@v2
