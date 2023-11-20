@@ -30,6 +30,8 @@ services:
         DUALBLADE: maxim
         OTHER: thing
   custom_nginx:
+    type: php:5.3
+    via: nginx
     build_as_root:
       - mkdir -p /app/test && touch /app/test/managed_build_step
     overrides:
