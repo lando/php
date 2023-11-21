@@ -191,8 +191,8 @@ module.exports = {
         const nginxOpts = nginxConfig(options);
 
         // Merge in any user specifified
-        const LandoNginx = factory.get('php-nginx');
-        const data = new LandoNginx(nginxOpts.name, nginxOpts);
+        const PhpNginx = factory.get('php-nginx');
+        const data = new PhpNginx(nginxOpts.name, nginxOpts);
         // If the user has overriden this service lets make sure we include that as well
         const userOverrides = _.get(options, `_app.config.services.${nginxOpts.name}.overrides`, {});
         data.data.push({
