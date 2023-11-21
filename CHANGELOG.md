@@ -1,3 +1,7 @@
+## v0.10.0 - [November 21, 2023](https://github.com/lando/php/releases/tag/v0.10.0)
+* Removed MultiViews from Apache config. [#66](https://github.com/lando/php/issues/66)
+* Isolated PHP to work as a standalone service. [#78](https://github.com/lando/php/pull/78)
+
 ## v0.9.0 - [July 3, 2023](https://github.com/lando/php/releases/tag/v0.9.0)
   * Removed bundle-dependencies and version-bump-prompt from plugin.
   * Updated package to use prepare-release-action.
