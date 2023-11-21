@@ -38,7 +38,8 @@ jobs:
         with:
           lando-version: ${{ matrix.lando-version }}
           config: |
-            plugins.@lando/php=/home/runner/work/php/php
+            setup.skipCommonPlugins=true
+            setup.plugins.@lando/php=/home/runner/work/php/php
           telemetry: false
       - name: Run Leia Tests
         uses: lando/run-leia-action@v2
