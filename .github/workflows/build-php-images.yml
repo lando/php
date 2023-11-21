@@ -85,10 +85,10 @@ jobs:
       # Handle Lando Install to test the images after build
       # We are hardcoding the dtaa normally included in the matrix
       # due to how this testing is setup
-      - name: Install node 16
+      - name: Install node 18
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           registry-url: https://registry.npmjs.org
           cache: yarn
       - name: Install Yarn dependencies
@@ -98,12 +98,9 @@ jobs:
         with:
           lando-version: ${{ matrix.lando-version }}
           config: |
-            plugins.@lando/php=/home/runner/work/php/php
+            setup.skipCommonPlugins=true
+            setup.plugins.@lando/php=/home/runner/work/php/php
           telemetry: false
-      - name: Verify Lando works and we are dogfooding this plugin for tests
-        run: |
-          lando version
-          lando config --path plugins | grep php | grep /home/runner/work/php/php || (echo "::error:: Not dogfooding this plugin correctly! " && exit 1)
 
       # This block should eventually become use lando/actions-leia@v2
       # @NOTE? Do we want a way for our leia-action to configure apparmor since

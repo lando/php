@@ -4,8 +4,7 @@
 const _ = require('lodash');
 const path = require('path');
 const semver = require('semver');
-const utils = require('./../../lib/utils');
-
+const addBuildStep = require('./../utils/add-build-step');
 /*
  * Helper to get nginx config
  */
@@ -18,11 +17,11 @@ const nginxConfig = options => ({
   info: {managed: true},
   home: options.home,
   name: `${options.name}_nginx`,
-  overrides: utils.cloneOverrides(options.overrides),
+  overrides: require('../utils/clone-overrides')(options.overrides),
   project: options.project,
   root: options.root,
   ssl: options.nginxSsl,
-  type: 'nginx',
+  type: 'php-nginx',
   userConfRoot: options.userConfRoot,
   webroot: options.webroot,
   version: options.via.split(':')[1],
@@ -108,7 +107,7 @@ module.exports = {
       '/var/www/.composer/vendor/bin',
       '/helpers',
     ],
-    confSrc: __dirname,
+    confSrc: path.resolve(__dirname, '..', 'config'),
     command: ['sh -c \'a2enmod rewrite && apache2-foreground\''],
     composer_version: '2.2.18',
     image: 'apache',
@@ -171,32 +170,39 @@ module.exports = {
 
       // Add our composer things to run step
       if (!_.isEmpty(options.composer)) {
-        const commands = utils.getInstallCommands(options.composer, pkger, ['composer', 'global', 'require', '-n']);
-        utils.addBuildStep(commands, options._app, options.name, 'build_internal');
+        const commands =
+          require('../utils/get-install-commands')(options.composer, pkger, ['composer', 'global', 'require', '-n']);
+        addBuildStep(commands, options._app, options.name, 'build_internal');
       }
 
       // Add activate steps for xdebug
       if (options.xdebug) {
-        utils.addBuildStep(['docker-php-ext-enable xdebug'], options._app, options.name, 'build_as_root_internal');
+        addBuildStep(['docker-php-ext-enable xdebug'], options._app, options.name, 'build_as_root_internal');
       }
 
       // Install the desired composer version
       if (options.composer_version) {
         const commands = [`/helpers/install-composer.sh ${options.composer_version}`];
-        utils.addBuildStep(commands, options._app, options.name, 'build_internal', true);
+        addBuildStep(commands, options._app, options.name, 'build_internal', true);
       }
 
       // Add in nginx if we need to
       if (_.startsWith(options.via, 'nginx')) {
         // Set another lando service we can pass down the stream
         const nginxOpts = nginxConfig(options);
+
         // Merge in any user specifified
-        const LandoNginx = factory.get('nginx');
-        const data = new LandoNginx(nginxOpts.name, nginxOpts);
+        const PhpNginx = factory.get('php-nginx');
+        const data = new PhpNginx(nginxOpts.name, nginxOpts);
         // If the user has overriden this service lets make sure we include that as well
         const userOverrides = _.get(options, `_app.config.services.${nginxOpts.name}.overrides`, {});
         data.data.push({
           services: _.set({}, nginxOpts.name, userOverrides),
+          version: _.get(data, 'data[0].version'),
+        });
+        // Add a depends_on to make sure nginx waits for php-fpm to be up.
+        data.data.push({
+          services: _.set({}, nginxOpts.name, {'depends_on': [options.name]}),
           version: _.get(data, 'data[0].version'),
         });
         // This is a trick to basically replicate what happens upstream

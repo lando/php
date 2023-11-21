@@ -46,6 +46,7 @@
     "test": "yarn lint && yarn test:unit"
   },
   "dependencies": {
+    "@lando/nginx": "0.10.0",
     "lodash": "^4.17.21",
     "semver": "^7.3.7"
   },
