@@ -189,6 +189,7 @@ module.exports = {
       if (_.startsWith(options.via, 'nginx')) {
         // Set another lando service we can pass down the stream
         const nginxOpts = nginxConfig(options);
+
         // Merge in any user specifified
         const LandoNginx = factory.get('php-nginx');
         const data = new LandoNginx(nginxOpts.name, nginxOpts);
@@ -196,6 +197,11 @@ module.exports = {
         const userOverrides = _.get(options, `_app.config.services.${nginxOpts.name}.overrides`, {});
         data.data.push({
           services: _.set({}, nginxOpts.name, userOverrides),
+          version: _.get(data, 'data[0].version'),
+        });
+        // Add a depends_on to make sure nginx waits for php-fpm to be up.
+        data.data.push({
+          services: _.set({}, nginxOpts.name, {'depends_on': [options.name]}),
           version: _.get(data, 'data[0].version'),
         });
         // This is a trick to basically replicate what happens upstream

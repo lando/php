@@ -36,8 +36,6 @@ services:
       environment:
         MORE: things
         OTHER: stuff
-      depends_on:
-        - custom
 tooling:
   php:
     service: defaults
