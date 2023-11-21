@@ -1,7 +1,7 @@
 {
   "name": "@lando/php",
   "description": "A Lando plugin that provides a tight integration with PHP.",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "author": "Mike Pirog @pirog",
   "license": "GPL-3.0",
   "repository": "lando/php",
@@ -17,6 +17,7 @@
     "node": ">=16.0.0"
   },
   "bundledDependencies": [
+    "@lando/nginx",
     "lodash",
     "semver"
   ],
