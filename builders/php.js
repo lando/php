@@ -170,7 +170,8 @@ module.exports = {
 
       // Add our composer things to run step
       if (!_.isEmpty(options.composer)) {
-        const commands = require('../utils/get-install-commands')(options.composer, pkger, ['composer', 'global', 'require', '-n']);
+        const commands =
+          require('../utils/get-install-commands')(options.composer, pkger, ['composer', 'global', 'require', '-n']);
         addBuildStep(commands, options._app, options.name, 'build_internal');
       }
 
