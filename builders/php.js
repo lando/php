@@ -192,6 +192,7 @@ module.exports = {
         const nginxOpts = nginxConfig(options);
 
         // Merge in any user specifified
+        factory.add(path.resolve(__dirname, './php-nginx.js'));
         const PhpNginx = factory.get('php-nginx');
         const data = new PhpNginx(nginxOpts.name, nginxOpts);
         // If the user has overriden this service lets make sure we include that as well
