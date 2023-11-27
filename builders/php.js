@@ -21,7 +21,7 @@ const nginxConfig = options => ({
   project: options.project,
   root: options.root,
   ssl: options.nginxSsl,
-  type: 'php-nginx',
+  type: options.nginxServiceType,
   userConfRoot: options.userConfRoot,
   webroot: options.webroot,
   version: options.via.split(':')[1],
@@ -132,6 +132,7 @@ module.exports = {
     via: 'apache',
     volumes: ['/usr/local/bin'],
     webroot: '.',
+    nginxServiceType: 'php-nginx',
   },
   parent: '_appserver',
   builder: (parent, config) => class LandoPhp extends parent {
@@ -192,8 +193,7 @@ module.exports = {
         const nginxOpts = nginxConfig(options);
 
         // Merge in any user specifified
-        factory.add(path.resolve(__dirname, './php-nginx.js'));
-        const PhpNginx = factory.get('php-nginx');
+        const PhpNginx = factory.get(nginxOpts.type);
         const data = new PhpNginx(nginxOpts.name, nginxOpts);
         // If the user has overriden this service lets make sure we include that as well
         const userOverrides = _.get(options, `_app.config.services.${nginxOpts.name}.overrides`, {});
