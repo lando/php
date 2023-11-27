@@ -1,7 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
-const LandoNginx = require('./../node_modules/@lando/nginx/builders/nginx.js');
+const LandoNginx = require('@lando/nginx/builders/nginx.js');
 
 // Builder
 module.exports = {
