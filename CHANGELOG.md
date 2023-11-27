@@ -1,3 +1,7 @@
+## v0.10.1 - [November 27, 2023](https://github.com/lando/php/releases/tag/v0.10.1)
+* Removed relative references to dependencies.
+* Added nginxServiceType option so other services can override the default `php-nginx` service with their own.
+
 ## v0.10.0 - [November 21, 2023](https://github.com/lando/php/releases/tag/v0.10.0)
 * Removed MultiViews from Apache config. [#66](https://github.com/lando/php/issues/66)
 * Isolated PHP to work as a standalone service. [#78](https://github.com/lando/php/pull/78)
