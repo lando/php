@@ -109,7 +109,7 @@ module.exports = {
     ],
     confSrc: path.resolve(__dirname, '..', 'config'),
     command: ['sh -c \'a2enmod rewrite && apache2-foreground\''],
-    composer_version: '2.2.18',
+    composer_version: '2.2.22',
     image: 'apache',
     defaultFiles: {
       _php: 'php.ini',

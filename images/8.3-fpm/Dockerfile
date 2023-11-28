@@ -1,6 +1,7 @@
 # docker build -t devwithlando/php:8.3-fpm-4 .
 
-FROM php:8.g
+FROM php:8.3-fpm-bullseye
+
 # Install dependencies we need
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && apt -y update && apt-get install -y \
@@ -69,7 +70,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && docker-php-ext-install soap \
   && docker-php-ext-install zip \
   && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-  && php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=2.6.5 \
+  && php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=2.2.22 \
   && php -r "unlink('composer-setup.php');" \
   && chsh -s /bin/bash www-data && mkdir -p /var/www/.composer && chown -R www-data:www-data /var/www \
   && apt-get -y clean \
