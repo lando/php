@@ -65,8 +65,8 @@ lando ssh -s custom_nginx -c "curl https://localhost" | grep SERVER | grep PATH_
 # Should use specified php version if given
 lando ssh -s custom -c "php -v" | grep "PHP 8.3"
 
-# Should install composer 2.2.22 if version number is set
-lando ssh -s custom -c "composer --version --no-ansi" | grep "Composer version 2.2.22"
+# Should install composer 2.5.6 if version number is set
+lando ssh -s custom -c "composer --version --no-ansi" | grep "Composer version 2.5.6"
 
 # Should serve via nginx if specified
 lando ssh -s custom_nginx -c "curl http://localhost" | grep "WEBDIR"

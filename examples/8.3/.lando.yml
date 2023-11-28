@@ -21,7 +21,7 @@ services:
     command: sleep infinity
   custom:
     type: php:8.3
-    composer_version: "2.2.18"
+    composer_version: "2.5.6"
     via: nginx
     ssl: true
     webroot: web
