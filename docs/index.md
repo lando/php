@@ -20,7 +20,7 @@ services:
 
 ## Supported versions
 
-*   [8.3](https://hub.docker.com/r/devwithlando/php)
+*   [8.3](https://hub.docker.com/r/devwithlando/php) (experimental)
 *   [8.2](https://hub.docker.com/r/devwithlando/php)
 *   [8.1](https://hub.docker.com/r/devwithlando/php)
 *   [8.0](https://hub.docker.com/r/devwithlando/php)
