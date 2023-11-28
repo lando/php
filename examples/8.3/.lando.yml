@@ -1,4 +1,4 @@
-name: lando-php82
+name: lando-php83
 events:
   post-start:
     - defaults: php -i | grep memory_limit | grep -e "-1"
