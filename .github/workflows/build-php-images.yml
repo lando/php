@@ -101,26 +101,14 @@ jobs:
             setup.skipCommonPlugins=true
             setup.plugins.@lando/php=/home/runner/work/php/php
           telemetry: false
-
-      # This block should eventually become use lando/actions-leia@v2
-      # @NOTE? Do we want a way for our leia-action to configure apparmor since
-      # this might break a whole bunch of tests? or is this literally just a thing
-      # for the Lagoon mysql/mariadb container?
-      - name: Configure apparmor
-        run: |
-          set -x
-          sudo apt-get remove mysql-server --purge
-          sudo apt-get install apparmor-profiles
-          sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
-
       # Test newly built images.
       - name: Test Edge Images on PR
+        uses: lando/run-leia-action@v2
         if: ${{ github.event_name == 'pull_request' }}
-        shell: bash
-        run: |
-          yarn leia "./examples/images-edge/${{ matrix.tag }}/README.md" -c 'Destroy tests' --stdin --shell bash
+        with:
+          leia-test: "./examples/images-edge/${{ matrix.tag }}/README.md"
       - name: Test Stable Images on Push
-        if: ${{ github.event_name == 'push' }}
-        shell: bash
-        run: |
-          yarn leia "./examples/images-stable/${{ matrix.tag }}/README.md" -c 'Destroy tests' --stdin --shell bash
+        uses: lando/run-leia-action@v2
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          leia-test: "./examples/images-stable/${{ matrix.tag }}/README.md"
