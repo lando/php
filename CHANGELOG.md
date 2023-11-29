@@ -1,3 +1,7 @@
+## v0.10.2 - [November 28, 2023](https://github.com/lando/php/releases/tag/v0.10.2)
+* Added option to override the image powering the service.
+* Removed apparmor step from image building.
+
 ## v0.10.1 - [November 27, 2023](https://github.com/lando/php/releases/tag/v0.10.1)
 * Removed relative references to dependencies.
 * Added nginxServiceType option so other services can override the default `php-nginx` service with their own.
