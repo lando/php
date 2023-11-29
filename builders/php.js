@@ -63,7 +63,7 @@ const parseCli = options => {
  */
 const parseNginx = options => {
   options.command = (process.platform !== 'win32') ? ['php-fpm'] : ['php-fpm -R'];
-  options.image = 'fpm';
+  options.phpServer = 'fpm';
   options.remoteFiles.vhosts = '/opt/bitnami/nginx/conf/lando.conf';
   options.defaultFiles.vhosts = (options.ssl) ? 'default-ssl.conf.tpl' : 'default.conf.tpl';
   options.nginxSsl = options.ssl;
@@ -110,7 +110,7 @@ module.exports = {
     confSrc: path.resolve(__dirname, '..', 'config'),
     command: ['sh -c \'a2enmod rewrite && apache2-foreground\''],
     composer_version: '2.2.18',
-    image: 'apache',
+    phpServer: 'apache',
     defaultFiles: {
       _php: 'php.ini',
       vhosts: 'default.conf',
@@ -155,7 +155,8 @@ module.exports = {
 
       // Build the php
       const php = {
-        image: `devwithlando/php:${options.version}-${options.image}-${options.suffix}`,
+        image: _.get(options, 'image') ?
+          options.image : `devwithlando/php:${options.version}-${options.phpServer}-${options.suffix}`,
         environment: _.merge({}, options.environment, {
           PATH: options.path.join(':'),
           LANDO_WEBROOT: `/app/${options.webroot}`,
