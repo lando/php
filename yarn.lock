@@ -479,10 +479,10 @@
     mocha "^5.2.0"
     object-hash "^2.2.0"
 
-"@lando/nginx@0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@lando/nginx/-/nginx-0.10.0.tgz#c2d63d112a615d19c4313b18bf2e97a7fcab0308"
-  integrity sha512-aKpULGWimycpSYpQAqBtiFwt/zfXACxN59vugEnQNypVkVCPTzq0A2Gk2rcd41DaCpR8cmf8BM80Eqz+GeM7UA==
+"@lando/nginx@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@lando/nginx/-/nginx-0.11.0.tgz#527509a636ff30988832ef5af42fff214e787248"
+  integrity sha512-yoOaEHRXwaJDV6HH+BwMvfU2+dtbdrP/6RQi04dLTfsVLQm6TC49QGV3kL3xoVqv4fLIKDyLQqe2MUhJ8PROgw==
   dependencies:
     lodash "^4.17.21"
 
