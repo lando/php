@@ -16,7 +16,7 @@ jobs:
           - '8.1'
           - '8.2'
         lando-version:
-          - 3-dev
+          - 3.20.5
         os:
           - ubuntu-22.04
         node-version:
@@ -38,7 +38,6 @@ jobs:
         with:
           lando-version: ${{ matrix.lando-version }}
           config: |
-            setup.skipCommonPlugins=true
             setup.plugins.@lando/php=/home/runner/work/php/php
           telemetry: false
       - name: Build Local Docker Apache Image
