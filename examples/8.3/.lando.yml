@@ -1,0 +1,58 @@
+name: lando-php83
+events:
+  post-start:
+    - defaults: php -i | grep memory_limit | grep -e "-1"
+services:
+  defaults:
+    type: php:8.3
+    composer_version: false
+  cli:
+    type: php:8.3
+    composer_version: false
+    via: cli
+    build_as_root:
+      - curl -sL https://deb.nodesource.com/setup_14.x | bash -
+      - apt-get update -y
+      - apt-get install -y nodejs
+  cliworker:
+    type: php:8.3
+    composer_version: false
+    via: cli
+    command: sleep infinity
+  custom:
+    type: php:8.3
+    composer_version: "2.5.6"
+    via: nginx
+    ssl: true
+    webroot: web
+    xdebug: true
+    config:
+      php: config/php.ini
+    overrides:
+      image: devwithlando/php:8.3-fpm-4
+      environment:
+        DUALBLADE: maxim
+        OTHER: thing
+  custom_nginx:
+    build_as_root:
+      - mkdir -p /app/test && touch /app/test/managed_build_step
+    overrides:
+      environment:
+        MORE: things
+        OTHER: stuff
+tooling:
+  php:
+    service: defaults
+  node:
+    service: :host
+    options:
+      host:
+        description: The service to use
+        default: cli
+        alias:
+          - h
+
+# This is important because it lets lando know to test against the plugin in this repo
+# DO NOT REMOVE THIS!
+plugins:
+  "@lando/php": ./../../

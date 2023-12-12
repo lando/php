@@ -91,7 +91,7 @@ module.exports = {
   name: 'php',
   config: {
     version: '7.4',
-    supported: ['8.2', '8.1', '8.0', '7.4', '7.3', '7.2', '7.1', '7.0', '5.6', '5.5', '5.4', '5.3'],
+    supported: ['8.3', '8.2', '8.1', '8.0', '7.4', '7.3', '7.2', '7.1', '7.0', '5.6', '5.5', '5.4', '5.3'],
     legacy: ['7.2', '7.1', '7.0', '5.6', '5.5', '5.4', '5.3'],
     gen2: ['5.5', '5.4', '5.3'],
     gen3: ['7.2', '7.1', '7.0', '5.6'],
@@ -109,7 +109,7 @@ module.exports = {
     ],
     confSrc: path.resolve(__dirname, '..', 'config'),
     command: ['sh -c \'a2enmod rewrite && apache2-foreground\''],
-    composer_version: '2.2.18',
+    composer_version: '2.2.22',
     phpServer: 'apache',
     defaultFiles: {
       _php: 'php.ini',
