@@ -1,3 +1,6 @@
+## v1.0.0 - [December 7, 2023](https://github.com/lando/php/releases/tag/v1.0.0)
+    * Dialed fully for `lando update`
+
 ## v0.10.2 - [November 28, 2023](https://github.com/lando/php/releases/tag/v0.10.2)
 * Added option to override the image powering the service.
 * Removed apparmor step from image building.
