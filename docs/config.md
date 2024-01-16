@@ -232,7 +232,7 @@ services:
 
 ## Using custom config files
 
-You may need to override our [default php config](https://github.com/lando/php/tree/main/services/php) with your own.
+You may need to override our [default PHP config](https://github.com/lando/php/blob/main/config/php.ini) with your own.
 
 If you do this, you must use files that exist inside your application and express them relative to your project root as shown below:
 
