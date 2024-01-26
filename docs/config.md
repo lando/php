@@ -165,7 +165,7 @@ If you have set `xdebug: true` in your recipe or service config and run `lando r
 xdebug.max_nesting_level = 256
 xdebug.show_exception_trace = 0
 xdebug.collect_params = 0
-xdebug.remote_enable = 1
+xdebug.mode = debug 
 xdebug.remote_host = YOUR HOST IP ADDRESS
 ```
 
