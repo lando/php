@@ -1,3 +1,6 @@
+## v1.1.0 - [January 29, 2024](https://github.com/lando/php/releases/tag/v1.1.0)
+* Add support for PHP 8.3. [#77](https://github.com/lando/php/issues/77)
+
 ## v1.0.0 - [December 7, 2023](https://github.com/lando/php/releases/tag/v1.0.0)
     * Dialed fully for `lando update`
 
