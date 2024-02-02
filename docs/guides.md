@@ -2,7 +2,7 @@
 description: Home helpful guides for the PHP recipe.
 layout: page
 title: Guides
-sidebar: false
+sidebar: true
 ---
 
 <script setup>

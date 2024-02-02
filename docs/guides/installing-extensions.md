@@ -21,7 +21,7 @@ You may wish to add additional PHP extensions to your Lando [PHP service](https:
 
 [[toc]]
 
-Note that both of these strategies make use of underlying utilities provided by the [Official Docker PHP Image]() which is the base image used by Lando's PHP service. We recommend you read more about them [over on their docs](https://hub.docker.com/_/php).
+Note that both of these strategies make use of underlying utilities provided by the [Official Docker PHP Image](https://hub.docker.com/_/php) which is the base image used by Lando's PHP service. We recommend you read more about them [over on their docs](https://hub.docker.com/_/php).
 
 Also note that you may need to adapt these slightly depending on the PHP version you are using.
 
