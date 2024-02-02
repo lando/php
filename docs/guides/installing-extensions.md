@@ -15,6 +15,8 @@ mailchimp:
   button: Sign me up!
 ---
 
+# Installing PHP Extensions on Lando
+
 You may wish to add additional PHP extensions to your Lando [PHP service](https://docs.lando.dev/php). There are a few different ways you can do this:
 
 [[toc]]

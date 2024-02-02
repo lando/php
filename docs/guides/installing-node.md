@@ -15,6 +15,8 @@ mailchimp:
   button: Sign me up!
 ---
 
+# Installing Node in Your Lando PHP Service
+
 Some frontend tooling kits like [Emulsify](https://www.drupal.org/project/emulsify_drupal) or [Pattern Lab](https://patternlab.io/) _may_ assume that `composer/php` can invoke `yarn/npm/node` and vice-versa. This pattern, sadly, is fundamentally at odds with Lando's one-thing-per-container model.
 
 You can, however, get around it by installing the needed dependencies directly in the service that requires them.
