@@ -6,7 +6,7 @@ next: ./config.html
 
 # PHP
 
-[PHP](https://www.php.net/) is a popular scripting language that is especially suited for web development. It is often served by either [apache](https://docs.lando.dev/core/v3/apache.html) or [nginx](https://docs.lando.dev/core/v3/nginx.html).
+[PHP](https://www.php.net/) is a popular scripting language that is especially suited for web development. It is often served by either [apache](https://docs.lando.dev/apache/) or [nginx](https://docs.lando.dev/nginx/).
 
 You can easily add it to your Lando app by adding an entry to the [services](https://docs.lando.dev/core/v3/lando-service.html) top-level config in your [Landofile](https://docs.lando.dev/core/v3).
 
