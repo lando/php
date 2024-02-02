@@ -6,7 +6,7 @@ next: ./config.html
 
 # PHP
 
-[PHP](http://php.net/) is a popular scripting language that is especially suited for web development. It is often served by either [apache](https://docs.lando.dev/core/v3/apache.html) or [nginx](https://docs.lando.dev/core/v3/nginx.html).
+[PHP](https://www.php.net/) is a popular scripting language that is especially suited for web development. It is often served by either [apache](https://docs.lando.dev/core/v3/apache.html) or [nginx](https://docs.lando.dev/core/v3/nginx.html).
 
 You can easily add it to your Lando app by adding an entry to the [services](https://docs.lando.dev/core/v3/lando-service.html) top-level config in your [Landofile](https://docs.lando.dev/core/v3).
 
@@ -31,7 +31,7 @@ services:
 ## Legacy versions
 
 ::: warning Using Unsupported PHP Versions!
-While you can currently use some [EOL php version](http://php.net/supported-versions.php) with Lando, it's worth noting that we also do not support such versions, so your mileage may vary. If you are having issues with unsupported versions and open a ticket about it, the most likely response you will get is "upgrade to a supported version".
+While you can currently use some [EOL php version](https://www.php.net/supported-versions.php) with Lando, it's worth noting that we also do not support such versions, so your mileage may vary. If you are having issues with unsupported versions and open a ticket about it, the most likely response you will get is "upgrade to a supported version".
 :::
 
 You can still run these versions with Lando but for all intents and purposes they should be considered deprecated (e.g. YMMV and do not expect a ton of support if you have an issue).

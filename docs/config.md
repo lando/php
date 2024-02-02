@@ -31,9 +31,9 @@ services:
 
 ## Choosing a server (or not)
 
-By default, `php` services will be served by the default version of our [apache](https://docs.lando.dev/core/v3/apache.html) service but you can switch this to either `nginx` or `cli`.
+By default, `php` services will be served by the default version of our [apache](https://docs.lando.dev/apache/) service but you can switch this to either `nginx` or `cli`.
 
-Like with `apache`, `nginx` will use the the default version of our [nginx](https://docs.lando.dev/core/v3/nginx.html) service while `cli` will just spin up a `php` container without a web server. The latter is useful if you just want to work on a CLI utility or lock down what version `composer` runs with.
+Like with `apache`, `nginx` will use the the default version of our [nginx](https://docs.lando.dev/nginx/) service while `cli` will just spin up a `php` container without a web server. The latter is useful if you just want to work on a CLI utility or lock down what version `composer` runs with.
 
 #### With Apache (default)
 
@@ -133,21 +133,9 @@ services:
 
 While Lando will handle the server side configuration for you, there is often a considerable amount of pain lurking in the client side configuration. To that end, some helpful info about a few popular clients is shown below:
 
-**ATOM**
+**PHPStorm**
 
-An example config for [ATOM's](https://atom.io/) [`php-debug`](https://github.com/gwomacks/php-debug) plugin is shown below:
-
-```json
-"php-debug":
-  {
-    ServerPort: 9000
-    PathMaps: [
-      "/app/www;/Users/pirog/Desktop/work/lando/examples/lando/www"
-    ]
-  }
-```
-
-The first part of a pathmap will be the location of your code in the container. Generally, this should be `/app`. Also note that if your app is in a nested docroot, you will need to append that to the paths. The example above uses an app with a nested webroot called `www`.
+[Lando + PhpStorm + Xdebug](https://docs.lando.dev/guides/lando-phpstorm.html)
 
 **VSCODE**
 
@@ -236,7 +224,7 @@ You may need to override our [default php config](https://github.com/lando/php/t
 
 If you do this, you must use files that exist inside your application and express them relative to your project root as shown below:
 
-Note that the default files may change based on how you set both `ssl` and `via`. Also note that the `vhosts` and `server` config will be either for `apache` or `nginx` depending on how you set `via`. We *highly recommend* you check out both the [apache](https://docs.lando.dev/apache) and [nginx](https://docs.lando.dev/nginx) if you plan to use a custom `vhosts` or `server` config.
+Note that the default files may change based on how you set both `ssl` and `via`. Also note that the `vhosts` and `server` config will be either for `apache` or `nginx` depending on how you set `via`. We *highly recommend* you check out both the [apache](https://docs.lando.dev/apache/) and [nginx](https://docs.lando.dev/nginx/) if you plan to use a custom `vhosts` or `server` config.
 
 If you set `via: cli` then, as you might suspect, `vhosts` and/or `server` is not going to do anything.
 
