@@ -71,11 +71,11 @@ Note that `xdebug` is off by default but you can enable it by setting your `php`
 
 There are a few ways you can extend or modify our php images below:
 
-* Using [build steps](https://docs.lando.dev/config/services.html#build-steps).
-* Using your own image with [service overrides](https://docs.lando.dev/config/services.html#overrides).
-* Building from your own local Dockerfile [service overrides](https://docs.lando.dev/config/services.html#using-dockerfiles).
+* Using [build steps](https://docs.lando.dev/core/v3/lando-service.html#build-steps).
+* Using your own image with [service overrides](https://docs.lando.dev/core/v3/lando-service.html#overrides).
+* Building from your own local Dockerfile [service overrides](https://docs.lando.dev/core/v3/lando-service.html#using-dockerfiles).
 
-Consider the example that uses [build steps](https://docs.lando.dev/config/services.html#build-steps) to install the `memcached` php extension as follows:
+Consider the example that uses [build steps](https://docs.lando.dev/core/v3/lando-service.html#build-steps) to install the `memcached` php extension as follows:
 
 ```yaml
 services:

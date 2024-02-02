@@ -5,9 +5,9 @@ description: Learn how to configure the Lando PHP service.
 
 # Configuration
 
-Here are the configuration options, set to the default values, for this service. If you are unsure about where this goes or what this means, we *highly recommend* scanning the [services documentation](https://docs.lando.dev/config/services.html) to get a good handle on how the magicks work.
+Here are the configuration options, set to the default values, for this service. If you are unsure about where this goes or what this means, we *highly recommend* scanning the [services documentation](https://docs.lando.dev/core/v3/lando-service.html) to get a good handle on how the magicks work.
 
-Also note that options, in addition to the [build steps](https://docs.lando.dev/config/services.html#build-steps) and [overrides](https://docs.lando.dev/config/services.html#overrides) that are available to every service, are shown below:
+Also note that options, in addition to the [build steps](https://docs.lando.dev/core/v3/lando-service.html#build-steps) and [overrides](https://docs.lando.dev/core/v3/lando-service.html#overrides) that are available to every service, are shown below:
 
 ```yaml
 services:
@@ -31,9 +31,9 @@ services:
 
 ## Choosing a server (or not)
 
-By default, `php` services will be served by the default version of our [apache](https://docs.lando.dev/config/apache.html) service but you can switch this to either `nginx` or `cli`.
+By default, `php` services will be served by the default version of our [apache](https://docs.lando.dev/core/v3/apache.html) service but you can switch this to either `nginx` or `cli`.
 
-Like with `apache`, `nginx` will use the the default version of our [nginx](https://docs.lando.dev/config/nginx.html) service while `cli` will just spin up a `php` container without a web server. The latter is useful if you just want to work on a CLI utility or lock down what version `composer` runs with.
+Like with `apache`, `nginx` will use the the default version of our [nginx](https://docs.lando.dev/core/v3/nginx.html) service while `cli` will just spin up a `php` container without a web server. The latter is useful if you just want to work on a CLI utility or lock down what version `composer` runs with.
 
 #### With Apache (default)
 
@@ -205,9 +205,9 @@ composer_version: snapshot
 You can also use the `composer` key if you need to require any [global composer dependenices](https://getcomposer.org/doc/03-cli.md#require). This follows the same syntax as your normal [`composer.json`](https://getcomposer.org/doc/01-basic-usage.md#composer-json-project-setup) except written as YAML instead of JSON.
 
 ::: tip Use composer.json if you can
-While there are some legitimate use cases to globally install a composer dependency, it is almost always preferred to install using your applications normal `composer.json` and then running either `lando composer install` or alternatively setting up a [build step](https://docs.lando.dev/config/services.html#build-steps) that will automatically run before your app starts up.
+While there are some legitimate use cases to globally install a composer dependency, it is almost always preferred to install using your applications normal `composer.json` and then running either `lando composer install` or alternatively setting up a [build step](https://docs.lando.dev/core/v3/lando-service.html#build-steps) that will automatically run before your app starts up.
 
-Note that `lando composer` is not provided out of the box by the `php` service and needs to be manually added by configuring your app's [tooling](https://docs.lando.dev/config/tooling.html).
+Note that `lando composer` is not provided out of the box by the `php` service and needs to be manually added by configuring your app's [tooling](https://docs.lando.dev/core/v3/tooling.html).
 :::
 
 An example of globally installing `phpunit/phpunit` `^6.5` is shown below:
@@ -220,7 +220,7 @@ services:
       phpunit/phpunit: ^6.5
 ```
 
-An example of using a [build step](https://docs.lando.dev/config/services.html#build-steps) to automatically `composer install` your dependencies before your app starts is shown below:
+An example of using a [build step](https://docs.lando.dev/core/v3/lando-service.html#build-steps) to automatically `composer install` your dependencies before your app starts is shown below:
 
 ```yaml
 services:
@@ -232,7 +232,7 @@ services:
 
 ## Using custom config files
 
-You may need to override our [default php config](https://github.com/lando/php/tree/main/services/php) with your own.
+You may need to override our [default php config](https://github.com/lando/php/tree/main/builders) with your own.
 
 If you do this, you must use files that exist inside your application and express them relative to your project root as shown below:
 
@@ -285,7 +285,7 @@ lando php
 lando composer
 ```
 
-Lando tooling is actually pretty powerful so definitely check out [the rest](https://docs.lando.dev/config/tooling.html) of its cool features.
+Lando tooling is actually pretty powerful so definitely check out [the rest](https://docs.lando.dev/core/v3/tooling.html) of its cool features.
 
 ## Adding routing
 
@@ -298,4 +298,4 @@ proxy:
     - something.else.local
 ```
 
-Lando proxying is actually pretty powerful so definitely check out [the rest](https://docs.lando.dev/config/proxy.html) of its cool features.
+Lando proxying is actually pretty powerful so definitely check out [the rest](https://docs.lando.dev/core/v3/proxy.html) of its cool features.

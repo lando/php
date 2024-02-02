@@ -23,7 +23,7 @@ We've found installing `node` inside a Lando PHP service to generally be the pat
 
 ## 1. Using build steps
 
-Below is an example that installs `node12` using [build-steps](https://docs.lando.dev/config/services.html#build-steps).
+Below is an example that installs `node12` using [build-steps](https://docs.lando.dev/core/v3/lando-service.html#build-steps).
 
 ```yaml
 services:
@@ -50,7 +50,7 @@ lando npm -v
 
 ## 2. Extending a Dockerfile
 
-If you are planning to extend your service with _additional_ build steps or would like to cache the build steps for a faster `lando rebuild` you should instead consider [extending with a Dockerfile](https://docs.lando.dev/config/services.html#using-dockerfiles) as in the example below:
+If you are planning to extend your service with _additional_ build steps or would like to cache the build steps for a faster `lando rebuild` you should instead consider [extending with a Dockerfile](https://docs.lando.dev/core/v3/lando-service.html#using-dockerfiles) as in the example below:
 
 **.lando.yml**
 
