@@ -14,6 +14,9 @@ mailchimp:
   byline: Signup and we will send you a weekly blog digest of similar content to keep you satiated.
   button: Sign me up!
 ---
+
+# Accessing the PHP Error Logs
+
 Seeing errors coming off a PHP app is usually very easy in Lando:
 
 ```bash
