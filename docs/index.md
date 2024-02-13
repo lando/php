@@ -6,7 +6,7 @@ next: ./config.html
 
 # PHP
 
-[PHP](https://www.php.net/) is a popular scripting language that is especially suited for web development. It is often served by either [apache](https://docs.lando.dev/apache/) or [nginx](https://docs.lando.dev/nginx/).
+[PHP](https://www.php.net/) is a popular scripting language that is especially suited for web development. It is often served by either [apache](https://docs.lando.dev/plugins/apache/) or [nginx](https://docs.lando.dev/plugins/nginx/).
 
 You can easily add it to your Lando app by adding an entry to the [services](https://docs.lando.dev/core/v3/lando-service.html) top-level config in your [Landofile](https://docs.lando.dev/core/v3).
 
@@ -48,5 +48,5 @@ You can still run these versions with Lando but for all intents and purposes the
 
 Because we use our own custom images for `php`, specifying a patch version is not currently supported.
 
-If you **really** need to lock down to a patch version, you could consider using either a [custom compose service](https://docs.lando.dev/compose) or a service [overrides](https://docs.lando.dev/core/v3/lando-service.html#overrides).
+If you **really** need to lock down to a patch version, you could consider using either a [custom compose service](https://docs.lando.dev/plugins/compose) or a service [overrides](https://docs.lando.dev/core/v3/lando-service.html#overrides).
 

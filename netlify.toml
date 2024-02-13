@@ -39,9 +39,9 @@
 # We need this so preview environments and the base site look ok on their own
 [[redirects]]
   from = "/"
-  to = "/php"
+  to = "/plugins/php"
   status = 200
 [[redirects]]
-  from = "/php/*"
+  from = "/plugins/php/*"
   to = "/:splat"
   status = 200
