@@ -15,43 +15,53 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        lando-version:
-          - 3-dev-slim
         include:
           - image: php
+            lando-version: 3-dev-slim
             tag: 8.3-fpm-4
             context: images/8.3-fpm
           - image: php
+            lando-version: 3-dev-slim
             tag: 8.3-apache-4
             context: images/8.3-apache
           - image: php
+            lando-version: 3-dev-slim
             tag: 8.2-fpm-4
             context: images/8.2-fpm
           - image: php
+            lando-version: 3-dev-slim
             tag: 8.2-apache-4
             context: images/8.2-apache
           - image: php
+            lando-version: 3-dev-slim
             tag: 8.1-fpm-4
             context: images/8.1-fpm
           - image: php
+            lando-version: 3-dev-slim
             tag: 8.1-apache-4
             context: images/8.1-apache
           - image: php
+            lando-version: 3-dev-slim
             tag: 8.0-fpm-4
             context: images/8.0-fpm
           - image: php
+            lando-version: 3-dev-slim
             tag: 8.0-apache-4
             context: images/8.0-apache
           - image: php
+            lando-version: 3-dev-slim
             tag: 7.4-fpm-4
             context: images/7.4-fpm
           - image: php
+            lando-version: 3-dev-slim
             tag: 7.4-apache-4
             context: images/7.4-apache
           - image: php
+            lando-version: 3-dev-slim
             tag: 7.3-fpm-4
             context: images/7.3-fpm
           - image: php
+            lando-version: 3-dev-slim
             tag: 7.3-apache-4
             context: images/7.3-apache
 
