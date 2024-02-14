@@ -19,6 +19,10 @@ jobs:
           - 3-dev-slim
         image:
           - php
+        tag:
+          - 8.3-fpm-4
+        context:
+          - images/8.3-fpm
         include:
           - tag: 8.3-fpm-4
             context: images/8.3-fpm
@@ -95,10 +99,10 @@ jobs:
           lando-plugin: true
           version: dev
           sync: false
-      - name: Setup lando 3-dev-slim
+      - name: Setup lando ${{ matrix.lando-version }} 
         uses: lando/setup-lando@v2
         with:
-          lando-version: 3-dev-slim
+          lando-version: ${{ matrix.lando-version }}
           config: |
             setup.skipCommonPlugins=true
             setup.plugins.@lando/php=/home/runner/work/php/php
