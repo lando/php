@@ -42,14 +42,12 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
     xfonts-base \
     zlib1g-dev \
   && pecl install apcu \
-  && pecl install imagick \
   && pecl install memcached \
   && pecl install oauth \
   && pecl install redis-6.0.2 \
   && pecl install xdebug-3.3.0alpha3 \
   && docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \
   && docker-php-ext-enable apcu \
-  && docker-php-ext-enable imagick \
   && docker-php-ext-enable memcached \
   && docker-php-ext-enable oauth \
   && docker-php-ext-enable redis \
