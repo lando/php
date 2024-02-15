@@ -25,7 +25,7 @@ description: Learn what extensions are installed in the Lando PHP plugin
 | gettext   |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |
 | hash      |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |
 | iconv     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |
-| imagick   |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |
+| imagick   |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  *  |
 | imap      |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |
 | intl      |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |
 | json      |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |
@@ -66,6 +66,11 @@ description: Learn what extensions are installed in the Lando PHP plugin
 | zlib      |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |
 
 Note that `xdebug` is off by default but you can enable it by setting your `php` services config to `xdebug: true`. Read more about this in "Configuration" above.
+
+::: warning
+Note that imagick is temporarily unavailable on PHP 8.3, due to a pending issue waiting to get released on the imagick project: https://github.com/Imagick/imagick/pull/641 
+:::
+
 
 ## Adding or removing extensions
 
