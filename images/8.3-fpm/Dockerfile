@@ -45,7 +45,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && pecl install memcached \
   && pecl install oauth \
   && pecl install redis-6.0.2 \
-  && pecl install xdebug-3.3.0alpha3 \
+  && pecl install xdebug-3.3.1 \
   && docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \
   && docker-php-ext-enable apcu \
   && docker-php-ext-enable memcached \
