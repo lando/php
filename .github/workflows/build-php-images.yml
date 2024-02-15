@@ -69,7 +69,7 @@ jobs:
       - name: Set tag suffix
         id: pr
         if: ${{ github.event_name == 'pull_request' }}
-        run: echo "tag-suffix=-edge" >> "$GITHUB_OUTPUT"
+        run: echo "tag_suffix=-edge" >> "$GITHUB_OUTPUT"
       # Build our images.
       - name: Login to DockerHub
         uses: docker/login-action@v2
