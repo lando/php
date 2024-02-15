@@ -21,34 +21,30 @@ jobs:
           - php
         tag:
           - 8.3-fpm-4
+          - 8.3-apache-4
+          - 8.2-fpm-4
+          - 8.2-apache-4
+          - 8.1-fpm-4
+          - 8.1-apache-4
+          - 8.0-fpm-4
+          - 8.0-apache-4
+          - 7.4-fpm-4
+          - 7.4-apache-4
+          - 7.3-fpm-4
+          - 7.3-apache-4
         context:
           - images/8.3-fpm
-        include:
-          - tag: 8.3-fpm-4
-            context: images/8.3-fpm
-          - tag: 8.3-apache-4
-            context: images/8.3-apache
-          - tag: 8.2-fpm-4
-            context: images/8.2-fpm
-          - tag: 8.2-apache-4
-            context: images/8.2-apache
-          - tag: 8.1-fpm-4
-            context: images/8.1-fpm
-          - tag: 8.1-apache-4
-            context: images/8.1-apache
-          - tag: 8.0-fpm-4
-            context: images/8.0-fpm
-          - tag: 8.0-apache-4
-            context: images/8.0-apache
-          - tag: 7.4-fpm-4
-            context: images/7.4-fpm
-          - tag: 7.4-apache-4
-            context: images/7.4-apache
-          - tag: 7.3-fpm-4
-            context: images/7.3-fpm
-          - tag: 7.3-apache-4
-            context: images/7.3-apache
-
+          - images/8.3-apache
+          - images/8.2-fpm
+          - images/8.2-apache
+          - images/8.1-fpm
+          - images/8.1-apache
+          - images/8.0-fpm
+          - images/8.0-apache
+          - images/7.4-fpm
+          - images/7.4-apache
+          - images/7.3-fpm
+          - images/7.3-apache
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
