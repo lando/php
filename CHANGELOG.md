@@ -1,3 +1,6 @@
+## v1.3.0 - [March 8, 2024](https://github.com/lando/php/releases/tag/v1.3.0)
+  * Updated to latest database services.
+
 ## v1.2.0 - [February 16, 2024](https://github.com/lando/php/releases/tag/v1.2.0)
   * Get PHP image builds working to make PHP 8.3 images available. **Note Imagick is [temporarily unavailable](https://github.com/Imagick/imagick/pull/641)!**
   * Stable version of xdebug for PHP 8.3. [#91](https://github.com/lando/php/pull/91)
