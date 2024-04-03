@@ -125,6 +125,7 @@ module.exports = {
       _php: '/usr/local/etc/php/conf.d/xxx-lando-default.ini',
       vhosts: '/etc/apache2/sites-enabled/000-default.conf',
       php: '/usr/local/etc/php/conf.d/zzz-lando-my-custom.ini',
+      pool: '/usr/local/etc/php-fpm.d/zz-lando.conf',
     },
     sources: [],
     suffix: '4',
@@ -140,7 +141,7 @@ module.exports = {
       options = parseConfig(_.merge({}, config, options));
       // Mount our default php config
       options.volumes.push(`${options.confDest}/${options.defaultFiles._php}:${options.remoteFiles._php}`);
-
+      options.volumes.push(`${options.confDest}/${options.defaultFiles.pool}:${options.remoteFiles.pool}`);
       // Shift on the docker entrypoint if this is a more recent version
       if (options.version !== 'custom' && semver.gt(semver.coerce(options.version), '5.5.0')) {
         options.command.unshift('docker-php-entrypoint');
