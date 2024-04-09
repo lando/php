@@ -44,12 +44,6 @@ We try to log all changes big and small in both [THE CHANGELOG](https://github.c
 * [@pirog](https://github.com/pirog)
 * [@reynoldsalec](https://github.com/reynoldsalec)
 
-
-## Maintainers
-
-* [@pirog](https://github.com/pirog)
-* [@reynoldsalec](https://github.com/reynoldsalec)
-
 ## Contributors
 
 <a href="https://github.com/lando/php/graphs/contributors">
