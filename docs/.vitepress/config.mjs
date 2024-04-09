@@ -51,8 +51,8 @@ function sidebar() {
         {text: 'GitHub', link: 'https://github.com/lando/php/issues/new/choose'},
         {text: 'Slack', link: 'https://www.launchpass.com/devwithlando'},
         {text: 'Contact Us', link: '/support'},
-        {text: 'Guides', link: '/guides', activeMatch: '/guides'},
         {text: 'Examples', link: 'https://github.com/lando/php/tree/main/examples'},
+        {text: 'Guides', link: '/guides', activeMatch: '/guides'},
       ],
     },
   ];
