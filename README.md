@@ -16,7 +16,7 @@ Add a `php` service to your Landofile
 ```yaml
 services:
   myservice:
-    type: php:8.1
+    type: php:8.3
     via: nginx
     webroot: www
 ```

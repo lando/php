@@ -1,3 +1,6 @@
+## v1.3.1 - [August 27, 2024](https://github.com/lando/php/releases/tag/v1.3.1)
+  * Updated default php versions.
+
 ## v1.3.0 - [March 8, 2024](https://github.com/lando/php/releases/tag/v1.3.0)
   * Updated to latest database services.
 

@@ -13,19 +13,16 @@ You can easily add it to your Lando app by adding an entry to the [services](htt
 ```yaml
 services:
   myservice:
-    type: php:8.0
+    type: php:8.2
     via: nginx
     webroot: www
 ```
 
 ## Supported versions
 
-*   [8.3](https://hub.docker.com/r/devwithlando/php) (experimental)
+*   **[8.3](https://hub.docker.com/r/devwithlando/php)** **(default)**
 *   [8.2](https://hub.docker.com/r/devwithlando/php)
 *   [8.1](https://hub.docker.com/r/devwithlando/php)
-*   [8.0](https://hub.docker.com/r/devwithlando/php)
-*   **[7.4](https://hub.docker.com/r/devwithlando/php)** **(default)**
-*   [7.3](https://hub.docker.com/r/devwithlando/php)
 *   [custom](https://docs.lando.dev/core/v3/lando-service.html#overrides)
 
 ## Legacy versions
@@ -36,6 +33,9 @@ While you can currently use some [EOL php version](https://www.php.net/supported
 
 You can still run these versions with Lando but for all intents and purposes they should be considered deprecated (e.g. YMMV and do not expect a ton of support if you have an issue).
 
+*   [8.0](https://hub.docker.com/r/devwithlando/php)
+*   [7.4](https://hub.docker.com/r/devwithlando/php)
+*   [7.3](https://hub.docker.com/r/devwithlando/php)
 *   [7.2](https://hub.docker.com/r/devwithlando/php)
 *   [7.1](https://hub.docker.com/r/devwithlando/php)
 *   [7.0](https://hub.docker.com/r/devwithlando/php)
