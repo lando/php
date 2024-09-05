@@ -1,5 +1,4 @@
-PHP Xdebug Example
-===========
+# PHP Xdebug Example
 
 This example exists primarily to test the following documentation:
 
@@ -8,8 +7,7 @@ This example exists primarily to test the following documentation:
 
 And probably other stuff
 
-Start up tests
---------------
+## Start up tests
 
 Run the following commands to get up and running with this example.
 
@@ -19,30 +17,28 @@ lando poweroff
 lando start
 ```
 
-Verification commands
----------------------
+## Verification commands
 
 Run the following commands to validate things are rolling as they should.
 
 ```bash
 # Should enable xdebug 2 for php 5.6
-lando ssh -s xdebug2 -c "php --re xdebug | head -1" | grep "xdebug version 2."
+lando exec xdebug2 -- php --re xdebug | head -1 | grep "xdebug version 2."
 
 # Should enable xdebug 3 for php 7.2+
-lando ssh -s xdebug3on -c "php --re xdebug | head -1" | grep "xdebug version 3."
+lando exec xdebug3on -- php --re xdebug | head -1 | grep "xdebug version 3."
 
 # Should not enable xdebug by when set to false
-lando ssh -s xdebug3off -c "php -m | grep xdebug" || echo $? | grep 1
+lando exec xdebug3off -- php -m | grep xdebug || echo $? | grep 1
 
 # Should use develop, debug if defined
-lando ssh -s xdebug3 -c "env" | grep 'XDEBUG_MODE' | grep 'debug,develop'
+lando exec xdebug3 -- env | grep 'XDEBUG_MODE' | grep 'debug,develop'
 
 # Should use xdebug version 3.0.4 if installed
-lando ssh -s manual -c "php --re xdebug | head -1" | grep "xdebug version 3.0.4"
+lando exec manual -- php --re xdebug | head -1 | grep "xdebug version 3.0.4"
 ```
 
-Destroy tests
--------------
+## Destroy tests
 
 Run the following commands to trash this app like nothing ever happened.
 

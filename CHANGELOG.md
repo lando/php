@@ -4,6 +4,7 @@
 
 * Updated `ubuntu` test runners to `24.04`
 * Updated `lando/setup-lando` to `v3`
+* Updated tests to `lando exec`
 
 ## v1.3.0 - [March 8, 2024](https://github.com/lando/php/releases/tag/v1.3.0)
 
