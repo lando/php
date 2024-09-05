@@ -27,7 +27,7 @@ Also note that you may need to adapt these slightly depending on the PHP version
 
 ## 1. Using build steps
 
-If installing your PHP extension is fairly trivial and not a long-running operation you may wish to simply use Lando [build-steps](https://docs.lando.dev/core/v3/lando-service.html#build-steps)
+If installing your PHP extension is fairly trivial and not a long-running operation you may wish to simply use Lando [build-steps](https://docs.lando.dev/core/v3/services/lando.html#build-steps)
 
 Here is an example that uses build-steps to install the `xsl` and `stats` extensions.
 
