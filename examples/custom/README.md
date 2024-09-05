@@ -55,7 +55,7 @@ lando ssh -s custom81 -c "php -i | grep memory_limit | grep 514"
 lando ssh -s custom81 -c "curl http://custom81_nginx" | grep html_errors | grep On | grep On
 
 # Detect whether php-fpm is using custom www.conf
-lando ssh -s custom81 -c "php -i | grep start_servers | grep 2"
+lando exec custom81 -- ps axf | grep "php-fpm: pool www" | wc -l | grep 3
 ```
 
 Destroy tests
