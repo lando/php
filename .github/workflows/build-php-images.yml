@@ -9,7 +9,7 @@ on:
 
 jobs:
   buildx:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     env:
       TERM: xterm
     strategy:
@@ -103,10 +103,10 @@ jobs:
           lando-plugin: true
           version: dev
           sync: false
-      - name: Setup lando 3-dev-slim
-        uses: lando/setup-lando@v2
+      - name: Setup lando 3-edge-slim
+        uses: lando/setup-lando@v3
         with:
-          lando-version: 3-dev-slim
+          lando-version: 3-edge-slim
           config: |
             setup.skipCommonPlugins=true
             setup.plugins.@lando/php=/home/runner/work/php/php
