@@ -15,17 +15,19 @@ mailchimp:
   button: Sign me up!
 ---
 
-You may wish to add additional PHP extensions to your Lando [PHP service](https://docs.lando.dev/php). There are a few different ways you can do this:
+# Installing PHP Extensions on Lando
+
+You may wish to add additional PHP extensions to your Lando [PHP service](https://docs.lando.dev/plugins/php). There are a few different ways you can do this:
 
 [[toc]]
 
-Note that both of these strategies make use of underlying utilities provided by the [Official Docker PHP Image]() which is the base image used by Lando's PHP service. We recommend you read more about them [over on their docs](https://hub.docker.com/_/php).
+Note that both of these strategies make use of underlying utilities provided by the [Official Docker PHP Image](https://hub.docker.com/_/php) which is the base image used by Lando's PHP service. We recommend you read more about them [over on their docs](https://hub.docker.com/_/php).
 
 Also note that you may need to adapt these slightly depending on the PHP version you are using.
 
 ## 1. Using build steps
 
-If installing your PHP extension is fairly trivial and not a long-running operation you may wish to simply use Lando [build-steps](https://docs.lando.dev/config/services.html#build-steps)
+If installing your PHP extension is fairly trivial and not a long-running operation you may wish to simply use Lando [build-steps](https://docs.lando.dev/core/v3/services/lando.html#build-steps)
 
 Here is an example that uses build-steps to install the `xsl` and `stats` extensions.
 

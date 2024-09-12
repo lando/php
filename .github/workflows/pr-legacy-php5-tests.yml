@@ -17,9 +17,9 @@ jobs:
           - examples/5.5
           - examples/5.6
         lando-version:
-          - 3-dev-slim
+          - 3-edge-slim
         os:
-          - ubuntu-22.04
+          - ubuntu-24.04
         node-version:
           - '18'
     steps:
@@ -41,7 +41,7 @@ jobs:
           version: dev
           sync: false
       - name: Setup lando ${{ matrix.lando-version }}
-        uses: lando/setup-lando@v2
+        uses: lando/setup-lando@v3
         with:
           lando-version: ${{ matrix.lando-version }}
           config: |

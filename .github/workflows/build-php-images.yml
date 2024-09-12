@@ -9,14 +9,12 @@ on:
 
 jobs:
   buildx:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     env:
       TERM: xterm
     strategy:
       fail-fast: false
       matrix:
-        lando-version:
-          - 3-dev-slim
         include:
           - image: php
             tag: 8.3-fpm-4
@@ -71,20 +69,20 @@ jobs:
       - name: Set tag suffix
         id: pr
         if: ${{ github.event_name == 'pull_request' }}
-        run: echo "tag-suffix=-edge" >> $GITHUB_OUTPUT
+        run: echo "tag_suffix=-edge" >> "$GITHUB_OUTPUT"
       # Build our images.
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.pr.outputs.TAG_SUFFIX }}
+      - name: Build and push devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.pr.outputs.tag_suffix }}
         uses: docker/build-push-action@v4
         with:
           context: ${{ matrix.context }}
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.pr.outputs.TAG_SUFFIX }}
+          tags: devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.pr.outputs.tag_suffix }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -105,10 +103,10 @@ jobs:
           lando-plugin: true
           version: dev
           sync: false
-      - name: Setup lando ${{ matrix.lando-version }}
-        uses: lando/setup-lando@v2
+      - name: Setup lando 3-edge-slim
+        uses: lando/setup-lando@v3
         with:
-          lando-version: ${{ matrix.lando-version }}
+          lando-version: 3-edge-slim
           config: |
             setup.skipCommonPlugins=true
             setup.plugins.@lando/php=/home/runner/work/php/php
