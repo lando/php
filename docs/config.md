@@ -5,9 +5,9 @@ description: Learn how to configure the Lando PHP service.
 
 # Configuration
 
-Here are the configuration options, set to the default values, for this service. If you are unsure about where this goes or what this means, we *highly recommend* scanning the [services documentation](https://docs.lando.dev/core/v3/lando-service.html) to get a good handle on how the magicks work.
+Here are the configuration options, set to the default values, for this service. If you are unsure about where this goes or what this means, we *highly recommend* scanning the [services documentation](https://docs.lando.dev/core/v3/services/lando.html) to get a good handle on how the magicks work.
 
-Also note that options, in addition to the [build steps](https://docs.lando.dev/core/v3/lando-service.html#build-steps) and [overrides](https://docs.lando.dev/core/v3/lando-service.html#overrides) that are available to every service, are shown below:
+Also note that options, in addition to the [build steps](https://docs.lando.dev/core/v3/services/lando.html#build-steps) and [overrides](https://docs.lando.dev/core/v3/services/lando.html#overrides) that are available to every service, are shown below:
 
 ```yaml
 services:
@@ -193,7 +193,7 @@ composer_version: snapshot
 You can also use the `composer` key if you need to require any [global composer dependenices](https://getcomposer.org/doc/03-cli.md#require). This follows the same syntax as your normal [`composer.json`](https://getcomposer.org/doc/01-basic-usage.md#composer-json-project-setup) except written as YAML instead of JSON.
 
 ::: tip Use composer.json if you can
-While there are some legitimate use cases to globally install a composer dependency, it is almost always preferred to install using your applications normal `composer.json` and then running either `lando composer install` or alternatively setting up a [build step](https://docs.lando.dev/core/v3/lando-service.html#build-steps) that will automatically run before your app starts up.
+While there are some legitimate use cases to globally install a composer dependency, it is almost always preferred to install using your applications normal `composer.json` and then running either `lando composer install` or alternatively setting up a [build step](https://docs.lando.dev/core/v3/services/lando.html#build-steps) that will automatically run before your app starts up.
 
 Note that `lando composer` is not provided out of the box by the `php` service and needs to be manually added by configuring your app's [tooling](https://docs.lando.dev/core/v3/tooling.html).
 :::
@@ -208,7 +208,7 @@ services:
       phpunit/phpunit: ^6.5
 ```
 
-An example of using a [build step](https://docs.lando.dev/core/v3/lando-service.html#build-steps) to automatically `composer install` your dependencies before your app starts is shown below:
+An example of using a [build step](https://docs.lando.dev/core/v3/services/lando.html#build-steps) to automatically `composer install` your dependencies before your app starts is shown below:
 
 ```yaml
 services:
@@ -220,7 +220,7 @@ services:
 
 ## Using custom config files
 
-You may need to override our [default php config](https://github.com/lando/php/tree/main/builders) with your own.
+You may need to override our [default PHP config](https://github.com/lando/php/blob/main/config/php.ini) with your own.
 
 If you do this, you must use files that exist inside your application and express them relative to your project root as shown below:
 

@@ -1,5 +1,4 @@
-PHP 8.0 Example
-===========
+# PHP 8.0 Example
 
 This example exists primarily to test the following documentation:
 
@@ -10,8 +9,7 @@ This example exists primarily to test the following documentation:
 
 And probably other stuff
 
-Start up tests
---------------
+## Start up tests
 
 Run the following commands to get up and running with this example.
 
@@ -21,106 +19,104 @@ lando poweroff
 lando start
 ```
 
-Verification commands
----------------------
+## Verification commands
 
 Run the following commands to validate things are rolling as they should.
 
 ```bash
 # Should use 8.0 as the default php version
-lando ssh -s defaults -c "php -v" | grep "PHP 8.0"
+lando exec defaults -- php -v | grep "PHP 8.0"
 
 # Should use 10.x as the default postgresql-client version
-lando ssh -s defaults -c "psql -V" | grep "10."
+lando exec defaults -- psql -V | grep "10."
 
 # Should use apache 2.4 as the default webserver version
-lando ssh -s defaults -c "apachectl -V" | grep "2.4."
+lando exec defaults -- apachectl -V | grep "2.4."
 
 # Should only serve over http by default
-lando ssh -s defaults -c "curl https://localhost" || echo $? | grep 1
+lando exec defaults -- curl https://localhost || echo $? | grep 1
 
 # Should serve from the app root by default
-lando ssh -s defaults -c "curl http://localhost" | grep "ROOTDIR"
+lando exec defaults -- curl http://localhost | grep "ROOTDIR"
 
 # Should have a 1G php mem limit on appserver
-lando ssh -s defaults -c "curl http://localhost" | grep "memory_limit" | grep "1G"
+lando exec defaults -- curl http://localhost | grep "memory_limit" | grep "1G"
 
 # Should have COMPOSER_MEMORY_LIMIT set to -1
-lando ssh -s defaults -c "env" | grep "COMPOSER_MEMORY_LIMIT=-1"
+lando exec defaults -- env | grep "COMPOSER_MEMORY_LIMIT=-1"
 
 # Should install composer 2.x by default
-lando ssh -s defaults -c "composer --version --no-ansi" | grep "Composer version 2."
+lando exec defaults -- composer --version --no-ansi | grep "Composer version 2."
 
 # Should have unlimited memory for php for CLI opts
 lando php -i | grep memory_limit | grep -e "-1"
-lando ssh -s defaults -c "php -i" | grep "memory_limit" | grep -e "-1"
+lando exec defaults -- php -i | grep "memory_limit" | grep -e "-1"
 
 # Should not enable xdebug by default
-lando ssh -s defaults -c "php -m | grep xdebug" || echo $? | grep 1
+lando exec defaults -- php -m | grep xdebug || echo $? | grep 1
 
 # Should have a PATH_INFO and PATH_TRANSLATED SERVER vars
-lando ssh -s custom_nginx -c "curl https://localhost" | grep SERVER | grep PATH_INFO
-lando ssh -s custom_nginx -c "curl https://localhost" | grep SERVER | grep PATH_TRANSLATED
+lando exec custom_nginx -- curl https://localhost | grep SERVER | grep PATH_INFO
+lando exec custom_nginx -- curl https://localhost | grep SERVER | grep PATH_TRANSLATED
 
 # Should use specified php version if given
-lando ssh -s custom -c "php -v" | grep "PHP 8.0"
+lando exec custom -- php -v | grep "PHP 8.0"
 
 # Should install composer 2.1.12 if version number is set
-lando ssh -s custom -c "composer --version --no-ansi" | grep "Composer version 2.1.12"
+lando exec custom -- composer --version --no-ansi | grep "Composer version 2.1.12"
 
 # Should serve via nginx if specified
-lando ssh -s custom_nginx -c "curl http://localhost" | grep "WEBDIR"
+lando exec custom_nginx -- curl http://localhost | grep "WEBDIR"
 
 # Should serve via https if specified
-lando ssh -s custom_nginx -c "curl https://localhost" | grep "WEBDIR"
+lando exec custom_nginx -- curl https://localhost | grep "WEBDIR"
 
 # Should enable xdebug if specified
-lando ssh -s custom -c "php -m" | grep "xdebug"
+lando exec custom -- php -m | grep "xdebug"
 
 # Should not serve port 80 for cli
-lando ssh -s cli -c "curl http://localhost" || echo $? | grep 1
+lando exec cli -- curl http://localhost || echo $? | grep 1
 
 # Should install the composer 2.x using the false flag
-lando ssh -s cli -c "composer --version --no-ansi" | grep "Composer version 2."
+lando exec cli -- composer --version --no-ansi | grep "Composer version 2."
 
 # Should use custom php ini if specified
-lando ssh -s custom -c "php -i | grep memory_limit | grep 514"
-lando ssh -s custom -c "curl http://custom_nginx" | grep html_errors | grep On | grep On
+lando exec custom -- php -i | grep memory_limit | grep 514
+lando exec custom -- curl http://custom_nginx | grep html_errors | grep On | grep On
 
 # Should inherit overrides from its generator
-lando ssh -s custom -c "env | grep DUALBLADE | grep maxim"
-lando ssh -s custom_nginx -c "env | grep DUALBLADE | grep maxim"
+lando exec custom -- env | grep DUALBLADE | grep maxim
+lando exec custom_nginx -- env | grep DUALBLADE | grep maxim
 
 # Should be able to run build steps on lando managed nginx service
 # https://github.com/lando/lando/issues/1990
-lando ssh -s custom_nginx -c "cat /app/test/managed_build_step"
+lando exec custom_nginx -- cat /app/test/managed_build_step
 
 # Should be able to override lando managed nginx service
 # https://github.com/lando/lando/issues/1990
-lando ssh -s custom_nginx -c "env | grep OTHER | grep stuff"
-lando ssh -s custom_nginx -c "env | grep MORE | grep things"
+lando exec custom_nginx -- env | grep OTHER | grep stuff
+lando exec custom_nginx -- env | grep MORE | grep things
 
 # Should set PATH_INFO and PATH_TRANSLATED if appropriate
 # https://github.com/lando/lando/issues/2192
-lando ssh -s custom_nginx -c "curl http://localhost/path_info.php/a/b.php" | grep PATH_INFO | grep "/a/b.php"
-lando ssh -s custom_nginx -c "curl http://localhost/path_info.php/a/b.php" | grep PATH_TRANSLATED | grep "/app/web/a/b.php"
-lando ssh -s custom_nginx -c "curl http://localhost/path_info.php/a/b.php" | grep SCRIPT_NAME | grep "/path_info.php"
-lando ssh -s defaults -c "curl http://localhost/path_info.php/a/b.php" | grep PATH_INFO | grep "/a/b.php"
-lando ssh -s defaults -c "curl http://localhost/path_info.php/a/b.php" | grep PATH_TRANSLATED | grep "/app/a/b.php"
-lando ssh -s defaults -c "curl http://localhost/path_info.php/a/b.php" | grep SCRIPT_NAME | grep "/path_info.php"
+lando exec custom_nginx -- curl http://localhost/path_info.php/a/b.php | grep PATH_INFO | grep "/a/b.php"
+lando exec custom_nginx -- curl http://localhost/path_info.php/a/b.php | grep PATH_TRANSLATED | grep "/app/web/a/b.php"
+lando exec custom_nginx -- curl http://localhost/path_info.php/a/b.php | grep SCRIPT_NAME | grep "/path_info.php"
+lando exec defaults -- curl http://localhost/path_info.php/a/b.php | grep PATH_INFO | grep "/a/b.php"
+lando exec defaults -- curl http://localhost/path_info.php/a/b.php | grep PATH_TRANSLATED | grep "/app/a/b.php"
+lando exec defaults -- curl http://localhost/path_info.php/a/b.php | grep SCRIPT_NAME | grep "/path_info.php"
 
 # Should allow cli services to specify a boot up command
 lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 
 # Should install the latest composer 2.x by default.
-lando ssh -s cliworker -c "composer --version --no-ansi" | grep "Composer version 2."
+lando exec cliworker -- composer --version --no-ansi | grep "Composer version 2."
 
 # Should have node14 installed in cli service
 lando node -v | grep v14.
 ```
 
-Destroy tests
--------------
+## Destroy tests
 
 Run the following commands to trash this app like nothing ever happened.
 
