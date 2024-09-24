@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Add support for PHP 8.4. [#125](https://github.com/lando/php/issues/125)
+
 ## Internal
 
 * Updated `ubuntu` test runners to `24.04`
