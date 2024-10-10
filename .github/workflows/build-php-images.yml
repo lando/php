@@ -17,6 +17,12 @@ jobs:
       matrix:
         include:
           - image: php
+            tag: 8.4-fpm-4
+            context: images/8.4-fpm
+          - image: php
+            tag: 8.4-apache-4
+            context: images/8.4-apache
+          - image: php
             tag: 8.3-fpm-4
             context: images/8.3-fpm
           - image: php
