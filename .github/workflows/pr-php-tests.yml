@@ -1,0 +1,114 @@
+name: PHP Tests
+
+on:
+  pull_request:
+
+jobs:
+  leia-tests:
+    runs-on: ${{ matrix.os }}
+    env:
+      TERM: xterm
+    strategy:
+      fail-fast: false
+      matrix:
+        leia-test:
+          - examples/5.3
+          - examples/5.4
+          - examples/5.5
+          - examples/5.6
+          - examples/7.0
+          - examples/7.1
+          - examples/7.2
+          - examples/7.3
+          - examples/7.4
+          - examples/8.0
+          - examples/8.1
+          - examples/8.2
+          - examples/8.3
+          - examples/custom
+          - examples/composer
+          - examples/php-extensions
+          - examples/xdebug
+        lando-version:
+          - 3-edge-slim
+        os:
+          - ubuntu-24.04
+        node-version:
+          - '18'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org
+          cache: npm
+      - name: Install NPM dependencies
+        run: npm clean-install --production --prefer-offline --frozen-lockfile
+      - name: Bundle Deps
+        uses: lando/prepare-release-action@v3
+        with:
+          lando-plugin: true
+          version: dev
+          sync: false
+      - name: Setup lando ${{ matrix.lando-version }}
+        uses: lando/setup-lando@v3
+        with:
+          lando-version: ${{ matrix.lando-version }}
+          config: |
+            setup.skipCommonPlugins=true
+            setup.plugins.@lando/php=/home/runner/work/php/php
+          telemetry: false
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Check for Dockerfiles
+        id: dockerfile
+        run: |
+          # cut out version
+          VERSION=$(echo "${{ matrix.leia-test }}" | cut -d'/' -f2)
+
+          # apache
+          if [ -f "./images/${VERSION}-apache/Dockerfile" ]; then
+            echo "apache=true" >> $GITHUB_OUTPUT
+            echo "apache-tag=${VERSION}-apache" >> $GITHUB_OUTPUT
+          else
+            echo "apache=false" >> $GITHUB_OUTPUT
+          fi
+
+          # nginx
+          if [ -f "./images/${VERSION}-fpm/Dockerfile" ]; then
+            echo "nginx=true" >> $GITHUB_OUTPUT
+            echo "nginx-tag=${VERSION}-apache" >> $GITHUB_OUTPUT
+          else
+            echo "nginx=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build apache image
+        uses: docker/build-push-action@v6
+        if: ${{ steps.dockerfile.outputs.apache == 'true' }}
+        with:
+          context: images/${{ steps.dockerfile.outputs.apache-tag }}
+          platforms: linux/amd64,linux/arm64
+          push: false
+          tags: devwithlando/php:${{ steps.dockerfile.outputs.nginx-tag }}-4
+          cache-from: type=gha
+          cache-to: type=gha
+      - name: Build nginx image
+        uses: docker/build-push-action@v6
+        if: ${{ steps.dockerfile.outputs.nginx == 'true' }}
+        with:
+          context: images/${{ steps.dockerfile.outputs.nginx-tag }}
+          platforms: linux/amd64,linux/arm64
+          push: false
+          tags: devwithlando/php:${{ steps.dockerfile.outputs.nginx-tag }}-4
+          cache-from: type=gha
+          cache-to: type=gha
+      - name: Run Leia Tests
+        uses: lando/run-leia-action@v2
+        with:
+          leia-test: "./${{ matrix.leia-test }}/README.md"
+          cleanup-header: "Destroy tests"
+          shell: bash
+          stdin: true
