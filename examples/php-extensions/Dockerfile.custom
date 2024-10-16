@@ -1,4 +1,4 @@
-FROM devwithlando/php:7.4-apache-2
+FROM devwithlando/php:7.4-apache-4
 
 # Add php extension helper
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
