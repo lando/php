@@ -4,6 +4,7 @@ FROM php:8.0-apache-bullseye
 
 # Install dependencies we need
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
+  && apt -y update && apt-get install -y \
     bzip2 \
     default-mysql-client \
     exiftool \
