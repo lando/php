@@ -80,7 +80,7 @@ jobs:
           # nginx
           if [ -f "./images/${VERSION}-fpm/Dockerfile" ]; then
             echo "nginx=true" >> $GITHUB_OUTPUT
-            echo "nginx-tag=${VERSION}-apache" >> $GITHUB_OUTPUT
+            echo "nginx-tag=${VERSION}-fpm" >> $GITHUB_OUTPUT
           else
             echo "nginx=false" >> $GITHUB_OUTPUT
           fi
@@ -92,7 +92,7 @@ jobs:
           context: images/${{ steps.dockerfile.outputs.apache-tag }}
           platforms: linux/amd64,linux/arm64
           push: false
-          tags: devwithlando/php:${{ steps.dockerfile.outputs.nginx-tag }}-4
+          tags: devwithlando/php:${{ steps.dockerfile.outputs.apache-tag }}-4
           cache-from: type=gha
           cache-to: type=gha
       - name: Build nginx image

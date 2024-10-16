@@ -1,19 +1,19 @@
-# docker build -t devwithlando/php:7.2-fpm-3 .
+# docker build -t devwithlando/php:7.2-apache-4 .
 
 FROM php:7.2-fpm-buster
 
 # Install dependencies we need
-RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
-  && apt -y update && apt-get install -y \
-    gnupg2 \
-    wget \
-  && echo 'deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main' >> /etc/apt/sources.list.d/pgdg.list \
-  && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+RUN \
+  sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list \
+  && sed -i '/security.debian.org/s/^/#/' /etc/apt/sources.list \
+  && echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-release-date \
+  && mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && apt-get update && apt-get install -y \
     bzip2 \
     default-mysql-client \
     exiftool \
     git-core \
+    gnupg2 \
     imagemagick \
     libbz2-dev \
     libc-client-dev \
@@ -31,7 +31,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
     libzip-dev \
     libonig-dev \
     openssl \
-    postgresql-client-10 \
+    postgresql-client-11 \
     pv \
     rsync \
     ssh \
@@ -45,7 +45,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && pecl install memcached \
   && pecl install oauth-2.0.2 \
   && pecl install redis-3.1.2 \
-  && pecl install xdebug \
+  && pecl install xdebug-3.1.6 \
   && docker-php-ext-configure gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr --with-webp-dir=/usr \
   && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
   && docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \

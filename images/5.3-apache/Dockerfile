@@ -1,4 +1,4 @@
-# docker build -t devwithlando/php:5.3-apache-2 .
+# docker build -t devwithlando/php:5.3-apache-4 .
 
 FROM eugeneware/php-5.3:master
 
