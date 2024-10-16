@@ -41,7 +41,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && pecl install memcached \
   && pecl install oauth-2.0.3 \
   && pecl install redis-4.2.0 \
-  && pecl install xdebug-3.1.6 \
+  && pecl install xdebug-3.2.2 \
   && docker-php-ext-configure gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr --with-webp-dir=/usr \
   && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
   && docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \
