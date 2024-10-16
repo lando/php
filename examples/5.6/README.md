@@ -33,7 +33,7 @@ lando exec defaults -- psql -V | grep "9."
 lando exec defaults -- apachectl -V | grep "2.4."
 
 # Should only serve over http by default
-lando exec defaults -- curl https://localhost || echo $? | grep 1
+lando exec defaults -- curl https://localhost || echo $? | grep 7
 
 # Should serve from the app root by default
 lando exec defaults -- curl http://localhost | grep "ROOTDIR"
@@ -74,7 +74,7 @@ lando exec custom_nginx -- curl https://localhost | grep "WEBDIR"
 lando exec custom -- php -m | grep "xdebug"
 
 # Should not serve port 80 for cli
-lando exec cli -- curl http://localhost || echo $? | grep 1
+lando exec cli -- curl http://localhost || echo $? | grep 7
 
 # Should install the latest composer 1.x using the 1 flag
 lando exec cli -- composer --version --no-ansi | grep "Composer version 1."
