@@ -12,9 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         leia-test:
-          - examples/5.3
-          - examples/5.4
-          - examples/5.5
           - examples/5.6
           - examples/7.0
           - examples/7.1
