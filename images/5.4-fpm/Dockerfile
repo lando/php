@@ -1,4 +1,4 @@
-# docker build -t devwithlando/php:5.4-fpm-2 .
+# docker build -t devwithlando/php:5.4-apache-4 .
 
 FROM php:5.4.45-fpm
 

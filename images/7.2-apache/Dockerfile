@@ -3,17 +3,17 @@
 FROM php:7.2-apache-buster
 
 # Install dependencies we need
-RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
-  && apt -y update && apt-get install -y \
-    gnupg2 \
-    wget \
-  && echo 'deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main' >> /etc/apt/sources.list.d/pgdg.list \
-  && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+RUN \
+  sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list \
+  && sed -i '/security.debian.org/s/^/#/' /etc/apt/sources.list \
+  && echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-release-date \
+  && mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && apt-get update && apt-get install -y \
     bzip2 \
     default-mysql-client \
     exiftool \
     git-core \
+    gnupg2 \
     imagemagick \
     libbz2-dev \
     libc-client-dev \
@@ -31,7 +31,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
     libzip-dev \
     libonig-dev \
     openssl \
-    postgresql-client-10 \
+    postgresql-client-11 \
     pv \
     rsync \
     ssh \

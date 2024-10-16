@@ -1,5 +1,5 @@
 # Basic apache php 5.5 appserver for Lando
-# docker build -t devwithlando/php:5.5-apache-2 .
+# docker build -t devwithlando/php:5.5-apache-4 .
 
 FROM php:5.5-apache
 
