@@ -45,7 +45,7 @@ RUN \
   && pecl install memcached \
   && pecl install oauth-2.0.2 \
   && pecl install redis-3.1.2 \
-  && pecl install xdebug \
+  && pecl install xdebug-2.9.8 \
   && docker-php-ext-configure gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr --with-webp-dir=/usr \
   && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
   && docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \

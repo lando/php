@@ -70,6 +70,12 @@ jobs:
           - image: php
             tag: 7.0-apache-4
             context: images/7.0-apache
+          - image: php
+            tag: 5.6-fpm-4
+            context: images/5.6-fpm
+          - image: php
+            tag: 5.6-apache-4
+            context: images/5.6-apache
 
     steps:
       - name: Checkout code
