@@ -27,8 +27,8 @@ Run the following commands to validate things are rolling as they should.
 # Should use 7.4 as the default php version
 lando exec defaults -- php -v | grep "PHP 7.4"
 
-# Should use 10.x as the default postgresql-client version
-lando exec defaults -- psql -V | grep "10."
+# Should use 13.x as the default postgresql-client version
+lando exec defaults -- psql -V | grep "13."
 
 # Should use apache 2.4 as the default webserver version
 lando exec defaults -- apachectl -V | grep "2.4."
