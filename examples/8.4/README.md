@@ -110,8 +110,8 @@ lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 # Should install the latest composer 2.x by default.
 lando exec cliworker -- composer --version --no-ansi | grep "Composer version 2."
 
-# Should have node14 installed in cli service
-lando node -v | grep v14.
+# Should have node 18 installed in cli service
+lando node -v | grep v18.
 ```
 
 ## Destroy tests
