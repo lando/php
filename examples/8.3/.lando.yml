@@ -35,6 +35,8 @@ services:
         OTHER: thing
   custom_nginx:
     build_as_root:
+      - apt-get update -y
+      - apt-get install curl -y
       - mkdir -p /app/test && touch /app/test/managed_build_step
     overrides:
       environment:
