@@ -10,7 +10,7 @@ services:
         dockerfile: Dockerfile.node
   custom81:
     type: php:custom
-    via: nginx
+    via: nginx:1.17
     ssl: true
     webroot: web
     config:
