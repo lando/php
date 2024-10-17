@@ -1,0 +1,66 @@
+name: PHP 8 Tests
+
+on:
+  pull_request:
+
+jobs:
+  leia-tests:
+    runs-on: ${{ matrix.os }}
+    env:
+      TERM: xterm
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions:
+          - '8.0'
+          - '8.1'
+          - '8.2'
+          - '8.3'
+          - '8.4'
+        lando-version:
+          - 3-edge-slim
+        os:
+          - ubuntu-24.04
+        node-version:
+          - '18'
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install node ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org
+          cache: npm
+      - name: Install NPM dependencies
+        run: npm clean-install --production --prefer-offline --frozen-lockfile
+      - name: Bundle Deps
+        uses: lando/prepare-release-action@v3
+        with:
+          lando-plugin: true
+          version: dev
+          sync: false
+      - name: Setup lando ${{ matrix.lando-version }}
+        uses: lando/setup-lando@v3
+        with:
+          lando-version: ${{ matrix.lando-version }}
+          config: |
+            setup.skipCommonPlugins=true
+            setup.plugins.@lando/php=/home/runner/work/php/php
+          telemetry: false
+      - name: Build Local Docker Apache Image
+        run: |
+          cd ./images/${{ matrix.php-versions }}-apache
+          docker build -t devwithlando/php:${{ matrix.php-versions }}-apache-4 .
+      - name: Build Local Docker Nginx Image
+        run: |
+          cd ./images/${{ matrix.php-versions }}-fpm
+          docker build -t devwithlando/php:${{ matrix.php-versions }}-fpm-4 .
+      - name: Run Leia Tests
+        uses: lando/run-leia-action@v2
+        with:
+          leia-test: "./examples/${{ matrix.php-versions }}/README.md"
+          cleanup-header: "Destroy tests"
+          shell: bash
+          stdin: true
