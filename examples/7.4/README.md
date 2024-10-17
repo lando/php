@@ -81,6 +81,10 @@ lando exec cli -- curl http://localhost || echo $? | grep 7
 lando exec custom -- php -i | grep memory_limit | grep 514
 lando exec custom -- curl http://custom_nginx | grep html_errors | grep On | grep On
 
+# Should serve and be accessible over ssl if specified
+lando exec custom_nginx -- curl https://localhost
+lando exec custom -- curl https://custom_nginx
+
 # Should inherit overrides from its generator
 lando exec custom -- env | grep DUALBLADE | grep maxim
 lando exec custom_nginx -- env | grep DUALBLADE | grep maxim
