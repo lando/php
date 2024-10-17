@@ -67,7 +67,7 @@ const parseNginx = options => {
   options.remoteFiles.vhosts = '/opt/bitnami/nginx/conf/lando.conf';
   options.defaultFiles.vhosts = (options.ssl) ? 'default-ssl.conf.tpl' : 'default.conf.tpl';
   options.nginxSsl = options.ssl;
-  options.ssl = false;
+  options.sslExpose = false;
   if (process.platform === 'win32') {
     options.volumes.push(`${options.confDest}/zz-lando.conf:/usr/local/etc/php-fpm.d/zz-lando.conf`);
   }
