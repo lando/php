@@ -107,5 +107,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.release.outputs.tag_suffix }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ matrix.image }}-${{ matrix.tag }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.image }}-${{ matrix.tag }}

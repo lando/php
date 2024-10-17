@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: How to install the Lando Php Plugin.
+description: How to install the Lando PHP Plugin.
 ---
 
 # Installation

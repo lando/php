@@ -1,6 +1,6 @@
 ---
 title: Development
-description: Learn how to develop and contribute to the Lando Php service
+description: Learn how to develop and contribute to the Lando PHP service
 ---
 
 # Development

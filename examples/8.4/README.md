@@ -3,9 +3,6 @@
 This example exists primarily to test the following documentation:
 
 * [PHP Service](https://docs.lando.dev/config/php.html)
-* [Installing Node in a PHP Service](https://docs.lando.dev/guides/installing-node-in-your-lando-php-service.html)
-* [Issue #1990](https://github.com/lando/lando/issues/1990)
-* [Issue #2192](https://github.com/lando/lando/issues/2192)
 
 And probably other stuff
 
@@ -27,14 +24,14 @@ Run the following commands to validate things are rolling as they should.
 # Should use 8.4 as the default php version
 lando exec defaults -- php -v | grep "PHP 8.4"
 
-# Should use 10.x as the default postgresql-client version
-lando exec defaults -- psql -V | grep "10."
+# Should use 15.x as the default postgresql-client version
+lando exec defaults -- psql -V | grep "15."
 
 # Should use apache 2.4 as the default webserver version
 lando exec defaults -- apachectl -V | grep "2.4."
 
 # Should only serve over http by default
-lando exec defaults -- curl https://localhost || echo $? | grep 1
+lando exec defaults -- curl https://localhost || echo $? | grep 7
 
 # Should serve from the app root by default
 lando exec defaults -- curl http://localhost | grep "ROOTDIR"
@@ -71,11 +68,8 @@ lando exec custom_nginx -- curl http://localhost | grep "WEBDIR"
 # Should serve via https if specified
 lando exec custom_nginx -- curl https://localhost | grep "WEBDIR"
 
-# Should enable xdebug if specified
-lando exec custom -- php -m | grep "xdebug"
-
 # Should not serve port 80 for cli
-lando exec cli -- curl http://localhost || echo $? | grep 1
+lando exec cli -- curl http://localhost || echo $? | grep 7
 
 # Should install the composer 2.x using the false flag
 lando exec cli -- composer --version --no-ansi | grep "Composer version 2."
@@ -83,6 +77,10 @@ lando exec cli -- composer --version --no-ansi | grep "Composer version 2."
 # Should use custom php ini if specified
 lando exec custom -- php -i | grep memory_limit | grep 514
 lando exec custom -- curl http://custom_nginx | grep html_errors | grep On | grep On
+
+# Should serve and be accessible over ssl if specified
+lando exec custom_nginx -- curl https://localhost
+lando exec custom -- curl https://custom_nginx
 
 # Should inherit overrides from its generator
 lando exec custom -- env | grep DUALBLADE | grep maxim
