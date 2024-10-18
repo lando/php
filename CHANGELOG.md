@@ -1,6 +1,6 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
-  * Updated lando/php to v1.4.0.
+  * Updated lando/php to v1.5.0..
 
 ## v1.4.0 - [October 17, 2024](https://github.com/lando/php/releases/tag/v1.4.0)
 
