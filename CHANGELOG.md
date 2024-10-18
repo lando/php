@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.5.0 - [October 18, 2024](https://github.com/lando/php/releases/tag/v1.5.0)
+
 * Added preliminary support for PHP 8.4RC2
 
 ## v1.4.0 - [October 17, 2024](https://github.com/lando/php/releases/tag/v1.4.0)
