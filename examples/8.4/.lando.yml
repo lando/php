@@ -1,4 +1,4 @@
-name: lando-php83
+name: lando-php84
 events:
   post-start:
     - defaults: php -i | grep memory_limit | grep -e "-1"
@@ -11,7 +11,7 @@ services:
     composer_version: false
     via: cli
     build_as_root:
-      - curl -sL https://deb.nodesource.com/setup_14.x | bash -
+      - curl -sL https://deb.nodesource.com/setup_18.x | bash -
       - apt-get update -y
       - apt-get install -y nodejs
   cliworker:
@@ -25,7 +25,6 @@ services:
     via: nginx
     ssl: true
     webroot: web
-    xdebug: true
     config:
       php: config/php.ini
     overrides:
@@ -35,6 +34,8 @@ services:
         OTHER: thing
   custom_nginx:
     build_as_root:
+      - apt-get update -y
+      - apt-get install curl -y
       - mkdir -p /app/test && touch /app/test/managed_build_step
     overrides:
       environment:

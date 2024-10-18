@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Added preliminary support for PHP 8.4RC2
+
 ## v1.4.0 - [October 17, 2024](https://github.com/lando/php/releases/tag/v1.4.0)
 
 * Fixed bug causing `CA` and `certs` to not be appropriately installed in the `appserver` when using `nginx`

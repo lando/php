@@ -1,5 +1,5 @@
 ---
-description: Learn about the team that made the Php plugin.
+description: Learn about the team that made the PHP plugin.
 layout: page
 title: Team
 ---
@@ -10,7 +10,7 @@ title: Team
       Team
     </template>
     <template #lead>
-      We are the people who brought Php to Lando.
+      We are the people who brought PHP to Lando.
     </template>
   </VPLTeamPageTitle>
   <VPLTeamMembers :members="members" size="small"/>
