@@ -1,5 +1,9 @@
 name: lando-phpcomposer
 services:
+  php72:
+    type: php:7.2
+  php83:
+    type: php:8.3
   composer1:
     type: php
     composer_version: 1

@@ -5,6 +5,25 @@ const _ = require('lodash');
 const path = require('path');
 const semver = require('semver');
 const addBuildStep = require('./../utils/add-build-step');
+
+/**
+ * Get the appropriate Composer version based on the PHP version.
+ * @param {string} phpVersion - The PHP version.
+ * @return {string} - The Composer version.
+ */
+const getComposerVersion = phpVersion => {
+  if (semver.lt(semver.coerce(phpVersion), '5.3.2')) {
+    // Use Composer 1 for PHP < 5.3.2
+    return '1';
+  } else if (semver.lt(semver.coerce(phpVersion), '7.3.0')) {
+    // Use Composer 2.2 LTS for PHP < 7.3
+    return '2.2.24';
+  } else {
+    // Use Composer 2 for PHP >= 7.3
+    return '2.8.1';
+  }
+};
+
 /*
  * Helper to get nginx config
  */
@@ -108,7 +127,6 @@ module.exports = {
     ],
     confSrc: path.resolve(__dirname, '..', 'config'),
     command: ['sh -c \'a2enmod rewrite && apache2-foreground\''],
-    composer_version: '2.2.22',
     phpServer: 'apache',
     defaultFiles: {
       _php: 'php.ini',
@@ -167,6 +185,11 @@ module.exports = {
         command: options.command.join(' '),
       };
       options.info = {via: options.via};
+
+      // Determine the appropriate composer version if not already set
+      if (!options.composer_version) {
+        options.composer_version = getComposerVersion(options.version);
+      }
 
       // Add our composer things to run step
       if (!_.isEmpty(options.composer)) {

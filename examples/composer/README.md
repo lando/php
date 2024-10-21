@@ -22,6 +22,12 @@ lando start
 Run the following commands to validate things are rolling as they should.
 
 ```bash
+# PHP 7.2 Should install composer 2.2.x by default
+lando exec php72 -- composer --version --no-ansi | grep "Composer version 2.2."
+
+# PHP 8.3 Should install composer 2.8.x by default
+lando exec php83 -- composer --version --no-ansi | grep "Composer version 2.8."
+
 # Should install composer 1.x if composer_version set to 1
 lando exec composer1 -- composer --version --no-ansi | grep "Composer version 1."
 
