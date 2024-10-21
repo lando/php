@@ -45,8 +45,8 @@ lando exec defaults -- curl http://localhost | grep "memory_limit" | grep "1G"
 # Should have COMPOSER_MEMORY_LIMIT set to -1
 lando exec defaults -- env | grep "COMPOSER_MEMORY_LIMIT=-1"
 
-# Should install composer 1.x by default
-lando exec defaults -- composer --version --no-ansi | grep "Composer version 1."
+# Should install composer 2.2.x by default
+lando exec defaults -- composer --version --no-ansi | grep "Composer version 2.2"
 
 # Should have unlimited memory for php for CLI opts
 lando php -i | grep memory_limit | grep -e "-1"
