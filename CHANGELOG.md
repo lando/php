@@ -1,5 +1,10 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Added logic to allow default `composer` version to be set based on PHP version.
+* Set default `composer` version to `2.8.1`
+* Set default `composer` version to `2.2.24` for PHP 5.3-7.2
+* Set default `composer` version to `1.10.27` for PHP <= 5.2
+
 ## v1.5.0 - [October 18, 2024](https://github.com/lando/php/releases/tag/v1.5.0)
 
 * Added preliminary support for PHP 8.4RC2
