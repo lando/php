@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Updated release process to generate an edge release when stable releases are created.
+
 ## v1.5.0 - [October 18, 2024](https://github.com/lando/php/releases/tag/v1.5.0)
 
 * Added preliminary support for PHP 8.4RC2
