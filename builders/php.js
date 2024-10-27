@@ -127,6 +127,7 @@ module.exports = {
     ],
     confSrc: path.resolve(__dirname, '..', 'config'),
     command: ['sh -c \'a2enmod rewrite && apache2-foreground\''],
+    composer_version: '',
     phpServer: 'apache',
     defaultFiles: {
       _php: 'php.ini',
@@ -199,7 +200,7 @@ module.exports = {
       }
 
       // Determine the appropriate composer version if not already set
-      if (_.isEmpty(options.composer_version)) {
+      if (_.isEmpty(options.composer_version) || options.composer_version === true) {
         options.composer_version = getComposerVersion(options.version);
       }
 
