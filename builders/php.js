@@ -186,11 +186,6 @@ module.exports = {
       };
       options.info = {via: options.via};
 
-      // Determine the appropriate composer version if not already set
-      if (!options.composer_version) {
-        options.composer_version = getComposerVersion(options.version);
-      }
-
       // Add our composer things to run step
       if (!_.isEmpty(options.composer)) {
         const commands =
@@ -201,6 +196,11 @@ module.exports = {
       // Add activate steps for xdebug
       if (options.xdebug) {
         addBuildStep(['docker-php-ext-enable xdebug'], options._app, options.name, 'build_as_root_internal');
+      }
+
+      // Determine the appropriate composer version if not already set
+      if (_.isEmpty(options.composer_version)) {
+        options.composer_version = getComposerVersion(options.version);
       }
 
       // Install the desired composer version
