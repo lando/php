@@ -23,28 +23,28 @@ Run the following commands to validate things are rolling as they should.
 
 ```bash
 # PHP 7.2 Should install composer 2.2.x by default
-lando exec php72 -- composer --version --no-ansi | tee /dev/tty | grep -q "Composer version 2.2."
+lando exec php72 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.2."
 
 # PHP 8.3 Should install composer 2.8.x by default
-lando exec php83 -- composer --version --no-ansi | tee /dev/tty | grep -q "Composer version 2.8."
+lando exec php83 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.8."
 
 # Should install composer 1.x if composer_version set to 1
-lando exec composer1 -- composer --version --no-ansi | tee /dev/tty | grep -q "Composer version 1."
+lando exec composer1 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 1."
 
 # Should install composer 1.x if composer_version set to 1-latest
-lando exec composer1latest -- composer --version --no-ansi | tee /dev/tty | grep -q "Composer version 1."
+lando exec composer1latest -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 1."
 
 # Should install composer 1.10.21 if composer_version set to specific version
-lando exec composer1ver -- composer --version --no-ansi | tee /dev/tty | grep -q "Composer version 1.10.21"
+lando exec composer1ver -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 1.10.21"
 
 # Should install composer 2.x if composer_version set to 2
-lando exec composer2 -- composer --version --no-ansi | tee /dev/tty | grep -q "Composer version 2."
+lando exec composer2 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2."
 
 # Should install composer 2.x if composer_version set to 2-latest
-lando exec composer2latest -- composer --version --no-ansi | tee /dev/tty | grep -q "Composer version 2."
+lando exec composer2latest -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2."
 
 # Should install composer 2.1.10 if composer_version set to specific version
-lando exec composer2ver -- composer --version --no-ansi | tee /dev/tty | grep -q "Composer version 2.1.10"
+lando exec composer2ver -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.1.10"
 
 # Should install compose global dependencies if specified by user and have them available in PATH
 lando exec dependencies -- phpunit --version
