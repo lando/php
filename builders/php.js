@@ -9,13 +9,18 @@ const addBuildStep = require('./../utils/add-build-step');
 /**
  * Get the appropriate Composer version based on the PHP version.
  * @param {string} phpVersion - The PHP version.
- * @return {string} - The Composer version.
+ * @return {string|boolean} - The Composer version or false if we cannot parse the version.
  */
 const getDefaultComposerVersion = phpVersion => {
-  if (semver.lt(semver.coerce(phpVersion), '5.3.2')) {
+  phpVersion = semver.coerce(phpVersion);
+  // Don't set a default composer version if we cannot
+  // parse the version such as with `custom`.
+  if (!phpVersion) return false;
+
+  if (semver.lt(phpVersion, '5.3.2')) {
     // Use Composer 1 for PHP < 5.3.2
     return '1';
-  } else if (semver.lt(semver.coerce(phpVersion), '7.3.0')) {
+  } else if (semver.lt(phpVersion, '7.3.0')) {
     // Use Composer 2.2 LTS for PHP < 7.3
     return '2.2.24';
   } else {

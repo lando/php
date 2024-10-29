@@ -4,7 +4,8 @@
 * Set default `composer` version to `2.8.1`
 * Set default `composer` version to `2.2.24` for PHP 5.3-7.2
 * Set default `composer` version to `1.10.27` for PHP <= 5.2
-* Fixed mismatched `libsqlite3-dev` and `libsqlite3-0` versions in PHP 8.3 and 8.4 images.
+* Fixed bug causing `composer` 2.2.x to be installed when `composer_version` was set to a single digit version such as `1`
+* Fixed mismatched `libsqlite3-dev` and `libsqlite3-0` versions in PHP 8.3 and 8.4 images
 
 ## v1.6.4 - [December 14, 2024](https://github.com/lando/php/releases/tag/v1.6.4)
 

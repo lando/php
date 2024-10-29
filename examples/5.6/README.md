@@ -112,8 +112,8 @@ lando exec defaults -- curl http://localhost/path_info.php/a/b.php | grep SCRIPT
 # Should allow cli services to specify a boot up command
 lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 
-# Should install the latest composer 2.2.x by default.
-lando exec cliworker -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.2."
+# Should use preinstalled composer 1.x when composer_version is false
+lando exec cliworker -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 1."
 ```
 
 ## Destroy tests
