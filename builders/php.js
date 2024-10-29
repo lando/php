@@ -11,7 +11,7 @@ const addBuildStep = require('./../utils/add-build-step');
  * @param {string} phpVersion - The PHP version.
  * @return {string} - The Composer version.
  */
-const getComposerVersion = phpVersion => {
+const getDefaultComposerVersion = phpVersion => {
   if (semver.lt(semver.coerce(phpVersion), '5.3.2')) {
     // Use Composer 1 for PHP < 5.3.2
     return '1';
@@ -127,7 +127,7 @@ module.exports = {
     ],
     confSrc: path.resolve(__dirname, '..', 'config'),
     command: ['sh -c \'a2enmod rewrite && apache2-foreground\''],
-    composer_version: '',
+    composer_version: true,
     phpServer: 'apache',
     defaultFiles: {
       _php: 'php.ini',
@@ -156,8 +156,11 @@ module.exports = {
   parent: '_appserver',
   builder: (parent, config) => class LandoPhp extends parent {
     constructor(id, options = {}, factory) {
-      const lando = _.get(options, '_app._lando');
+      const debug = _.get(options, '_app._lando').log.debug;
+
+      // Merge the user config onto the default options
       options = parseConfig(_.merge({}, config, options));
+
       // Mount our default php config
       options.volumes.push(`${options.confDest}/${options.defaultFiles._php}:${options.remoteFiles._php}`);
       options.volumes.push(`${options.confDest}/${options.defaultFiles.pool}:${options.remoteFiles.pool}`);
@@ -201,14 +204,13 @@ module.exports = {
       }
 
       // Determine the appropriate composer version if not already set
-      if (_.isEmpty(options.composer_version) || options.composer_version === true) {
-        options.composer_version = getComposerVersion(options.version);
-        lando.log.debug('Setting composer version to %s for PHP %s', options.composer_version, options.version);
+      if (options.composer_version === true || options.composer_version === '') {
+        options.composer_version = getDefaultComposerVersion(options.version);
       }
 
       // Install the desired composer version
       if (options.composer_version) {
-        lando.log.debug('Installing composer version %s', options.composer_version);
+        debug('Installing composer version %s', options.composer_version);
         const commands = [`/helpers/install-composer.sh ${options.composer_version}`];
         addBuildStep(commands, options._app, options.name, 'build_internal', true);
       }
