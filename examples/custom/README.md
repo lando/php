@@ -32,7 +32,7 @@ lando exec withnode -- php -v | grep "PHP 7.4"
 lando exec custom81 -- php -v | grep "PHP 8.1"
 
 # Should install composer 2.1.14 if version number is set
-lando exec custom81 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.1.14"
+lando exec custom81 -- composer --version --no-ansi | tee >(tail -n 1 >&2) | grep -q "Composer version 2.1.14"
 
 # Should use nginx version 1.17.x as the webserver version
 lando exec custom81_nginx --  nginx -v 2>&1 | grep 1.17
