@@ -46,7 +46,7 @@ lando exec defaults -- curl http://localhost | grep "memory_limit" | grep "1G"
 lando exec defaults -- env | grep "COMPOSER_MEMORY_LIMIT=-1"
 
 # Should install composer 2.x by default
-lando exec defaults -- composer --version --no-ansi | tee >(tail -n 1 >&2) | grep -q "Composer version 2."
+lando exec defaults -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2."
 
 # Should have unlimited memory for php for CLI opts
 lando php -i | grep memory_limit | grep -e "-1"
@@ -63,7 +63,7 @@ lando exec custom_nginx -- curl https://localhost | grep SERVER | grep PATH_TRAN
 lando exec custom -- php -v | grep "PHP 7.4"
 
 # Should install composer 2.x if 2-latest is set
-lando exec custom -- composer --version --no-ansi | tee >(tail -n 1 >&2) | grep -q "Composer version 2."
+lando exec custom -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2."
 
 # Should serve via nginx if specified
 lando exec custom_nginx -- curl http://localhost | grep "WEBDIR"
@@ -111,7 +111,7 @@ lando exec defaults -- curl http://localhost/path_info.php/a/b.php | grep SCRIPT
 lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 
 # Should install the latest composer 2.x by default.
-lando exec cliworker -- composer --version --no-ansi | tee >(tail -n 1 >&2) | grep -q "Composer version 2."
+lando exec cliworker -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2."
 
 # Should have node14 installed in cli service
 lando node -v | grep v14.
