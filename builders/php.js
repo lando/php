@@ -25,7 +25,7 @@ const getDefaultComposerVersion = phpVersion => {
     return '2.2.24';
   } else {
     // Use Composer 2 for PHP >= 7.3
-    return '2.8.1';
+    return '2.8.2';
   }
 };
 
