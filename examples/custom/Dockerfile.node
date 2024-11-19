@@ -1,4 +1,4 @@
-FROM devwithlando/php:7.4-apache-5
+FROM devwithlando/php:7.4-apache-4
 
 # Choose the major node version
 ENV NODE_VERSION=12

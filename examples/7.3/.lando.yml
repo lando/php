@@ -29,7 +29,7 @@ services:
     config:
       php: config/php.ini
     overrides:
-      image: devwithlando/php:7.3-fpm-5
+      image: devwithlando/php:7.3-fpm-4
       environment:
         DUALBLADE: maxim
         OTHER: thing

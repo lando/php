@@ -127,7 +127,7 @@ module.exports = {
       pool: '/usr/local/etc/php-fpm.d/zz-lando.conf',
     },
     sources: [],
-    suffix: '5',
+    suffix: '4',
     ssl: false,
     via: 'apache',
     volumes: ['/usr/local/bin'],
