@@ -1,6 +1,6 @@
 # docker build -t devwithlando/php:8.4-apache-4 .
 
-FROM php:8.4.0RC2-apache-bookworm
+FROM php:8.4.1-apache-bookworm
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
