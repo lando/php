@@ -28,6 +28,7 @@ RUN \
   && install-php-extensions exif \
   && install-php-extensions gd \
   && install-php-extensions gettext \
+  && install-php-extensions imagick \
   && install-php-extensions imap \
   && install-php-extensions intl \
   && install-php-extensions ldap \
