@@ -44,7 +44,9 @@ RUN \
   && install-php-extensions pdo_pgsql \
   && install-php-extensions redis \
   && install-php-extensions soap \
-  && install-php-extensions xdebug \
+  # TODO: switch to xdebug once there is a stable release for PHP 8.4
+  && install-php-extensions xdebug-beta \
+  # install-php-extensions xdebug \
   && install-php-extensions zip
 
 RUN install-php-extensions @composer-2
