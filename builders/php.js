@@ -6,6 +6,12 @@ const path = require('path');
 const semver = require('semver');
 const addBuildStep = require('./../utils/add-build-step');
 
+const composerVersions = {
+  '1': '1.10.27',
+  '2': '2.8.3',
+  '2.2': '2.2.24',
+};
+
 /**
  * Get the appropriate Composer version based on the PHP version.
  * @param {string} phpVersion - The PHP version.
@@ -19,13 +25,13 @@ const getDefaultComposerVersion = phpVersion => {
 
   if (semver.lt(phpVersion, '5.3.2')) {
     // Use Composer 1 for PHP < 5.3.2
-    return '1';
+    return composerVersions['1'];
   } else if (semver.lt(phpVersion, '7.3.0')) {
     // Use Composer 2.2 LTS for PHP < 7.3
-    return '2.2.24';
+    return composerVersions['2.2'];
   } else {
     // Use Composer 2 for PHP >= 7.3
-    return '2.8.2';
+    return composerVersions['2'];
   }
 };
 
