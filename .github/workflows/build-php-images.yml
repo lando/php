@@ -1,11 +1,16 @@
 name: Build PHP Images
 
 on:
-  # Uncomment below for testing purposes
   pull_request:
+    paths:
+      - 'images/**'
+      - '.github/workflows/build-php-images.yml'
   push:
     branches:
       - main
+    paths:
+      - 'images/**'
+      - '.github/workflows/build-php-images.yml'
 
 jobs:
   buildx:
