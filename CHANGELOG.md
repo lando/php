@@ -1,5 +1,8 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Updated 8.4RC image to 8.4 stable.
+* Added `xdebug-beta` and `imagick` extension to PHP 8.4 images.
+
 ## v1.6.3 - [December 7, 2024](https://github.com/lando/php/releases/tag/v1.6.3)
 
 * Optimized for `midcore`
