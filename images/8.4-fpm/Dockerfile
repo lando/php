@@ -29,6 +29,7 @@ RUN \
   && install-php-extensions exif \
   && install-php-extensions gd \
   && install-php-extensions gettext \
+  && install-php-extensions imagick \
   && install-php-extensions imap \
   && install-php-extensions intl \
   && install-php-extensions ldap \
@@ -43,7 +44,7 @@ RUN \
   && install-php-extensions pdo_pgsql \
   && install-php-extensions redis \
   && install-php-extensions soap \
-  # && install-php-extensions xdebug \
+  && install-php-extensions xdebug \
   && install-php-extensions zip
 
 RUN install-php-extensions @composer-2
