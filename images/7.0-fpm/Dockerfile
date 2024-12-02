@@ -1,4 +1,4 @@
-# docker build -t devwithlando/php:7.0-fpm-4 .
+# docker build -t devwithlando/php:7.0-fpm-5 .
 
 FROM php:7.0-fpm-stretch
 

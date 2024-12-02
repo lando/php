@@ -1,4 +1,4 @@
-# docker build -t devwithlando/php:8.4-apache-4 .
+# docker build -t devwithlando/php:8.4-apache-5 .
 
 FROM php:8.4-apache-bookworm
 
@@ -7,7 +7,6 @@ ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/relea
 RUN \
   mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && apt -y update && apt-get install -y \
-    bzip2 \
     default-mysql-client \
     exiftool \
     git-core \

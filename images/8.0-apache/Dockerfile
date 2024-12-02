@@ -1,4 +1,4 @@
-# docker build -t devwithlando/php:8.0-apache-4 .
+# docker build -t devwithlando/php:8.0-apache-5 .
 
 FROM php:8.0-apache-bullseye
 
