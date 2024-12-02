@@ -5,9 +5,9 @@ description: Learn how to configure the Lando PHP service.
 
 # Configuration
 
-Here are the configuration options, set to the default values, for this service. If you are unsure about where this goes or what this means, we *highly recommend* scanning the [services documentation](https://docs.lando.dev/core/v3/services/lando.html) to get a good handle on how the magicks work.
+Here are the configuration options, set to the default values, for this service. If you are unsure about where this goes or what this means, we *highly recommend* scanning the [services documentation](https://docs.lando.dev/services/lando-3.html) to get a good handle on how the magicks work.
 
-Also note that options, in addition to the [build steps](https://docs.lando.dev/core/v3/services/lando.html#build-steps) and [overrides](https://docs.lando.dev/core/v3/services/lando.html#overrides) that are available to every service, are shown below:
+Also note that options, in addition to the [build steps](https://docs.lando.dev/services/lando-3.html#build-steps) and [overrides](https://docs.lando.dev/services/lando-3.html#overrides) that are available to every service, are shown below:
 
 ```yaml
 services:
@@ -193,9 +193,9 @@ composer_version: snapshot
 You can also use the `composer` key if you need to require any [global composer dependenices](https://getcomposer.org/doc/03-cli.md#require). This follows the same syntax as your normal [`composer.json`](https://getcomposer.org/doc/01-basic-usage.md#composer-json-project-setup) except written as YAML instead of JSON.
 
 ::: tip Use composer.json if you can
-While there are some legitimate use cases to globally install a composer dependency, it is almost always preferred to install using your applications normal `composer.json` and then running either `lando composer install` or alternatively setting up a [build step](https://docs.lando.dev/core/v3/services/lando.html#build-steps) that will automatically run before your app starts up.
+While there are some legitimate use cases to globally install a composer dependency, it is almost always preferred to install using your applications normal `composer.json` and then running either `lando composer install` or alternatively setting up a [build step](https://docs.lando.dev/services/lando-3.html#build-steps) that will automatically run before your app starts up.
 
-Note that `lando composer` is not provided out of the box by the `php` service and needs to be manually added by configuring your app's [tooling](https://docs.lando.dev/core/v3/tooling.html).
+Note that `lando composer` is not provided out of the box by the `php` service and needs to be manually added by configuring your app's [tooling](https://docs.lando.dev/landofile/tooling.html).
 :::
 
 An example of globally installing `phpunit/phpunit` `^6.5` is shown below:
@@ -208,7 +208,7 @@ services:
       phpunit/phpunit: ^6.5
 ```
 
-An example of using a [build step](https://docs.lando.dev/core/v3/services/lando.html#build-steps) to automatically `composer install` your dependencies before your app starts is shown below:
+An example of using a [build step](https://docs.lando.dev/services/lando-3.html#build-steps) to automatically `composer install` your dependencies before your app starts is shown below:
 
 ```yaml
 services:
@@ -273,7 +273,7 @@ lando php
 lando composer
 ```
 
-Lando tooling is actually pretty powerful so definitely check out [the rest](https://docs.lando.dev/core/v3/tooling.html) of its cool features.
+Lando tooling is actually pretty powerful so definitely check out [the rest](https://docs.lando.dev/landofile/tooling.html) of its cool features.
 
 ## Adding routing
 
@@ -286,4 +286,18 @@ proxy:
     - something.else.local
 ```
 
-Lando proxying is actually pretty powerful so definitely check out [the rest](https://docs.lando.dev/core/v3/proxy.html) of its cool features.
+Lando proxying is actually pretty powerful so definitely check out [the rest](https://docs.lando.dev/landofile/proxy.html) of its cool features.
+
+## Advanced Image Configuration
+
+Starting with version 5 of our Docker images (eg devwithlando/php:8.2-fpm-5), we now use Debian 12 (Bookworm) as the base image. If you need to use the previous Debian 11-based images, you can set the `suffix` option to `4` to use those older image versions (eg devwithlando/php:8.2-fpm-4):
+
+```yaml
+services:
+  myservice:
+    type: php:8.2
+    suffix: 4
+```
+
+Most users will never need to modify this setting, as it's primarily useful when specific dependency versions from Debian 11 are required.
+
