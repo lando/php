@@ -25,7 +25,7 @@ Run the following commands to validate things are rolling as they should.
 lando exec defaults -- php -v | tee >(cat 1>&2) | grep "PHP 8.1"
 
 # Should use 13.x as the default postgresql-client version
-lando exec defaults -- psql -V | tee >(cat 1>&2) | grep "13."
+lando exec defaults -- psql -V | tee >(cat 1>&2) | grep "15."
 
 # Should use apache 2.4 as the default webserver version
 lando exec defaults -- apachectl -V | tee >(cat 1>&2) | grep "2.4."
@@ -114,7 +114,7 @@ lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 lando exec cliworker -- composer --version --no-ansi | grep "Composer version 2."
 
 # Should have node14 installed in cli service
-lando node -v | tee >(cat 1>&2) | grep v14.
+lando node -v | tee >(cat 1>&2) | grep v18.
 ```
 
 ## Destroy tests
