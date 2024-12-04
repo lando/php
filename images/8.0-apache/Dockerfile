@@ -43,6 +43,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && pecl install oauth \
   && pecl install redis-5.3.2 \
   && pecl install xdebug \
+  && pecl install xhprof \
   && docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \
   && docker-php-ext-enable apcu \
   && docker-php-ext-enable imagick \
