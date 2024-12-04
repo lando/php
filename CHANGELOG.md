@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Updated to [@lando/vitepress-theme-default-plus@v1.1.0-beta.24](https://github.com/lando/vitepress-theme-default-plus/releases/tag/v1.1.0-beta.24).
+
 * Updated GitHub Actions to build images only on changes to images or workflows.
 
 ## v1.6.1 - [November 4, 2024](https://github.com/lando/php/releases/tag/v1.6.1)
