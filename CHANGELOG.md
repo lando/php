@@ -1,5 +1,9 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Updated 8.4RC image to 8.4 stable.
+* Added `xdebug` and `imagick` extension to PHP 8.4 images.
+* Added `xhprof` extension to PHP 7.4+ images.
+* Added `imagick` extension to PHP 8.3 images.
 * Updated GitHub Actions to build images only on changes to images or workflows.
 
 ## v1.6.1 - [November 4, 2024](https://github.com/lando/php/releases/tag/v1.6.1)
