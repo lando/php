@@ -22,6 +22,15 @@ services:
   composer2ver:
     type: php
     composer_version: '2.1.10'
+  composer22:
+    type: php
+    composer_version: 2.2
+  composer22latest:
+    type: php
+    composer_version: 2.2-latest
+  composer22ver:
+    type: php
+    composer_version: '2.2.10'
   dependencies:
     type: php
     composer_version: 2
