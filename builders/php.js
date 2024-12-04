@@ -5,6 +5,36 @@ const _ = require('lodash');
 const path = require('path');
 const semver = require('semver');
 const addBuildStep = require('./../utils/add-build-step');
+
+const composerVersions = {
+  '1': '1.10.27',
+  '2': '2.8.3',
+  '2.2': '2.2.24',
+};
+
+/**
+ * Get the appropriate Composer version based on the PHP version.
+ * @param {string} phpVersion - The PHP version.
+ * @return {string|boolean} - The Composer version or false if we cannot parse the version.
+ */
+const getDefaultComposerVersion = phpVersion => {
+  phpVersion = semver.coerce(phpVersion);
+  // Don't set a default composer version if we cannot
+  // parse the version such as with `custom`.
+  if (!phpVersion) return false;
+
+  if (semver.lt(phpVersion, '5.3.2')) {
+    // Use Composer 1 for PHP < 5.3.2
+    return composerVersions['1'];
+  } else if (semver.lt(phpVersion, '7.3.0')) {
+    // Use Composer 2.2 LTS for PHP < 7.3
+    return composerVersions['2.2'];
+  } else {
+    // Use Composer 2 for PHP >= 7.3
+    return composerVersions['2'];
+  }
+};
+
 /*
  * Helper to get nginx config
  */
@@ -108,7 +138,7 @@ module.exports = {
     ],
     confSrc: path.resolve(__dirname, '..', 'config'),
     command: ['sh -c \'a2enmod rewrite && apache2-foreground\''],
-    composer_version: '2.2.22',
+    composer_version: true,
     phpServer: 'apache',
     defaultFiles: {
       _php: 'php.ini',
@@ -137,7 +167,11 @@ module.exports = {
   parent: '_appserver',
   builder: (parent, config) => class LandoPhp extends parent {
     constructor(id, options = {}, factory) {
+      const debug = _.get(options, '_app._lando').log.debug;
+
+      // Merge the user config onto the default options
       options = parseConfig(_.merge({}, config, options));
+
       // Mount our default php config
       options.volumes.push(`${options.confDest}/${options.defaultFiles._php}:${options.remoteFiles._php}`);
       options.volumes.push(`${options.confDest}/${options.defaultFiles.pool}:${options.remoteFiles.pool}`);
@@ -180,8 +214,14 @@ module.exports = {
         addBuildStep(['docker-php-ext-enable xdebug'], options._app, options.name, 'build_as_root_internal');
       }
 
+      // Determine the appropriate composer version if not already set
+      if (options.composer_version === true || options.composer_version === '') {
+        options.composer_version = getDefaultComposerVersion(options.version);
+      }
+
       // Install the desired composer version
       if (options.composer_version) {
+        debug('Installing composer version %s', options.composer_version);
         const commands = [`/helpers/install-composer.sh ${options.composer_version}`];
         addBuildStep(commands, options._app, options.name, 'build_internal', true);
       }

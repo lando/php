@@ -70,7 +70,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
     gettext \
     pcntl \
   && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-  && php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=2.2.12 \
+  && php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=2.2.24 \
   && php -r "unlink('composer-setup.php');" \
   && chsh -s /bin/bash www-data && mkdir -p /var/www/.composer && chown -R www-data:www-data /var/www \
   && apt-get -y clean \
