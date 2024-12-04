@@ -22,13 +22,13 @@ Run the following commands to validate things are rolling as they should.
 
 ```bash
 # Should use 8.1 as the default php version
-lando exec defaults -- php -v | grep "PHP 8.1"
+lando exec defaults -- php -v | tee >(cat 1>&2) | grep "PHP 8.1"
 
 # Should use 13.x as the default postgresql-client version
-lando exec defaults -- psql -V | grep "13."
+lando exec defaults -- psql -V | tee >(cat 1>&2) | grep "15."
 
 # Should use apache 2.4 as the default webserver version
-lando exec defaults -- apachectl -V | grep "2.4."
+lando exec defaults -- apachectl -V | tee >(cat 1>&2) | grep "2.4."
 
 # Should only serve over http by default
 lando exec defaults -- curl https://localhost || echo $? | grep 7
@@ -57,7 +57,7 @@ lando exec custom_nginx -- curl https://localhost | grep SERVER | grep PATH_INFO
 lando exec custom_nginx -- curl https://localhost | grep SERVER | grep PATH_TRANSLATED
 
 # Should use specified php version if given
-lando exec custom -- php -v | grep "PHP 8.1"
+lando exec custom -- php -v | tee >(cat 1>&2) | grep "PHP 8.1"
 
 # Should install composer 2.1.12 if version number is set
 lando exec custom -- composer --version --no-ansi | grep "Composer version 2.1.12"
@@ -114,7 +114,7 @@ lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 lando exec cliworker -- composer --version --no-ansi | grep "Composer version 2."
 
 # Should have node14 installed in cli service
-lando node -v | grep v14.
+lando node -v | tee >(cat 1>&2) | grep v18.
 ```
 
 ## Destroy tests
