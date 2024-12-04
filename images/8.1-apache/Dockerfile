@@ -46,7 +46,7 @@ RUN \
   && install-php-extensions xdebug \
   && install-php-extensions zip
 
-RUN install-php-extensions @composer-2.2.24
+RUN install-php-extensions @composer-2
 
 RUN \
   chsh -s /bin/bash www-data && mkdir -p /var/www/.composer && chown -R www-data:www-data /var/www \
