@@ -11,6 +11,7 @@ on:
     paths:
       - 'images/**'
       - '.github/workflows/build-php-images.yml'
+  workflow_dispatch:
 
 jobs:
   buildx:
