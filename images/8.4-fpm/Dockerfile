@@ -45,6 +45,7 @@ RUN \
   && install-php-extensions redis \
   && install-php-extensions soap \
   && install-php-extensions xdebug \
+  && install-php-extensions xhprof \
   && install-php-extensions zip
 
 RUN install-php-extensions @composer-2
