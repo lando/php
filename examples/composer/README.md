@@ -46,6 +46,15 @@ lando exec composer2latest -- composer --version --no-ansi | tee >(cat 1>&2) | g
 # Should install composer 2.1.10 if composer_version set to specific version
 lando exec composer2ver -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.1.10"
 
+# Should install composer 2.2.x if composer_version set to 2.2
+lando exec composer22 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.2."
+
+# Should install composer 2.2.x if composer_version set to 2.2-latest
+lando exec composer22latest -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.2."
+
+# Should install composer 2.2.10 if composer_version set to 2.2.10
+lando exec composer22ver -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.2.10"
+
 # Should install compose global dependencies if specified by user and have them available in PATH
 lando exec dependencies -- phpunit --version
 lando exec dependencies -- which phpunit | grep "/var/www/.composer/vendor/bin/phpunit"

@@ -1,6 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
 * Added logic to allow default `composer` version to be set based on PHP version.
+* Added `2.2` and `2.2-latest` shorthand options to install the latest stable 2.2 LTS version of `composer`.
 * Set default `composer` version to `2.8.3`
 * Set default `composer` version to `2.2.24` for PHP 5.3-7.2
 * Set default `composer` version to `1.10.27` for PHP <= 5.2

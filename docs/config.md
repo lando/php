@@ -181,6 +181,10 @@ composer_version: 1-latest
 composer_version: 2
 composer_version: 2-latest
 
+# Install the latest stable 2.2 LTS version
+composer_version: 2.2
+composer_version: 2.2-latest
+
 # Install latest pre-release version
 composer_version: preview
 

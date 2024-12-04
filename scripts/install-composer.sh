@@ -16,6 +16,10 @@ elif [ "$VERSION" = '2-latest' ]; then
   php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer --2
 elif [ "$VERSION" = '2' ]; then
   php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer --2
+elif [ "$VERSION" = '2.2' ]; then
+  php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer --2.2
+elif [ "$VERSION" = '2.2-latest' ]; then
+  php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer --2.2
 elif [ "$VERSION" = 'preview' ]; then
   php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer --preview
 elif [ "$VERSION" = 'snapshot' ]; then
