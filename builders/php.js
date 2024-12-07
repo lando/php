@@ -215,6 +215,6 @@ module.exports = {
       // Add in the php service and push downstream
       options.sources.push({services: _.set({}, options.name, php)});
       super(id, options, ..._.flatten(options.sources));
-    };
+    }
   },
 };
