@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.6.3 - [December 7, 2024](https://github.com/lando/php/releases/tag/v1.6.3)
+
 * Optimized for `midcore`
 
 ## v1.6.2 - [December 6, 2024](https://github.com/lando/php/releases/tag/v1.6.2)
