@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Optimized for `midcore`
+
 ## v1.6.2 - [December 6, 2024](https://github.com/lando/php/releases/tag/v1.6.2)
 
 * Updated the version index.md to get Docuverse page to build correctly.
