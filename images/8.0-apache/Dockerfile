@@ -4,6 +4,12 @@ FROM php:8.0-apache-bullseye
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
+RUN \
+  # MariaDB client compatibility (https://github.com/lando/php/issues/120)
+  mkdir -p /etc/apt/keyrings \
+  && curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp' \
+  && echo "deb [signed-by=/etc/apt/keyrings/mariadb-keyring.pgp] https://mirror.mariadb.org/repo/10.5/debian bullseye main" > /etc/apt/sources.list.d/mariadb.list
+
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && apt -y update && apt-get install -y \
     default-mysql-client \
@@ -11,6 +17,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
     git-core \
     gnupg2 \
     libonig-dev \
+    mariadb-client \
     openssl \
     postgresql-client-13 \
     pv \
