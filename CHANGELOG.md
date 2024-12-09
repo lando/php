@@ -5,6 +5,7 @@
 * Added `xdebug` and `imagick` extension to PHP 8.4 images.
 * Added `xhprof` extension to PHP 7.4-8.4 images.
 * Added `imagick` extension to PHP 8.3 images.
+* Updated `sqlite3` to 3.45.1 in PHP 8.3-8.4 images.
 
 ## v1.6.3 - [December 7, 2024](https://github.com/lando/php/releases/tag/v1.6.3)
 
