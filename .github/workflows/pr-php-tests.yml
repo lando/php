@@ -2,6 +2,13 @@ name: PHP Tests
 
 on:
   pull_request:
+  workflow_dispatch:
+    inputs:
+      lando-version:
+        description: 'Lando version'
+        required: true
+        default: '3-edge'
+        type: string
 
 jobs:
   leia-tests:
@@ -27,8 +34,6 @@ jobs:
           - examples/composer
           - examples/php-extensions
           - examples/xdebug
-        lando-version:
-          - 3-edge-slim
         os:
           - ubuntu-24.04
         node-version:
@@ -50,10 +55,10 @@ jobs:
           lando-plugin: true
           version: dev
           sync: false
-      - name: Setup lando ${{ matrix.lando-version }}
+      - name: Setup lando ${{ github.event.inputs.lando-version }}
         uses: lando/setup-lando@v3
         with:
-          lando-version: ${{ matrix.lando-version }}
+          lando-version: ${{ github.event.inputs.lando-version }}
           config: |
             setup.skipCommonPlugins=true
             setup.plugins.@lando/php=/home/runner/work/php/php
