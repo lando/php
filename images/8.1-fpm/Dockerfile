@@ -5,12 +5,19 @@ FROM php:8.1-fpm-bookworm
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN \
+  # MariaDB client compatibility (https://github.com/lando/php/issues/120)
+  mkdir -p /etc/apt/keyrings \
+  && curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp' \
+  && echo "deb [signed-by=/etc/apt/keyrings/mariadb-keyring.pgp] https://mirror.mariadb.org/repo/10.11/debian bookworm main" > /etc/apt/sources.list.d/mariadb.list
+
+RUN \
   mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && apt -y update && apt-get install -y \
   default-mysql-client \
   exiftool \
   git-core \
   gnupg2 \
+  mariadb-client \
   openssl \
   postgresql-client-15 \
   pv \
@@ -44,6 +51,7 @@ RUN \
   && install-php-extensions redis \
   && install-php-extensions soap \
   && install-php-extensions xdebug \
+  && install-php-extensions xhprof \
   && install-php-extensions zip
 
 RUN install-php-extensions @composer-2

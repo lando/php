@@ -2,7 +2,15 @@
 
 FROM php:8.3-fpm-bookworm
 
+ARG TARGETARCH
+
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+RUN \
+  # MariaDB client compatibility (https://github.com/lando/php/issues/120)
+  mkdir -p /etc/apt/keyrings \
+  && curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp' \
+  && echo "deb [signed-by=/etc/apt/keyrings/mariadb-keyring.pgp] https://mirror.mariadb.org/repo/10.11/debian bookworm main" > /etc/apt/sources.list.d/mariadb.list
 
 RUN \
   mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
@@ -11,6 +19,7 @@ RUN \
   exiftool \
   git-core \
   gnupg2 \
+  mariadb-client \
   openssl \
   postgresql-client-15 \
   pv \
@@ -44,9 +53,17 @@ RUN \
   && install-php-extensions redis \
   && install-php-extensions soap \
   && install-php-extensions xdebug \
+  && install-php-extensions xhprof \
   && install-php-extensions zip
 
 RUN install-php-extensions @composer-2
+
+# Drupal 11 requires sqlite3 3.45+
+ARG SQLITE_VERSION=3.45.1
+RUN \
+  curl -Lo /tmp/sqlite3.deb "https://snapshot.debian.org/archive/debian/20240506T211830Z/pool/main/s/sqlite3/sqlite3_${SQLITE_VERSION}-1_${TARGETARCH}.deb" \
+  && curl -Lo /tmp/libsqlite3-0.deb "https://snapshot.debian.org/archive/debian/20240506T211830Z/pool/main/s/sqlite3/libsqlite3-0_${SQLITE_VERSION}-1_${TARGETARCH}.deb" \
+  && dpkg -i /tmp/sqlite3.deb /tmp/libsqlite3-0.deb
 
 RUN \
   chsh -s /bin/bash www-data && mkdir -p /var/www/.composer && chown -R www-data:www-data /var/www \
