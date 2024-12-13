@@ -54,9 +54,12 @@ RUN \
   && install-php-extensions pdo_pgsql \
   && install-php-extensions redis \
   && install-php-extensions soap \
-  && install-php-extensions xdebug \
   && install-php-extensions xhprof \
   && install-php-extensions zip
+
+# Install xdebug but disable it by default
+RUN install-php-extensions xdebug \
+  && rm -f /usr/local/etc/php/conf.d/*xdebug.ini
 
 RUN install-php-extensions @composer-2
 

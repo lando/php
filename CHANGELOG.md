@@ -1,14 +1,9 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
-## v1.6.2 - [December 6, 2024](https://github.com/lando/php/releases/tag/v1.6.2)
-
-## v1.6.2 - [December 6, 2024](https://github.com/lando/php/releases/tag/v1.6.2)
-
-* Updated 8.4RC image to 8.4 stable.
+* Fixed issue causing `xdebug` extension to not be disabled by default in PHP 8.3 and 8.4 images.
+* Added `install-php-extensions` script to PHP 7.4-8.2 images.
 * Added MariaDB client tools to PHP 7.4-8.4 images [#120](https://github.com/lando/php/issues/120).
-* Added `xdebug` and `imagick` extension to PHP 8.4 images.
 * Added `xhprof` extension to PHP 7.4-8.4 images.
-* Added `imagick` extension to PHP 8.3 images.
 * Updated `sqlite3` to 3.45.1 in PHP 8.3-8.4 images.
 
 ## v1.6.3 - [December 7, 2024](https://github.com/lando/php/releases/tag/v1.6.3)
@@ -17,8 +12,12 @@
 
 ## v1.6.2 - [December 6, 2024](https://github.com/lando/php/releases/tag/v1.6.2)
 
+* Updated PHP 8.1-8.3 base images to Debian 12 (bookworm).
+* Added `install-php-extensions` script to PHP 8.3 and 8.4 images.
+* Added `imagick` extension to PHP 8.3 and 8.4 images.
+* Updated 8.4RC image to 8.4 stable.
+* Added `xdebug` extension to PHP 8.4 images.
 * Updated the version index.md to get Docuverse page to build correctly.
-
 * Updated to [@lando/vitepress-theme-default-plus@v1.1.0-beta.24](https://github.com/lando/vitepress-theme-default-plus/releases/tag/v1.1.0-beta.24).
 * Updated GitHub Actions to build images only on changes to images or workflows.
 
