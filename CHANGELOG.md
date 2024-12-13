@@ -2,6 +2,8 @@
 
 ## v1.6.2 - [December 6, 2024](https://github.com/lando/php/releases/tag/v1.6.2)
 
+## v1.6.2 - [December 6, 2024](https://github.com/lando/php/releases/tag/v1.6.2)
+
 * Updated 8.4RC image to 8.4 stable.
 * Added MariaDB client tools to PHP 7.4-8.4 images [#120](https://github.com/lando/php/issues/120).
 * Added `xdebug` and `imagick` extension to PHP 8.4 images.
