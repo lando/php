@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.6.4 - [December 14, 2024](https://github.com/lando/php/releases/tag/v1.6.4)
+
 * Fixed issue causing `xdebug` extension to not be disabled by default in PHP 8.3 and 8.4 images.
 * Added `install-php-extensions` script to PHP 7.4-8.2 images.
 * Added MariaDB client tools to PHP 7.4-8.4 images [#120](https://github.com/lando/php/issues/120).
