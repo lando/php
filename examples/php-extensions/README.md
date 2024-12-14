@@ -24,6 +24,7 @@ Run the following commands to validate things are rolling as they should.
 
 ```bash
 # Should have installed the needed php extensions
+lando exec 84scripted -- php -m | grep swoole
 lando exec buildsteps -- php -m | grep stats
 lando exec buildsteps -- php -m | grep xsl
 lando exec dockerfile -- php -m | grep oci8
