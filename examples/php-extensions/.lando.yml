@@ -1,5 +1,9 @@
 name: lando-php-extensions
 services:
+  84scripted:
+    type: php:8.4
+    build_as_root:
+      - install-php-extensions swoole
   buildsteps:
     type: php
     build_as_root:
