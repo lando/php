@@ -18,7 +18,7 @@ services:
     webroot: .
     xdebug: false
     composer: []
-    composer_version: '2.2.12'
+    composer_version: '2'
     # Below only valid for via: cli
     command: tail -f /dev/null
     config:
@@ -161,16 +161,22 @@ You can use `lando info --deep | grep IPAddress` to help discover the correct ho
 
 ## Installing composer
 
-As of Lando `3.0.17` you can configure the version of `composer` you would like to install. This _should_ respect any of the versions listed on the [Composer download page](https://getcomposer.org/download/) but it is required you specify down to the patch version.
+Lando automatically installs the latest compatible version of Composer based on your specified PHP version:
+
+- PHP >= 7.3: Composer 2.x
+- PHP >= 5.3.2 and < 7.3: Composer 2.2 LTS
+- PHP < 5.3.2: Composer 1.x
+
+You can customize the Composer version by specifying either a specific version number or using a channel alias:
 
 ```yaml
 services:
   myservice:
-    type: php
-    composer_version: "1.10.1"
+    type: php:8.2
+    composer_version: "2.6.5"  # Install specific version
 ```
 
-You can also choose to ignore the `composer` install step by setting `composer_version: false`. This will use whatever version of `composer` was last bundled with our `php` image. The following "convenience flags" are also available:
+The following channel aliases are available:
 
 ```yaml
 # Install the latest stable 1.x version
@@ -191,6 +197,8 @@ composer_version: preview
 # Install latest commit
 composer_version: snapshot
 ```
+
+You can disable Composer installation entirely by setting `composer_version: false`.
 
 ## Installing global dependencies
 
