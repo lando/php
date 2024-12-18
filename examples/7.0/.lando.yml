@@ -5,10 +5,9 @@ events:
 services:
   defaults:
     type: php:7.0
-    composer_version: false
   cli:
     type: php:7.0
-    composer_version: false
+    composer_version: 1
     via: cli
     build_as_root:
       - echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list

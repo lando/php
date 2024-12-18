@@ -1,5 +1,9 @@
 name: lando-phpcomposer
 services:
+  php72:
+    type: php:7.2
+  php83:
+    type: php:8.3
   composer1:
     type: php
     composer_version: 1
@@ -18,6 +22,15 @@ services:
   composer2ver:
     type: php
     composer_version: '2.1.10'
+  composer22:
+    type: php
+    composer_version: 2.2
+  composer22latest:
+    type: php
+    composer_version: 2.2-latest
+  composer22ver:
+    type: php
+    composer_version: '2.2.10'
   dependencies:
     type: php
     composer_version: 2

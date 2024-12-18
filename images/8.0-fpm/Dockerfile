@@ -59,8 +59,6 @@ RUN \
 RUN install-php-extensions xdebug \
   && rm -f /usr/local/etc/php/conf.d/*xdebug.ini
 
-RUN install-php-extensions @composer-2
-
 RUN \
   chsh -s /bin/bash www-data && mkdir -p /var/www/.composer && chown -R www-data:www-data /var/www \
   && apt-get -y clean \

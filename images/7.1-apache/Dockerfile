@@ -75,11 +75,7 @@ RUN \
     intl \
     gettext \
     pcntl \
-  && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-  && php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=1.10.1 \
-  && php -r "unlink('composer-setup.php');" \
   && chsh -s /bin/bash www-data && mkdir -p /var/www/.composer && chown -R www-data:www-data /var/www \
-  && su -c "composer global require -n hirak/prestissimo" -s /bin/sh www-data \
   && apt-get -y clean \
   && apt-get -y autoclean \
   && apt-get -y autoremove \
