@@ -17,6 +17,7 @@ RUN \
   exiftool \
   git-core \
   gnupg2 \
+  imagemagick \
   mariadb-client \
   openssl \
   postgresql-client-15 \

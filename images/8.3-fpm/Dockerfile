@@ -26,6 +26,7 @@ RUN \
   exiftool \
   git-core \
   gnupg2 \
+  imagemagick \
   mariadb-client \
   postgresql-client-15 \
   pv \

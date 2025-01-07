@@ -16,6 +16,7 @@ RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
     exiftool \
     git-core \
     gnupg2 \
+    imagemagick \
     libonig-dev \
     mariadb-client \
     openssl \
