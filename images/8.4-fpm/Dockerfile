@@ -29,7 +29,6 @@ RUN \
     gnupg2 \
     mariadb-client \
     mariadb-client-compat \
-    openssl \
     postgresql-client-15 \
     pv \
     rsync \

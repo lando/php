@@ -27,7 +27,6 @@ RUN \
   git-core \
   gnupg2 \
   mariadb-client \
-  openssl \
   postgresql-client-15 \
   pv \
   rsync \
