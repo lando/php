@@ -8,6 +8,7 @@
 * Removed `composer` installation from images to prefer installing during app build
 * Fixed bug causing `composer` 2.2.x to be installed when `composer_version` was set to a single digit version such as `1`
 * Fixed mismatched `libsqlite3-dev` and `libsqlite3-0` versions in PHP 8.3 and 8.4 images
+* Fixed regression causing ImageMagick `convert` to not be available in images with `imagick` extension enabled
 
 ## v1.6.4 - [December 14, 2024](https://github.com/lando/php/releases/tag/v1.6.4)
 
