@@ -28,6 +28,9 @@ lando exec php72 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Co
 # PHP 8.3 Should install composer 2.8.x by default
 lando exec php83 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.8."
 
+# Should not install composer if composer_version is false
+echo $(lando exec nocomposer -- composer --version --no-ansi 2>&1) | grep "executable file not found"
+
 # Should install composer 1.x if composer_version set to 1
 lando exec composer1 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 1."
 

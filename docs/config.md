@@ -40,8 +40,8 @@ Like with `apache`, `nginx` will use the the default version of our [nginx](http
 ```yaml
 services:
   myservice:
-    type: php
-    via: apache
+    type: php:8.4
+    via: apache:2.4
 ```
 
 #### With nginx
@@ -49,8 +49,8 @@ services:
 ```yaml
 services:
   myservice:
-    type: php
-    via: nginx
+    type: php:8.4
+    via: nginx:1.27
 ```
 
 #### As CLI
@@ -58,7 +58,7 @@ services:
 ```yaml
 services:
   myservice:
-    type: php
+    type: php:8.4
     via: cli
 ```
 
@@ -67,7 +67,7 @@ In CLI mode you can optionally tell the php cli service to boot up with an arbit
 ```yaml
 services:
   myservice:
-    type: php
+    type: php:8.4
     via: cli
     command: php /app/src/artisan horizon
 ```
@@ -79,8 +79,8 @@ By default Lando will serve the app from the root of your repo. If you'd like to
 ```yaml
 services:
   myservice:
-    type: php
-    via: nginx
+    type: php:8.4
+    via: nginx:1.27
     webroot: docroot
 ```
 
@@ -93,7 +93,7 @@ If you are using `xdebug` version 3, which is installed by default for `php` 7.2
 ```yaml
 services:
   myservice:
-    type: php:7.4
+    type: php:8.4
     xdebug: "debug,develop"
 ```
 
@@ -106,7 +106,7 @@ If you'd like to override Lando's out of the box `xdebug` config the easiest way
 ```yaml
 services:
   myservice:
-    type: php:7.4
+    type: php:8.4
     xdebug: "debug,develop"
     overrides:
       environment:
@@ -120,7 +120,7 @@ You can also modify or unset `XDEBUG_MODE` in a similar way. For example if you 
 ```yaml
 services:
   myservice:
-    type: php:7.4
+    type: php:8.4
     xdebug: true
     overrides:
       environment:
@@ -215,7 +215,7 @@ An example of globally installing `phpunit/phpunit` `^6.5` is shown below:
 ```yaml
 services:
   myservice:
-    type: php
+    type: php:8.4
     composer:
       phpunit/phpunit: ^6.5
 ```
@@ -225,7 +225,7 @@ An example of using a [build step](https://docs.lando.dev/services/lando-3.html#
 ```yaml
 services:
   myservice:
-    type: php
+    type: php:8.4
     build:
       - composer install
 ```
@@ -259,7 +259,7 @@ Note that you can put your configuration files anywhere inside your application 
 ```yaml
 services:
   myservice:
-    type: php
+    type: php:8.4
     config:
       php: config/php.ini
       server: config/nginx.conf
