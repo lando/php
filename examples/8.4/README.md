@@ -71,9 +71,6 @@ lando exec custom_nginx -- curl https://localhost | grep "WEBDIR"
 # Should not serve port 80 for cli
 lando exec cli -- curl http://localhost || echo $? | grep 7
 
-# Should install the composer 2.x using the false flag
-lando exec cli -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2."
-
 # Should use custom php ini if specified
 lando exec custom -- php -i | grep memory_limit | grep 514
 lando exec custom -- curl http://custom_nginx | grep html_errors | grep On | grep On
@@ -107,8 +104,8 @@ lando exec defaults -- curl http://localhost/path_info.php/a/b.php | grep SCRIPT
 # Should allow cli services to specify a boot up command
 lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 
-# Should install the latest composer 2.x by default.
-lando exec cliworker -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2."
+# Should not install composer when composer_version is false
+echo $(lando exec cliworker -- composer --version --no-ansi 2>&1) | grep "executable file not found"
 
 # Should have node 18 installed in cli service
 lando node -v | tee >(cat 1>&2) | grep v18.

@@ -13,14 +13,14 @@ You can easily add it to your Lando app by adding an entry to the [services](htt
 ```yaml
 services:
   myservice:
-    type: php:8.0
-    via: nginx
+    type: php:8.4
+    via: nginx:1.27
     webroot: www
 ```
 
 ## Supported versions
 
-*   [8.4RC2](https://hub.docker.com/r/devwithlando/php) (experimental)
+*   [8.4](https://hub.docker.com/r/devwithlando/php)
 *   [8.3](https://hub.docker.com/r/devwithlando/php)
 *   [8.2](https://hub.docker.com/r/devwithlando/php)
 *   [8.1](https://hub.docker.com/r/devwithlando/php)

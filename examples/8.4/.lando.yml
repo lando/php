@@ -5,10 +5,8 @@ events:
 services:
   defaults:
     type: php:8.4
-    composer_version: false
   cli:
     type: php:8.4
-    composer_version: false
     via: cli
     build_as_root:
       - curl -sL https://deb.nodesource.com/setup_18.x | bash -
