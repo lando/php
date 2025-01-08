@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.7.0 - [January 8, 2025](https://github.com/lando/php/releases/tag/v1.7.0)
+
 * Added logic to allow default `composer` version to be set based on PHP version.
 * Added `2.2` and `2.2-latest` shorthand options to install the latest stable 2.2 LTS version of `composer`.
 * Set default `composer` version to `2-latest`
