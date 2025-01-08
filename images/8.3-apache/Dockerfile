@@ -26,7 +26,7 @@ RUN \
   exiftool \
   git-core \
   gnupg2 \
-  openssl \
+  imagemagick \
   postgresql-client-15 \
   pv \
   rsync \
