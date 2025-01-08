@@ -110,8 +110,8 @@ lando exec defaults -- curl http://localhost/path_info.php/a/b.php | grep SCRIPT
 # Should allow cli services to specify a boot up command
 lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 
-# Should install the composer 2.x using the false flag
-lando exec cliworker -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2."
+# Should not install composer when composer_version is false
+echo $(lando exec cliworker -- composer --version --no-ansi 2>&1) | grep "executable file not found"
 
 # Should have node14 installed in cli service
 lando node -v | grep v14.

@@ -4,35 +4,38 @@ services:
     type: php:7.2
   php83:
     type: php:8.3
+  nocomposer:
+    type: php:8.3
+    composer_version: false
   composer1:
-    type: php
+    type: php:7.4
     composer_version: 1
   composer2:
-    type: php
+    type: php:8.3
     composer_version: 2
   composer1latest:
-    type: php
+    type: php:8.3
     composer_version: 1-latest
   composer2latest:
-    type: php
+    type: php:8.3
     composer_version: 2-latest
   composer1ver:
-    type: php
+    type: php:8.3
     composer_version: '1.10.21'
   composer2ver:
-    type: php
+    type: php:8.3
     composer_version: '2.1.10'
   composer22:
-    type: php
+    type: php:8.3
     composer_version: 2.2
   composer22latest:
     type: php
     composer_version: 2.2-latest
   composer22ver:
-    type: php
+    type: php:8.3
     composer_version: '2.2.10'
   dependencies:
-    type: php
+    type: php:8.3
     composer_version: 2
     composer:
       phpunit/phpunit: "*"
