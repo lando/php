@@ -5,6 +5,9 @@ events:
 services:
   defaults:
     type: php:5.6
+  composer_lts:
+    type: php:5.6
+    composer_version: 2.2
   cli:
     type: php:5.6
     composer_version: 1
