@@ -54,6 +54,9 @@ lando exec defaults -- php -i | grep "memory_limit" | grep -e "-1"
 # Should not enable xdebug by default
 lando exec defaults -- php -m | grep xdebug || echo $? | grep 1
 
+# Should install composer 2.2.x if composer_version is set to 2.2
+lando exec composer_lts -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.2."
+
 # Should have a PATH_INFO and PATH_TRANSLATED SERVER vars
 lando exec custom_nginx -- curl https://localhost | grep SERVER | grep PATH_INFO
 lando exec custom_nginx -- curl https://localhost | grep SERVER | grep PATH_TRANSLATED

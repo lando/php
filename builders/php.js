@@ -172,14 +172,29 @@ module.exports = {
   parent: '_appserver',
   builder: (parent, config) => class LandoPhp extends parent {
     constructor(id, options = {}, factory) {
-      const debug = _.get(options, '_app._lando').log.debug;
+      const lando = _.get(options, '_app._lando');
+      const logger = lando.log;
+      const fs = require('fs');
 
       // Merge the user config onto the default options
       options = parseConfig(_.merge({}, config, options));
 
       // Get the semver of the PHP version, NULL if we cannot parse it
       const phpSemver = semver.coerce(options.version);
-      phpSemver && debug('Parsed PHP semantic version: %s', phpSemver);
+      phpSemver && logger.debug('Parsed PHP semantic version: %s', phpSemver);
+
+      // Copy scripts to this service's scripts directory and make executable.
+      const pluginScriptsDir = path.join(__dirname, '../scripts');
+      if (fs.existsSync(pluginScriptsDir)) {
+        const appConfDir = require('../utils/get-appconf-dir')(lando, options._app);
+        const serviceScriptsDir = path.join(appConfDir, `service-php-${options.name}`, 'scripts');
+
+        const scriptsDir = lando.utils.moveConfig(pluginScriptsDir, serviceScriptsDir);
+        logger.debug('automoved scripts from %s to %s', pluginScriptsDir, scriptsDir);
+
+        // Mount the scripts directory at /opt/lando-service/scripts
+        options.volumes.push(`${scriptsDir}:/opt/lando-service/scripts`);
+      }
 
       // Mount our default php config
       options.volumes.push(`${options.confDest}/${options.defaultFiles._php}:${options.remoteFiles._php}`);
@@ -239,8 +254,8 @@ module.exports = {
 
       // Install the desired composer version as the first `build_internal` build step
       if (options.composer_version) {
-        debug('Installing composer version %s', options.composer_version);
-        const commands = [`/helpers/install-composer.sh ${options.composer_version}`];
+        logger.debug('Installing composer version %s', options.composer_version);
+        const commands = [`/opt/lando-service/scripts/install-composer.sh ${options.composer_version}`];
         const firstStep = true;
         addBuildStep(commands, options._app, options.name, 'build_internal', firstStep);
       }
