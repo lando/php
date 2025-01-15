@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.7.1 - [January 15, 2025](https://github.com/lando/php/releases/tag/v1.7.1)
+
 * Improved the `php` service builder to mount a unique scripts directory per service to prevent version conflicts.
 
 ## v1.7.0 - [January 8, 2025](https://github.com/lando/php/releases/tag/v1.7.0)
