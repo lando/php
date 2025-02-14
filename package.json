@@ -50,7 +50,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.25.9",
     "@lando/leia": "0.6.7",
-    "@lando/vitepress-theme-default-plus": "^1.1.0",
+    "@lando/vitepress-theme-default-plus": "^1.1.1",
     "chai": "^4.3.4",
     "command-line-test": "^1.0.10",
     "eslint": "^7.32.0",
