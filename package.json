@@ -3,7 +3,7 @@
   "description": "A Lando plugin that provides a tight integration with PHP.",
   "version": "1.7.1",
   "author": "Mike Pirog @pirog",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "repository": "lando/php",
   "bugs": "https://github.com/lando/php/issues/new/choose",
   "homepage": "https://github.com/lando/php",
