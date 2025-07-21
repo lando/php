@@ -54,5 +54,7 @@ Made with [contributors-img](https://contrib.rocks).
 
 ## Other Selected Resources
 
-* [LICENSE](https://github.com/lando/php/blob/main/LICENSE.md)
-* [The best professional advice ever](https://www.youtube.com/watch?v=tkBVDh7my9Q)
+* [LICENSE](/LICENSE)
+* [TERMS OF USE](https://docs.lando.dev/terms)
+* [PRIVACY POLICY](https://docs.lando.dev/privacy)
+
