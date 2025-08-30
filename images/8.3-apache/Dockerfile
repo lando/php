@@ -1,6 +1,6 @@
-# docker build -t devwithlando/php:8.3-apache-5 .
+# docker build -t devwithlando/php:8.3-apache-6 .
 
-FROM php:8.3-apache-bookworm
+FROM php:8.3-apache-trixie
 
 ARG TARGETARCH
 
