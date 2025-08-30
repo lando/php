@@ -1,6 +1,6 @@
-# docker build -t devwithlando/php:8.3-fpm-5 .
+# docker build -t devwithlando/php:8.3-fpm-6 .
 
-FROM php:8.3-fpm-bookworm
+FROM php:8.3-fpm-trixie
 
 ARG TARGETARCH
 
