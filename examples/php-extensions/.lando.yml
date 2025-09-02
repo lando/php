@@ -15,7 +15,7 @@ services:
   dockerfile:
     type: php:custom
     overrides:
-      image: lando/php:7.3-custom
+      image: lando/php:8.3-custom
       build:
         context: ./
         dockerfile: Dockerfile.custom
