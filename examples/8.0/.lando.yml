@@ -9,9 +9,8 @@ services:
     type: php:8.0
     via: cli
     build_as_root:
-      - curl -sL https://deb.nodesource.com/setup_14.x | bash -
-      - apt-get update -y
-      - apt-get install -y nodejs
+      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+      - bash -c ". /root/.nvm/nvm.sh && nvm install 14.17.3 && nvm use 14.17.3 && nvm alias default 14.17.3"
   cliworker:
     type: php:8.0
     composer_version: false
@@ -45,6 +44,7 @@ tooling:
     service: defaults
   node:
     service: :host
+    cmd: /root/.nvm/versions/node/v14.17.3/bin/node
     options:
       host:
         description: The service to use
