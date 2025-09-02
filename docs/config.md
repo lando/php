@@ -31,9 +31,9 @@ services:
 
 ## Choosing a server (or not)
 
-By default, `php` services will be served by the default version of our [apache](https://docs.lando.dev/plugins/apache/) service but you can switch this to either `nginx` or `cli`.
+By default, `php` services will be served by the default version of our [apache](https://docs.lando.dev/plugins/apache/index.html) service but you can switch this to either `nginx` or `cli`.
 
-Like with `apache`, `nginx` will use the the default version of our [nginx](https://docs.lando.dev/plugins/nginx/) service while `cli` will just spin up a `php` container without a web server. The latter is useful if you just want to work on a CLI utility or lock down what version `composer` runs with.
+Like with `apache`, `nginx` will use the the default version of our [nginx](https://docs.lando.dev/plugins/nginx/index.html) service while `cli` will just spin up a `php` container without a web server. The latter is useful if you just want to work on a CLI utility or lock down what version `composer` runs with.
 
 #### With Apache (default)
 
