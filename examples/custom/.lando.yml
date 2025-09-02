@@ -4,7 +4,7 @@ services:
     type: php:custom
     composer_version: false
     overrides:
-      image: lando/php:7.4-with-node12
+      image: lando/php:7.4-with-node20
       build:
         context: ./
         dockerfile: Dockerfile.node

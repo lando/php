@@ -22,8 +22,8 @@ lando start
 Run the following commands to validate things are rolling as they should.
 
 ```bash
-# Should have node12 installed in withnode service
-lando node -v | grep v12.
+# Should have node20 installed in withnode service
+lando node -v | grep v20.
 
 # Should use 7.4 as the php version
 lando exec withnode -- php -v | grep "PHP 7.4"
