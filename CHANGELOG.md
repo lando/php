@@ -1,5 +1,6 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Removed automatic installation of `hirak/prestissimo` for `composer:1`
 * Switched images to [bitnamilegacy](https://github.com/bitnami/containers/issues/83267) namespace
 * Updated to [@lando/nginx@1.5.0](https://github.com/lando/nginx/releases/tag/v1.5.0)
 

@@ -21,7 +21,7 @@ services:
     composer_version: 2-latest
   composer1ver:
     type: php:8.3
-    composer_version: '1.10.21'
+    composer_version: '1.10.26'
   composer2ver:
     type: php:8.3
     composer_version: '2.1.10'
