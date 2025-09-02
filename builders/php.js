@@ -218,13 +218,6 @@ module.exports = {
       } else if (typeof options.composer_version === 'number') {
         options.composer_version = options.composer_version.toString();
       }
-      const usingComposer1 = options.composer_version && semver.satisfies(options.composer_version, '1.x');
-
-      // Add prestissimo as a global package for Composer 1.x performance improvements. Requires PHP >= 5.3
-      if (usingComposer1 && phpSemver && semver.gte(phpSemver, '5.3.0')) {
-        options.composer = options.composer || {};
-        options.composer = {'hirak/prestissimo': '*', ...options.composer};
-      }
 
       // Add build step to enable xdebug
       if (options.xdebug) {

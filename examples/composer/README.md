@@ -37,8 +37,8 @@ lando exec composer1 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q
 # Should install composer 1.x if composer_version set to 1-latest
 lando exec composer1latest -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 1."
 
-# Should install composer 1.10.21 if composer_version set to specific version
-lando exec composer1ver -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 1.10.21"
+# Should install composer 1.10.26 if composer_version set to specific version
+lando exec composer1ver -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 1.10.26"
 
 # Should install composer 2.x if composer_version set to 2
 lando exec composer2 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2."

@@ -31,9 +31,9 @@ services:
 
 ## Choosing a server (or not)
 
-By default, `php` services will be served by the default version of our [apache](https://docs.lando.dev/plugins/apache/) service but you can switch this to either `nginx` or `cli`.
+By default, `php` services will be served by the default version of our [apache](https://docs.lando.dev/plugins/apache/index.html) service but you can switch this to either `nginx` or `cli`.
 
-Like with `apache`, `nginx` will use the the default version of our [nginx](https://docs.lando.dev/plugins/nginx/) service while `cli` will just spin up a `php` container without a web server. The latter is useful if you just want to work on a CLI utility or lock down what version `composer` runs with.
+Like with `apache`, `nginx` will use the the default version of our [nginx](https://docs.lando.dev/plugins/nginx/index.html) service while `cli` will just spin up a `php` container without a web server. The latter is useful if you just want to work on a CLI utility or lock down what version `composer` runs with.
 
 #### With Apache (default)
 
@@ -236,7 +236,7 @@ You may need to override our [default PHP config](https://github.com/lando/php/b
 
 If you do this, you must use files that exist inside your application and express them relative to your project root as shown below:
 
-Note that the default files may change based on how you set both `ssl` and `via`. Also note that the `vhosts` and `server` config will be either for `apache` or `nginx` depending on how you set `via`. We *highly recommend* you check out both the [apache](https://docs.lando.dev/plugins/apache/) and [nginx](https://docs.lando.dev/plugins/nginx/) if you plan to use a custom `vhosts` or `server` config.
+Note that the default files may change based on how you set both `ssl` and `via`. Also note that the `vhosts` and `server` config will be either for `apache` or `nginx` depending on how you set `via`. We *highly recommend* you check out both the [apache](https://docs.lando.dev/plugins/apache/index.html) and [nginx](https://docs.lando.dev/plugins/nginx/index.html) if you plan to use a custom `vhosts` or `server` config.
 
 If you set `via: cli` then, as you might suspect, `vhosts` and/or `server` is not going to do anything.
 
