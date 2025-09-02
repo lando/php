@@ -1,12 +1,11 @@
 ---
 title: PHP Lando Plugin
 description: Add a highly configurable php service to Lando for local development with all the power of Docker and Docker Compose; comes with composer, xdebug and multiple versions for lols.
-next: ./config.html
 ---
 
 # PHP
 
-[PHP](https://www.php.net/) is a popular scripting language that is especially suited for web development. It is often served by either [apache](https://docs.lando.dev/plugins/apache/) or [nginx](https://docs.lando.dev/plugins/nginx/).
+[PHP](https://www.php.net/) is a popular scripting language that is especially suited for web development. It is often served by either [apache](https://docs.lando.dev/plugins/apache/index.html) or [nginx](https://docs.lando.dev/plugins/nginx/index.html).
 
 You can easily add it to your Lando app by adding an entry to the [services](https://docs.lando.dev/services/lando-3.html) top-level config in your [Landofile](https://docs.lando.dev).
 
@@ -25,7 +24,7 @@ services:
 *   [8.2](https://hub.docker.com/r/devwithlando/php)
 *   [8.1](https://hub.docker.com/r/devwithlando/php)
 *   [8.0](https://hub.docker.com/r/devwithlando/php)
-*   **[7.4](https://hub.docker.com/r/devwithlando/php)** **(default)**
+*   [7.4](https://hub.docker.com/r/devwithlando/php)
 *   [7.3](https://hub.docker.com/r/devwithlando/php)
 *   [custom](https://docs.lando.dev/services/lando-3.html#overrides)
 

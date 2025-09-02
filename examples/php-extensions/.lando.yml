@@ -5,13 +5,13 @@ services:
     build_as_root:
       - install-php-extensions swoole
   buildsteps:
-    type: php
+    type: php:8.3
     build_as_root:
       - apt-get update -y
-      - apt install libxslt1-dev -y
-      - pecl install stats-2.0.3
+      - apt install libxslt1-dev libgearman-dev -y
+      - pecl install gearman-2.1.4
       - docker-php-ext-install xsl
-      - docker-php-ext-enable stats
+      - docker-php-ext-enable gearman
   dockerfile:
     type: php:custom
     overrides:
