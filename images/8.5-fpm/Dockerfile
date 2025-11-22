@@ -49,7 +49,7 @@ RUN \
   && install-php-extensions exif \
   && install-php-extensions gd \
   && install-php-extensions gettext \
-#  && install-php-extensions imagick \
+  && install-php-extensions imagick/imagick@master \
   && install-php-extensions imap \
   && install-php-extensions intl \
   && install-php-extensions ldap \
@@ -68,29 +68,8 @@ RUN \
   && install-php-extensions zip
 
 # Install xdebug but disable it by default
-#RUN install-php-extensions xdebug \
-#  && rm -f /usr/local/etc/php/conf.d/*xdebug.ini
-
-# Install xdebug from source while there's no compatible PECL release.
-RUN git clone https://github.com/xdebug/xdebug.git \
-    && cd xdebug \
-    && phpize \
-    && ./configure \
-    && make \
-    && make install \
-    && cd .. \
-    && docker-php-ext-enable xdebug \
-    && rm -f /usr/local/etc/php/conf.d/*xdebug.ini
-
-# Install imagick from source while there's no compatible PECL release.
-RUN apt-get update \
-  && apt-get install -y libmagickwand-dev \
-  && git clone https://github.com/Imagick/imagick \
-  && cd imagick \
-  && phpize && ./configure \
-  && make \
-  && make install \
-  && docker-php-ext-enable imagick
+RUN install-php-extensions xdebug/xdebug@master \
+  && rm -f /usr/local/etc/php/conf.d/*xdebug.ini
 
 RUN \
   chsh -s /bin/bash www-data && mkdir -p /var/www/.composer && chown -R www-data:www-data /var/www \
