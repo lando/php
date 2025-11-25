@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Added support for PHP 8.5
+
 ## v1.8.0 - [September 2, 2025](https://github.com/lando/php/releases/tag/v1.8.0)
 
 * Removed automatic installation of `hirak/prestissimo` for `composer:1`
