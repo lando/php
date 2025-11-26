@@ -1,6 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
 * Added support for PHP 8.5
+* Updated PHP 8.3-8.5 base images to Debian 13 (trixie)
 
 ## v1.8.0 - [September 2, 2025](https://github.com/lando/php/releases/tag/v1.8.0)
 
