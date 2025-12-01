@@ -1,4 +1,4 @@
-# docker build -t devwithlando/php:7.1-fpm-5 .
+# docker build -t devwithlando/php:7.1-fpm-6 .
 
 FROM php:7.1-fpm-buster
 

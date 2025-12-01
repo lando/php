@@ -1,4 +1,4 @@
-# docker build -t devwithlando/php:8.1-apache-5 .
+# docker build -t devwithlando/php:8.1-apache-6 .
 
 FROM php:8.1-apache-bookworm
 
