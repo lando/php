@@ -1,15 +1,19 @@
-# docker build -t devwithlando/php:5.6-fpm-5 .
+# docker build -t devwithlando/php:5.6-fpm-6 .
 
 FROM php:5.6-fpm-stretch
 
-# Install dependencies we need
+# Debian Stretch has archived repositories and expired keys
 RUN \
   sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list \
   && sed -i 's|security.debian.org|archive.debian.org/|g' /etc/apt/sources.list \
   && sed -i '/stretch-updates/d' /etc/apt/sources.list \
   && echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-release-date \
-  && mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
-  && apt -y update && apt-get install -y \
+  && apt-get -qq update -o Acquire::AllowInsecureRepositories=true -o Acquire::AllowDowngradeToInsecureRepositories=true -o APT::Get::AllowUnauthenticated=true \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends --no-install-suggests -o APT::Get::AllowUnauthenticated=true debian-archive-keyring
+
+# Install dependencies
+RUN \
+  apt-get update && apt-get install -y \
     gnupg2 \
     wget \
     bzip2 \
