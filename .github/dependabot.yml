@@ -5,6 +5,7 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "docker"
-    directory: "/images/*"
+    directories:
+      - "/images/*"
     schedule:
       interval: "daily"
