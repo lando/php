@@ -163,7 +163,7 @@ module.exports = {
     },
     scriptsDir: path.resolve(__dirname, '..', 'scripts'),
     sources: [],
-    suffix: '5',
+    suffix: '6',
     ssl: false,
     via: 'apache',
     volumes: ['/usr/local/bin'],
