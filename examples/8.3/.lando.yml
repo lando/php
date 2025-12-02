@@ -9,7 +9,7 @@ services:
     type: php:8.3
     via: cli
     build_as_root:
-      - curl -sL https://deb.nodesource.com/setup_14.x | bash -
+      - curl -sL https://deb.nodesource.com/setup_22.x | bash -
       - apt-get update -y
       - apt-get install -y nodejs
   cliworker:
@@ -27,7 +27,7 @@ services:
     config:
       php: config/php.ini
     overrides:
-      image: devwithlando/php:8.3-fpm-5
+      image: devwithlando/php:8.3-fpm-6
       environment:
         DUALBLADE: maxim
         OTHER: thing

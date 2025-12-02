@@ -302,7 +302,7 @@ Lando proxying is actually pretty powerful so definitely check out [the rest](ht
 
 ## Advanced Image Configuration
 
-Starting with version 5 of our Docker images (eg devwithlando/php:8.2-fpm-5), we now use Debian 12 (Bookworm) as the base image. If you need to use the previous Debian 11-based images, you can set the `suffix` option to `4` to use those older image versions (eg devwithlando/php:8.2-fpm-4):
+Starting with version 5 of our Docker images (eg devwithlando/php:8.2-fpm-6), we now use Debian 12 (Bookworm) as the base image. If you need to use the previous Debian 11-based images, you can set the `suffix` option to `4` to use those older image versions (eg devwithlando/php:8.2-fpm-4):
 
 ```yaml
 services:

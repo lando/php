@@ -25,8 +25,10 @@ Run the following commands to validate things are rolling as they should.
 # PHP 7.2 Should install composer 2.2.x by default
 lando exec php72 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.2."
 
-# PHP 8.3 Should install composer 2.8.x by default
-lando exec php83 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q "Composer version 2.8."
+# Recent PHP versions should default to latest composer 2
+lando exec php83 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -Eq "Composer version 2\.(9|[1-9][0-9]+)\."
+lando exec php84 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -Eq "Composer version 2\.(9|[1-9][0-9]+)\."
+lando exec php85 -- composer --version --no-ansi | tee >(cat 1>&2) | grep -Eq "Composer version 2\.(9|[1-9][0-9]+)\."
 
 # Should not install composer if composer_version is false
 echo $(lando exec nocomposer -- composer --version --no-ansi 2>&1) | grep "executable file not found"

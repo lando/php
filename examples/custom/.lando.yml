@@ -16,9 +16,9 @@ services:
     config:
       php: config/php.ini
       pool: config/www.conf
-    composer_version: '2.1.14'
+    composer_version: "2.1.14"
     overrides:
-      image: devwithlando/php:8.1-fpm-5
+      image: devwithlando/php:8.1-fpm-6
 tooling:
   node:
     service: :host
