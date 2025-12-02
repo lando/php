@@ -13,7 +13,8 @@ RUN \
 
 # Install dependencies
 RUN \
-   apt-get update && apt-get install -y \
+  mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
+  && apt-get update && apt-get install -y \
     gnupg2 \
     wget \
     bzip2 \
