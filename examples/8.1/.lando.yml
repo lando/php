@@ -27,7 +27,7 @@ services:
     config:
       php: config/php.ini
     overrides:
-      image: devwithlando/php:8.1-fpm-5
+      image: devwithlando/php:8.1-fpm-6
       environment:
         DUALBLADE: maxim
         OTHER: thing

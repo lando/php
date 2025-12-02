@@ -1,8 +1,4 @@
-FROM devwithlando/php:8.3-apache-5
-
-# Add php extension helper
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+FROM devwithlando/php:8.4-apache-5
 
 # Install Oracle Instantclient, OCI8 and Microsoft SQL Server extensions
-RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
-  install-php-extensions oci8 sqlsrv pdo_sqlsrv
+RUN install-php-extensions oci8 sqlsrv pdo_sqlsrv
