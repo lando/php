@@ -1,6 +1,6 @@
 # docker build -t devwithlando/php:8.3-apache-6 .
 
-FROM php:8.3-apache-trixie
+FROM php:8.5-apache-trixie
 
 ARG TARGETARCH
 
