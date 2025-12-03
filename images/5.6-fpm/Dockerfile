@@ -1,6 +1,6 @@
 # docker build -t devwithlando/php:5.6-fpm-6 .
 
-FROM php:5.6-fpm-stretch
+FROM php:7.3-fpm-stretch
 
 # Debian Stretch has archived repositories and expired keys
 RUN \
