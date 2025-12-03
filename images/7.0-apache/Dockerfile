@@ -1,6 +1,6 @@
 # docker build -t devwithlando/php:7.0-apache-6 .
 
-FROM php:7.0-apache-stretch
+FROM php:7.3-apache-stretch
 
 # Debian Stretch has archived repositories and expired keys
 RUN \
