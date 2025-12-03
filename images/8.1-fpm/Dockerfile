@@ -1,6 +1,6 @@
 # docker build -t devwithlando/php:8.1-fpm-6 .
 
-FROM php:8.1-fpm-bookworm
+FROM php:8.5-fpm-bookworm
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
