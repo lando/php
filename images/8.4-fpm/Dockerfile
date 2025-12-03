@@ -1,6 +1,6 @@
 # docker build -t devwithlando/php:8.4-fpm-6 .
 
-FROM php:8.4-fpm-trixie
+FROM php:8.5-fpm-trixie
 
 ARG TARGETARCH
 
