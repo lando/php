@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.9.0 - [December 5, 2025](https://github.com/lando/php/releases/tag/v1.9.0)
+
 * Added support for PHP 8.5
 * Added Debian 13 (trixie) base images for PHP 8.3-8.5
 * Changed PHP 7.4 and 8.0 images to use MariaDB `archive.mariadb.org` apt repository
