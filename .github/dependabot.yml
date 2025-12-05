@@ -4,8 +4,9 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-  - package-ecosystem: "docker"
-    directories:
-      - "/images/*"
+    allow:
+      - dependency-name: "@lando/*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
