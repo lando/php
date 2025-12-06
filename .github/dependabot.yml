@@ -11,5 +11,5 @@ updates:
     schedule:
       interval: "weekly"
     ignore:
-      - dependency-name: "@lando/prepare-release-action"
+      - dependency-name: "lando/prepare-release-action"
         versions: ["99.x"] # v99 used for internal testing
