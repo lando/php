@@ -1,4 +1,4 @@
-# docker build -t devwithlando/php:8.2-fpm-6 .
+# docker build -t devwithlando/php:8.2-fpm-7 .
 
 FROM php:8.2-fpm-bookworm
 

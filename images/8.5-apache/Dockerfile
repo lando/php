@@ -1,4 +1,7 @@
-# docker buildx build -t devwithlando/php:8.5-apache-6 .
+# docker buildx build -t devwithlando/php:8.5-apache-7 .
+
+FROM mysql:8.0 AS mysql-client-80
+FROM mysql:8.4 AS mysql-client-84
 
 FROM php:8.5-apache-trixie
 
@@ -53,6 +56,14 @@ RUN \
 # Install xdebug but disable it by default
 RUN install-php-extensions xdebug/xdebug@master \
   && rm -f /usr/local/etc/php/conf.d/*xdebug.ini
+
+# Pre-download MySQL client binaries for version-matched installs
+COPY --from=mysql-client-80 /usr/bin/mysql /usr/local/mysql-client/8.0/mysql
+COPY --from=mysql-client-80 /usr/bin/mysqldump /usr/local/mysql-client/8.0/mysqldump
+COPY --from=mysql-client-80 /usr/bin/mysqladmin /usr/local/mysql-client/8.0/mysqladmin
+COPY --from=mysql-client-84 /usr/bin/mysql /usr/local/mysql-client/8.4/mysql
+COPY --from=mysql-client-84 /usr/bin/mysqldump /usr/local/mysql-client/8.4/mysqldump
+COPY --from=mysql-client-84 /usr/bin/mysqladmin /usr/local/mysql-client/8.4/mysqladmin
 
 RUN \
   chsh -s /bin/bash www-data && mkdir -p /var/www/.composer && chown -R www-data:www-data /var/www \

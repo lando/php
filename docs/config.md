@@ -19,7 +19,7 @@ services:
     xdebug: false
     composer: []
     composer_version: '2'
-    # Below only valid for via: cli
+    db_client: auto
     command: tail -f /dev/null
     config:
       php: SEE BELOW
@@ -300,15 +300,82 @@ proxy:
 
 Lando proxying is actually pretty powerful so definitely check out [the rest](https://docs.lando.dev/landofile/proxy.html) of its cool features.
 
+## Database client
+
+For PHP 8.3+, Lando automatically detects MySQL or MariaDB services in your app and installs a compatible database client.
+
+| Database Detected | Client Installed |
+|-------------------|------------------|
+| MySQL 5.7/8.0/8.4 | MySQL community client |
+| MariaDB 10.x/11.x | MariaDB client with compatibility wrappers |
+| None | Default mariadb-client from image |
+
+### Automatic detection
+
+When you have a MySQL or MariaDB service in your Landofile, the PHP service will automatically install the appropriate client:
+
+```yaml
+services:
+  appserver:
+    type: php:8.4
+  database:
+    type: mysql:8.4
+```
+
+### Manual override
+
+You can explicitly set the database client using the `db_client` option:
+
+```yaml
+services:
+  appserver:
+    type: php:8.4
+    db_client: mysql:8.0
+```
+
+```yaml
+services:
+  appserver:
+    type: php:8.4
+    db_client: mariadb:11.4
+```
+
+### Disabling auto-detection
+
+To keep the default mariadb-client from the image without any modifications:
+
+```yaml
+services:
+  appserver:
+    type: php:8.4
+    db_client: false
+```
+
+### Supported versions
+
+| Type | Versions | Client Used |
+|------|----------|-------------|
+| MySQL | 8.3+ | MySQL 8.4 client |
+| MySQL | 5.7, 8.0 | MySQL 8.0 client |
+| MariaDB | 10.x, 11.x | MariaDB client with wrappers |
+
+::: tip PHP version requirement
+The `db_client` feature is only available for PHP 8.3 and newer. Older PHP versions will continue to use the default mariadb-client from the image.
+:::
+
+::: warning Multiple database services
+If your app has both MySQL and MariaDB services, auto-detection will prioritize MariaDB. Set `db_client` explicitly if you need a specific client.
+:::
+
 ## Advanced Image Configuration
 
-Starting with version 5 of our Docker images (eg devwithlando/php:8.2-fpm-6), we now use Debian 12 (Bookworm) as the base image. If you need to use the previous Debian 11-based images, you can set the `suffix` option to `4` to use those older image versions (eg devwithlando/php:8.2-fpm-4):
+Starting with version 7 of our Docker images (eg devwithlando/php:8.3-fpm-7), we now use Debian 13 (trixie) as the base image. If you need to use the previous Debian 12-based images, you can set the `suffix` option to `6` to use those older image versions (eg devwithlando/php:8.3-fpm-6):
 
 ```yaml
 services:
   myservice:
-    type: php:8.2
-    suffix: 4
+    type: php:8.3
+    suffix: 6
 ```
 
-Most users will never need to modify this setting, as it's primarily useful when specific dependency versions from Debian 11 are required.
+Most users will never need to modify this setting, as it's primarily useful when specific dependency versions from Debian 12 are required.

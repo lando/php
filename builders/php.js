@@ -58,6 +58,34 @@ const xdebugConfig = host => ([
   `remote_host=${host}`,
 ].join(' '));
 
+const detectDatabaseClient = (options, debug = () => {}) => {
+  if (options.db_client === false) return null;
+  if (options.db_client && options.db_client !== 'auto') return options.db_client;
+
+  const services = options._app?.config?.services || {};
+  let mysqlVersion = null;
+  let mariaVersion = null;
+
+  for (const service of Object.values(services)) {
+    const type = service?.type || '';
+    // Match mysql:X, mysql:X.Y, or mysql:X.Y.Z formats
+    const mysqlMatch = type.match(/^mysql:(\d+(?:\.\d+)?)/);
+    if (mysqlMatch && !mysqlVersion) mysqlVersion = mysqlMatch[1];
+    // Match mariadb:X, mariadb:X.Y, or mariadb:X.Y.Z formats
+    const mariaMatch = type.match(/^mariadb:(\d+(?:\.\d+)?)/);
+    if (mariaMatch && !mariaVersion) mariaVersion = mariaMatch[1];
+  }
+
+  if (mariaVersion && mysqlVersion) {
+    debug('Both MariaDB (%s) and MySQL (%s) detected; using MariaDB. Set db_client to override.',
+      mariaVersion, mysqlVersion);
+  }
+
+  if (mariaVersion) return `mariadb:${mariaVersion}`;
+  if (mysqlVersion) return `mysql:${mysqlVersion}`;
+  return null;
+};
+
 /**
  * Helper function to build a package string by combining package name and version
  *
@@ -163,8 +191,9 @@ module.exports = {
     },
     scriptsDir: path.resolve(__dirname, '..', 'scripts'),
     sources: [],
-    suffix: '6',
+    suffix: '7',
     ssl: false,
+    db_client: 'auto',
     via: 'apache',
     volumes: ['/usr/local/bin'],
     webroot: '.',
@@ -237,6 +266,11 @@ module.exports = {
         const commands = [`/etc/lando/service/helpers/install-composer.sh ${options.composer_version}`];
         const firstStep = true;
         addBuildStep(commands, options._app, options.name, 'build_internal', firstStep);
+      }
+
+      const dbClient = detectDatabaseClient(options, debug);
+      if (dbClient && phpSemver && semver.gte(phpSemver, '8.3.0')) {
+        addBuildStep([`/etc/lando/service/helpers/install-db-client.sh ${dbClient}`], options._app, options.name, 'build_as_root_internal');
       }
 
       // Add in nginx if we need to
