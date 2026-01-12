@@ -202,7 +202,7 @@ You can disable Composer installation entirely by setting `composer_version: fal
 
 ## Installing global dependencies
 
-You can also use the `composer` key if you need to require any [global composer dependenices](https://getcomposer.org/doc/03-cli.md#require). This follows the same syntax as your normal [`composer.json`](https://getcomposer.org/doc/01-basic-usage.md#composer-json-project-setup) except written as YAML instead of JSON.
+You can also use the `composer` key if you need to require any [global composer dependencies](https://getcomposer.org/doc/03-cli.md#require). This follows the same syntax as your normal [`composer.json`](https://getcomposer.org/doc/01-basic-usage.md#composer-json-project-setup) except written as YAML instead of JSON.
 
 ::: tip Use composer.json if you can
 While there are some legitimate use cases to globally install a composer dependency, it is almost always preferred to install using your applications normal `composer.json` and then running either `lando composer install` or alternatively setting up a [build step](https://docs.lando.dev/services/lando-3.html#build-steps) that will automatically run before your app starts up.
