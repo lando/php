@@ -23,76 +23,76 @@ jobs:
       matrix:
         include:
           - image: php
-            tag: 8.5-fpm-6
+            tag: 8.5-fpm-7
             context: images/8.5-fpm
           - image: php
-            tag: 8.5-apache-6
+            tag: 8.5-apache-7
             context: images/8.5-apache
           - image: php
-            tag: 8.4-fpm-6
+            tag: 8.4-fpm-7
             context: images/8.4-fpm
           - image: php
-            tag: 8.4-apache-6
+            tag: 8.4-apache-7
             context: images/8.4-apache
           - image: php
-            tag: 8.3-fpm-6
+            tag: 8.3-fpm-7
             context: images/8.3-fpm
           - image: php
-            tag: 8.3-apache-6
+            tag: 8.3-apache-7
             context: images/8.3-apache
           - image: php
-            tag: 8.2-fpm-6
+            tag: 8.2-fpm-7
             context: images/8.2-fpm
           - image: php
-            tag: 8.2-apache-6
+            tag: 8.2-apache-7
             context: images/8.2-apache
           - image: php
-            tag: 8.1-fpm-6
+            tag: 8.1-fpm-7
             context: images/8.1-fpm
           - image: php
-            tag: 8.1-apache-6
+            tag: 8.1-apache-7
             context: images/8.1-apache
           - image: php
-            tag: 8.0-fpm-6
+            tag: 8.0-fpm-7
             context: images/8.0-fpm
           - image: php
-            tag: 8.0-apache-6
+            tag: 8.0-apache-7
             context: images/8.0-apache
           - image: php
-            tag: 7.4-fpm-6
+            tag: 7.4-fpm-7
             context: images/7.4-fpm
           - image: php
-            tag: 7.4-apache-6
+            tag: 7.4-apache-7
             context: images/7.4-apache
           - image: php
-            tag: 7.3-fpm-6
+            tag: 7.3-fpm-7
             context: images/7.3-fpm
           - image: php
-            tag: 7.3-apache-6
+            tag: 7.3-apache-7
             context: images/7.3-apache
           - image: php
-            tag: 7.2-fpm-6
+            tag: 7.2-fpm-7
             context: images/7.2-fpm
           - image: php
-            tag: 7.2-apache-6
+            tag: 7.2-apache-7
             context: images/7.2-apache
           - image: php
-            tag: 7.1-fpm-6
+            tag: 7.1-fpm-7
             context: images/7.1-fpm
           - image: php
-            tag: 7.1-apache-6
+            tag: 7.1-apache-7
             context: images/7.1-apache
           - image: php
-            tag: 7.0-fpm-6
+            tag: 7.0-fpm-7
             context: images/7.0-fpm
           - image: php
-            tag: 7.0-apache-6
+            tag: 7.0-apache-7
             context: images/7.0-apache
           - image: php
-            tag: 5.6-fpm-6
+            tag: 5.6-fpm-7
             context: images/5.6-fpm
           - image: php
-            tag: 5.6-apache-6
+            tag: 5.6-apache-7
             context: images/5.6-apache
 
     steps:
