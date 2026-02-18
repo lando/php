@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.10.0 - [February 18, 2026](https://github.com/lando/php/releases/tag/v1.10.0)
+
 * Added database client auto-detection and version matching [#212](https://github.com/lando/php/pull/212)
 * Added Docker image build status badge to README
 * Added GD AVIF support verification for PHP 8.3+ [#219](https://github.com/lando/php/pull/219)
