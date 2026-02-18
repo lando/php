@@ -18,7 +18,7 @@ Add a `php` service to your Landofile
 ```yaml
 services:
   myservice:
-    type: php:8.1
+    type: php:8.5
     via: nginx
     webroot: www
 ```
@@ -45,6 +45,7 @@ We try to log all changes big and small in both [THE CHANGELOG](https://github.c
 
 * [@pirog](https://github.com/pirog)
 * [@reynoldsalec](https://github.com/reynoldsalec)
+* [@aaronfeledy](https://github.com/AaronFeledy)
 
 ## Contributors
 
