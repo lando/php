@@ -5,6 +5,7 @@ services:
   php-mysql84:
     type: php:8.4
     via: cli
+    db_client: mysql:8.4
 
   mysql84:
     type: mysql:8.4
