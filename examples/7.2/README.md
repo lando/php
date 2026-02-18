@@ -116,8 +116,8 @@ lando info -s cliworker --deep | grep Cmd | grep sleep | grep infinity
 # Should not install composer when composer_version is false
 echo $(lando exec cliworker -- composer --version --no-ansi 2>&1) | grep "executable file not found"
 
-# Should have node14 installed in cli service
-lando node -v | grep v14.
+# Should have node20 installed in cli service
+lando node -v | grep v20.
 ```
 
 ## Destroy tests
