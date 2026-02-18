@@ -1,5 +1,17 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Added database client auto-detection and version matching [#212](https://github.com/lando/php/pull/212)
+* Added Docker image build status badge to README
+* Added GD AVIF support verification for PHP 8.3+ [#219](https://github.com/lando/php/pull/219)
+* Fixed composer install ordering to run before user build steps
+* Fixed MariaDB wrapper script command names and test auto-detection [#212](https://github.com/lando/php/pull/212)
+* Fixed typo in documentation
+* Updated Docker image base version to Debian 13
+* Updated Docker image tags from -6 to -7
+* Updated Node.js 14.x to 20.x in test examples [#215](https://github.com/lando/php/pull/215)
+* Updated `actions/cache` from 4 to 5
+* Updated `actions/checkout` from 4 to 6
+
 ## v1.9.0 - [December 5, 2025](https://github.com/lando/php/releases/tag/v1.9.0)
 
 * Added support for PHP 8.5
