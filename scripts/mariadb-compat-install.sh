@@ -9,7 +9,8 @@ echo "Installing MariaDB compatibility wrappers..."
 
 # Create wrapper scripts for each mysql* command that maps to mariadb* equivalent
 for cmd in mysql mysqldump mysqladmin mysqlcheck mysqlimport mysqlshow; do
-  mariadb_cmd="mariadb${cmd#mysql}"
+  suffix="${cmd#mysql}"
+  mariadb_cmd="mariadb${suffix:+-}${suffix}"
 
   if command -v "$mariadb_cmd" &> /dev/null; then
     cat > "/usr/local/bin/$cmd" << EOF
