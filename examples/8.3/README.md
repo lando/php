@@ -112,6 +112,9 @@ echo $(lando exec cliworker -- composer --version --no-ansi 2>&1) | grep "execut
 
 # Should have node22 installed in cli service
 lando node -v | tee >(cat 1>&2) | grep v22.
+
+# Should have GD with AVIF support
+lando php -r 'phpinfo();' | grep "GD Support" && lando php -r 'if (!function_exists("imageavif")) { echo "AVIF NOT SUPPORTED\n"; exit(1); } echo "AVIF OK\n";'
 ```
 
 ## Destroy tests
