@@ -1,5 +1,7 @@
 # PHP Lando Plugin
 
+[![Build PHP Images](https://github.com/lando/php/actions/workflows/build-php-images.yml/badge.svg)](https://github.com/lando/php/actions/workflows/build-php-images.yml)
+
 This is the _official_ [Lando](https://lando.dev) plugin for [PHP](https://php.net). When installed it...
 
 * Allows users to run various `php` versions
