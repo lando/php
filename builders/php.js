@@ -260,12 +260,12 @@ module.exports = {
         addBuildStep(commands, options._app, options.name, 'build_internal');
       }
 
-      // Install the desired composer version as the first `build_internal` build step
+      // Install the desired composer version as a `build_as_root_internal` step so it runs
+      // before user build steps — prevents composer from being missing if build_as_root fails
       if (options.composer_version) {
         debug('Installing composer version %s', options.composer_version);
         const commands = [`/etc/lando/service/helpers/install-composer.sh ${options.composer_version}`];
-        const firstStep = true;
-        addBuildStep(commands, options._app, options.name, 'build_internal', firstStep);
+        addBuildStep(commands, options._app, options.name, 'build_as_root_internal');
       }
 
       const dbClient = detectDatabaseClient(options, debug);
