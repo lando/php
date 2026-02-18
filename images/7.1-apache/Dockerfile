@@ -1,4 +1,4 @@
-# docker build -t devwithlando/php:7.1-apache-6 .
+# docker build -t devwithlando/php:7.1-apache-7 .
 
 FROM php:7.1-apache-buster
 

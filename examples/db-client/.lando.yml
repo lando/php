@@ -1,0 +1,56 @@
+name: lando-php-db-client
+
+services:
+  # Test auto-detection with MySQL 8.4
+  php-mysql84:
+    type: php:8.4
+    via: cli
+    db_client: mysql:8.4
+
+  mysql84:
+    type: mysql:8.4
+    creds:
+      user: testuser
+      password: testpass
+      database: testdb
+
+  # Test auto-detection with MySQL 8.0
+  php-mysql80:
+    type: php:8.4
+    via: cli
+    db_client: mysql:8.0
+
+  mysql80:
+    type: mysql:8.0
+    creds:
+      user: testuser
+      password: testpass
+      database: testdb
+
+  # Test auto-detection with MariaDB
+  php-mariadb:
+    type: php:8.4
+    via: cli
+    db_client: mariadb:11.4
+
+  mariadb:
+    type: mariadb:11.4
+    creds:
+      user: testuser
+      password: testpass
+      database: testdb
+
+  # Test explicit override
+  php-override:
+    type: php:8.4
+    via: cli
+    db_client: mariadb:11.4
+
+  # Test disabled db_client
+  php-disabled:
+    type: php:8.4
+    via: cli
+    db_client: false
+
+plugins:
+  "@lando/php": ../..

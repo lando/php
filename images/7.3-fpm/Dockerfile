@@ -1,4 +1,4 @@
-# docker build -t devwithlando/php:7.3-fpm-6 .
+# docker build -t devwithlando/php:7.3-fpm-7 .
 
 FROM php:7.3-fpm-bullseye
 
