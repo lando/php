@@ -34,8 +34,8 @@ RUN \
   && install-php-extensions bz2 \
   && install-php-extensions calendar \
   && install-php-extensions exif \
-  && apt-get update && apt-get install -y libgd-dev libpng-dev libjpeg-dev libfreetype6-dev libwebp-dev libavif-dev && apt-get clean && rm -rf /var/lib/apt/lists/* \
-  && docker-php-ext-configure gd --with-external-gd --with-freetype --with-jpeg --with-webp --with-avif \
+  && apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev libwebp-dev libavif-dev && apt-get clean && rm -rf /var/lib/apt/lists/* \
+  && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-avif \
   && docker-php-ext-install -j$(nproc) gd \
   && install-php-extensions gettext \
   && install-php-extensions imagick \
