@@ -368,14 +368,13 @@ If your app has both MySQL and MariaDB services, auto-detection will prioritize 
 :::
 
 ## Advanced Image Configuration
-
-Starting with version 7 of our Docker images (eg devwithlando/php:8.3-fpm-7), we now use Debian 13 (trixie) as the base image. If you need to use the previous Debian 12-based images, you can set the `suffix` option to `6` to use those older image versions (eg devwithlando/php:8.3-fpm-6):
+Starting with version 6 of our Docker images (eg devwithlando/php:8.3-fpm-6), we now use Debian 13 (trixie) as the base image. If you need to use the previous Debian 12-based images, you can set the `suffix` option to `5` to use those older image versions (eg devwithlando/php:8.3-fpm-5):
 
 ```yaml
 services:
   myservice:
     type: php:8.3
-    suffix: 6
+    suffix: 5
 ```
 
 Most users will never need to modify this setting, as it's primarily useful when specific dependency versions from Debian 12 are required.
