@@ -1,10 +1,15 @@
 name: lando-php-db-client-mysql57
 
 services:
-  # Test MySQL 5.7 auto-detection and connectivity
-  php:
+  # Test MySQL 5.7 auto-detection with an appserver (not cli)
+  # Reproduces SSL errors when mysql commands run via services.run or events
+  appserver:
     type: php:8.4
-    via: cli
+    via: apache
+    run:
+      - mysql -h database -u testuser -ptestpass testdb -e "SELECT 1 AS connection_test"
+    run_as_root:
+      - mysql -h database -u root testdb -e "SELECT 1 AS root_connection_test"
 
   database:
     type: mysql:5.7
