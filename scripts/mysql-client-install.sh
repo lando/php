@@ -50,6 +50,7 @@ mkdir -p /etc/mysql/conf.d
 cat > /etc/mysql/conf.d/lando.cnf << 'MYCNF'
 [client]
 default-character-set=utf8mb4
+ssl-mode=PREFERRED
 
 [mysqldump]
 # Prevent column-statistics errors with newer mysqldump
