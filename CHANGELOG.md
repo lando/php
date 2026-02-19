@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Fixed database client auto-detection for recipe-based services [#223](https://github.com/lando/php/pull/223)
+
 ## v1.10.0 - [February 18, 2026](https://github.com/lando/php/releases/tag/v1.10.0)
 
 * Added database client auto-detection and version matching [#212](https://github.com/lando/php/pull/212)
