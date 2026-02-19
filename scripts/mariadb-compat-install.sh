@@ -35,8 +35,8 @@ default-character-set=utf8mb4
 disable-ssl-verify-server-cert
 
 [mysqldump]
-# Prevent column-statistics errors with newer mysqldump
-skip-column-statistics
+# MySQL 8 uses this; MariaDB safely ignores it via loose- prefix
+loose-skip-column-statistics
 MYCNF
 
 echo "MariaDB compatibility wrappers installed"
