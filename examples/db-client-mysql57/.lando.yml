@@ -1,0 +1,17 @@
+name: lando-php-db-client-mysql57
+
+services:
+  # Test MySQL 5.7 auto-detection and connectivity
+  php:
+    type: php:8.4
+    via: cli
+
+  database:
+    type: mysql:5.7
+    creds:
+      user: testuser
+      password: testpass
+      database: testdb
+
+plugins:
+  "@lando/php": ../..
