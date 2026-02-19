@@ -50,10 +50,15 @@ mkdir -p /etc/mysql/conf.d
 cat > /etc/mysql/conf.d/lando.cnf << 'MYCNF'
 [client]
 default-character-set=utf8mb4
+# Disable SSL verification for local dev — containers on the same Docker
+# network don't need encrypted connections, and older MySQL versions
+# (e.g. 5.7) use self-signed certs that cause verification failures
+ssl-mode=DISABLED
 
 [mysqldump]
 # Prevent column-statistics errors with newer mysqldump
 skip-column-statistics
+ssl-mode=DISABLED
 MYCNF
 
 if ! mysql --version 2>/dev/null; then
