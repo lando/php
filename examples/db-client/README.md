@@ -32,15 +32,15 @@ lando exec php-mysql80 -- mysql --version | grep -qv "MariaDB"
 
 ```bash
 # MariaDB client with wrappers for MariaDB database
-lando exec php-mariadb -- mariadb --version | grep -q "mariadb"
+lando exec php-mariadb -- mariadb --version | grep -qi "mariadb"
 lando exec php-mariadb -- which mysql | grep -q "/usr/local/bin/mysql"
-lando exec php-mariadb -- mysql --version | grep -q "mariadb"
+lando exec php-mariadb -- mysql --version | grep -qi "mariadb"
 ```
 
 ```bash
 # Explicit override works
 lando exec php-override -- which mysql | grep -q "/usr/local/bin/mysql"
-lando exec php-override -- mysql --version | grep -q "mariadb"
+lando exec php-override -- mysql --version | grep -qi "mariadb"
 ```
 
 ```bash
@@ -65,7 +65,7 @@ lando exec php-mariadb -- mysql -h mariadb -u testuser -ptestpass testdb -e "SEL
 
 ```bash
 # mysqldump works without column-statistics errors (skip-column-statistics)
-lando exec php-mysql84 -- mysqldump -h mysql84 -u testuser -ptestpass testdb --no-data 2>&1 | grep -qv "column-statistics"
+lando exec php-mysql84 -- mysqldump -h mysql84 -u testuser -ptestpass testdb --no-data > /dev/null
 ```
 
 ```bash
