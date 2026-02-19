@@ -68,11 +68,11 @@ const detectDatabaseClient = (options, debug = () => {}) => {
 
   for (const service of Object.values(services)) {
     const type = service?.type || '';
-    // Match mysql:X, mysql:X.Y, or mysql:X.Y.Z formats
-    const mysqlMatch = type.match(/^mysql:(\d+(?:\.\d+)?)/);
+    // Match mysql:X or recipe-mysql:X (e.g., backdrop-mysql:8.0, drupal-mysql:8.4)
+    const mysqlMatch = type.match(/(?:^|-)mysql:(\d+(?:\.\d+)?)/);
     if (mysqlMatch && !mysqlVersion) mysqlVersion = mysqlMatch[1];
-    // Match mariadb:X, mariadb:X.Y, or mariadb:X.Y.Z formats
-    const mariaMatch = type.match(/^mariadb:(\d+(?:\.\d+)?)/);
+    // Match mariadb:X or recipe-mariadb:X (e.g., backdrop-mariadb:10.6, drupal-mariadb:11.4)
+    const mariaMatch = type.match(/(?:^|-)mariadb:(\d+(?:\.\d+)?)/);
     if (mariaMatch && !mariaVersion) mariaVersion = mariaMatch[1];
   }
 
