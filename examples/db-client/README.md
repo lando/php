@@ -38,6 +38,17 @@ lando exec php-mariadb -- mysql --version | grep -qi "mariadb"
 ```
 
 ```bash
+# Auto-detection picks MariaDB when both MySQL and MariaDB services exist
+lando exec php-auto -- which mysql | grep -q "/usr/local/bin/mysql"
+lando exec php-auto -- mysql --version | grep -qi "mariadb"
+```
+
+```bash
+# Auto-detection is skipped for PHP versions below 8.3
+lando exec php-old -- which mysql | grep -q "/usr/bin/mysql"
+```
+
+```bash
 # Explicit override works
 lando exec php-override -- which mysql | grep -q "/usr/local/bin/mysql"
 lando exec php-override -- mysql --version | grep -qi "mariadb"

@@ -40,6 +40,16 @@ services:
       password: testpass
       database: testdb
 
+  # Test auto-detection (both mysql and mariadb present; mariadb should win)
+  php-auto:
+    type: php:8.4
+    via: cli
+
+  # Test auto-detection is skipped for PHP < 8.3
+  php-old:
+    type: php:7.4
+    via: cli
+
   # Test explicit override
   php-override:
     type: php:8.4
