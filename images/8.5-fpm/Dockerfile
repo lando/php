@@ -67,8 +67,8 @@ COPY --from=mysql-client-84 /usr/bin/mysqldump /usr/local/mysql-client/8.4/mysql
 COPY --from=mysql-client-84 /usr/bin/mysqladmin /usr/local/mysql-client/8.4/mysqladmin
 
 # Ensure required MySQL client shared libraries are present
-COPY --from=mysql-client-80 /usr/lib/*-linux-gnu/libmysqlclient.so* /usr/lib/
-COPY --from=mysql-client-84 /usr/lib/*-linux-gnu/libmysqlclient.so* /usr/lib/
+COPY --from=mysql-client-80 /usr/lib64/libmysqlclient.so* /usr/lib/
+COPY --from=mysql-client-84 /usr/lib64/libmysqlclient.so* /usr/lib/
 
 RUN \
   chsh -s /bin/bash www-data && mkdir -p /var/www/.composer && chown -R www-data:www-data /var/www \
