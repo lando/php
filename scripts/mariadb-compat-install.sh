@@ -33,10 +33,6 @@ default-character-set=utf8mb4
 [client-mariadb]
 # Prevent SSL errors when connecting to servers without SSL
 disable-ssl-verify-server-cert
-
-[mysqldump]
-# Prevent column-statistics errors with newer mysqldump
-skip-column-statistics
 MYCNF
 
 echo "MariaDB compatibility wrappers installed"
