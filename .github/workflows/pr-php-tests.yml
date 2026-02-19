@@ -35,6 +35,7 @@ jobs:
           - examples/custom
           - examples/composer
           - examples/db-client
+          - examples/db-client-mysql
           - examples/php-extensions
           - examples/xdebug
         lando-version:
