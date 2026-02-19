@@ -1,0 +1,17 @@
+name: lando-php-db-client-mysql
+
+services:
+  # Auto-detection should pick MySQL (only MySQL service present)
+  php:
+    type: php:8.4
+    via: cli
+
+  database:
+    type: mysql:8.4
+    creds:
+      user: testuser
+      password: testpass
+      database: testdb
+
+plugins:
+  "@lando/php": ../..

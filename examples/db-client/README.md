@@ -16,70 +16,71 @@ lando start
 
 Run the following commands to validate things are rolling as they should.
 
-### MySQL 8.4 client auto-detected for MySQL 8.4 database
-
 ```bash
+# MySQL 8.4 client auto-detected for MySQL 8.4 database
 lando exec php-mysql84 -- mysql --version | grep -q "mysql"
 lando exec php-mysql84 -- mysql --version | grep -q "8.4"
 lando exec php-mysql84 -- mysql --version | grep -qv "MariaDB"
 ```
 
-### MySQL 8.0 client installed for MySQL 8.0 database
-
 ```bash
+# MySQL 8.0 client installed for MySQL 8.0 database
 lando exec php-mysql80 -- mysql --version | grep -q "mysql"
 lando exec php-mysql80 -- mysql --version | grep -q "8.0"
 lando exec php-mysql80 -- mysql --version | grep -qv "MariaDB"
 ```
 
-### MariaDB client with wrappers for MariaDB database
-
 ```bash
-lando exec php-mariadb -- mariadb --version | grep -q "mariadb"
+# MariaDB client with wrappers for MariaDB database
+lando exec php-mariadb -- mariadb --version | grep -qi "mariadb"
 lando exec php-mariadb -- which mysql | grep -q "/usr/local/bin/mysql"
-lando exec php-mariadb -- mysql --version | grep -q "mariadb"
+lando exec php-mariadb -- mysql --version | grep -qi "mariadb"
 ```
 
-### Explicit override works
+```bash
+# Auto-detection picks MariaDB when both MySQL and MariaDB services exist
+lando exec php-auto -- which mysql | grep -q "/usr/local/bin/mysql"
+lando exec php-auto -- mysql --version | grep -qi "mariadb"
+```
 
 ```bash
+# Auto-detection is skipped for PHP versions below 8.3
+lando exec php-old -- which mysql | grep -q "/usr/bin/mysql"
+```
+
+```bash
+# Explicit override works
 lando exec php-override -- which mysql | grep -q "/usr/local/bin/mysql"
-lando exec php-override -- mysql --version | grep -q "mariadb"
+lando exec php-override -- mysql --version | grep -qi "mariadb"
 ```
 
-### Disabled db_client keeps image defaults
-
 ```bash
+# Disabled db_client keeps image defaults
 lando exec php-disabled -- which mysql | grep -q "/usr/bin/mysql"
 ```
 
-### MySQL 8.4 client can connect to MySQL 8.4 database
-
 ```bash
+# MySQL 8.4 client can connect to MySQL 8.4 database
 lando exec php-mysql84 -- mysql -h mysql84 -u testuser -ptestpass testdb -e "SELECT 1"
 ```
 
-### MySQL 8.0 client can connect to MySQL 8.0 database
-
 ```bash
+# MySQL 8.0 client can connect to MySQL 8.0 database
 lando exec php-mysql80 -- mysql -h mysql80 -u testuser -ptestpass testdb -e "SELECT 1"
 ```
 
-### MariaDB client can connect without SSL errors (disable-ssl-verify-server-cert)
-
 ```bash
+# MariaDB client can connect without SSL errors (disable-ssl-verify-server-cert)
 lando exec php-mariadb -- mysql -h mariadb -u testuser -ptestpass testdb -e "SELECT 1"
 ```
 
-### mysqldump works without column-statistics errors (skip-column-statistics)
-
 ```bash
-lando exec php-mysql84 -- mysqldump -h mysql84 -u testuser -ptestpass testdb --no-data 2>&1 | grep -qv "column-statistics"
+# mysqldump works without column-statistics errors (skip-column-statistics)
+lando exec php-mysql84 -- mysqldump -h mysql84 -u testuser -ptestpass testdb --no-data > /dev/null
 ```
 
-### mysqldump works with MariaDB
-
 ```bash
+# mysqldump works with MariaDB
 lando exec php-mariadb -- mysqldump -h mariadb -u testuser -ptestpass testdb --no-data
 ```
 
