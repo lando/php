@@ -34,6 +34,7 @@ jobs:
           - examples/build-fail
           - examples/custom
           - examples/composer
+          - examples/db-client
           - examples/php-extensions
           - examples/xdebug
         lando-version:
