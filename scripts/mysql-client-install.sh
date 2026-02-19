@@ -56,4 +56,7 @@ default-character-set=utf8mb4
 skip-column-statistics
 MYCNF
 
-mysql --version 2>/dev/null || echo "Warning: MySQL client not available"
+if ! mysql --version 2>/dev/null; then
+  echo "Error: MySQL client not available after activation"
+  exit 1
+fi
