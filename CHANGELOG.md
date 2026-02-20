@@ -1,9 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
-* Fixed MySQL client SSL mode to use `PREFERRED` instead of `DISABLED` for broader compatibility
 * Fixed database type detection when no version is specified
-* Fixed release workflow to use `released` event type instead of `edited`
-* Added npm edge-to-latest tag promotion on release [#229](https://github.com/lando/php/pull/229)
+* Added npm edge-to-latest tag promotion on release
 
 ## v1.11.0 - [February 19, 2026](https://github.com/lando/php/releases/tag/v1.11.0)
 
