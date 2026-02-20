@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.11.1 - [February 20, 2026](https://github.com/lando/php/releases/tag/v1.11.1)
+
 * Fixed database type detection when no version is specified
 * Added npm edge-to-latest tag promotion on release
 
