@@ -21,7 +21,7 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: Promote edge to latest
         run: |
-          VERSION=$(node -p "require('./package.json').version")
+          VERSION=$(echo "${{ github.event.release.tag_name }}" | sed 's/^v//')
           PACKAGE=$(node -p "require('./package.json').name")
           npm dist-tag add "$PACKAGE@$VERSION" latest
           echo "::notice title=Promoted $VERSION to latest::The latest tag now points to $VERSION (was edge-only)"
