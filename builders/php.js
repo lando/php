@@ -68,12 +68,12 @@ const detectDatabaseClient = (options, debug = () => {}) => {
 
   for (const service of Object.values(services)) {
     const type = service?.type || '';
-    // Match mysql:X or recipe-mysql:X (e.g., backdrop-mysql:8.0, drupal-mysql:8.4)
-    const mysqlMatch = type.match(/(?:^|-)mysql:(\d+(?:\.\d+)?)/);
-    if (mysqlMatch && !mysqlVersion) mysqlVersion = mysqlMatch[1];
-    // Match mariadb:X or recipe-mariadb:X (e.g., backdrop-mariadb:10.6, drupal-mariadb:11.4)
-    const mariaMatch = type.match(/(?:^|-)mariadb:(\d+(?:\.\d+)?)/);
-    if (mariaMatch && !mariaVersion) mariaVersion = mariaMatch[1];
+    // Match mysql or mysql:X, including recipe prefixes (e.g., backdrop-mysql, backdrop-mysql:8.0)
+    const mysqlMatch = type.match(/(?:^|-)mysql(?::(\d+(?:\.\d+)?))?(?:$|[^a-z])/);
+    if (mysqlMatch && !mysqlVersion) mysqlVersion = mysqlMatch[1] || '8.0';
+    // Match mariadb or mariadb:X, including recipe prefixes (e.g., backdrop-mariadb:10.6)
+    const mariaMatch = type.match(/(?:^|-)mariadb(?::(\d+(?:\.\d+)?))?(?:$|[^a-z])/);
+    if (mariaMatch && !mariaVersion) mariaVersion = mariaMatch[1] || '11.4';
   }
 
   if (mariaVersion && mysqlVersion) {
