@@ -4,12 +4,12 @@ on:
   release:
     types:
       - published
-      - edited
+      - released
 
 jobs:
-  # When a prerelease is edited to a full release, just promote the npm tag
+  # When a prerelease is promoted to a full release, update the npm latest tag
   promote:
-    if: github.event.action == 'edited' && !github.event.release.prerelease && !github.event.release.draft && github.event.changes.prerelease.from == true
+    if: github.event.action == 'released'
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
