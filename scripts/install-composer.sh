@@ -31,10 +31,12 @@ fi
 # Remove the setup script
 php -r "unlink('/tmp/composer-setup.php');"
 
-# Check if anything is installed globally
-if [ -f /var/www/.composer/composer.json ]; then
-  # If this is version 2 then let's make sure hirak/prestissimo is removed
-  if composer --version 2>/dev/null | grep -E "Composer (version )?2." > /dev/null; then
-    composer global remove hirak/prestissimo
+# If upgrading from Composer 1 to 2, remove the prestissimo plugin
+# which is incompatible with Composer 2 (parallel downloads are built-in now).
+# Use COMPOSER_HOME to find the right global composer.json for the current user.
+COMPOSER_HOME="${COMPOSER_HOME:-$(composer global config home --quiet 2>/dev/null || echo '')}"
+if [ -n "$COMPOSER_HOME" ] && [ -f "$COMPOSER_HOME/composer.json" ]; then
+  if composer --version 2>/dev/null | grep -qE "Composer (version )?2\."; then
+    composer global remove hirak/prestissimo 2>/dev/null || true
   fi
 fi
