@@ -1,5 +1,6 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Fixed `mysqldump` warning for unknown option on MariaDB 11.4/11.8 [#237](https://github.com/lando/php/issues/237)
 * Updated to [@lando/nginx@1.6.0](https://github.com/lando/nginx/releases/tag/v1.6.0)
 
 ## v1.11.1 - [February 20, 2026](https://github.com/lando/php/releases/tag/v1.11.1)
