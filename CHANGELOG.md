@@ -1,5 +1,6 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Improved composer install script to default to latest stable
 * Fixed `mysqldump` warning for unknown option on MariaDB 11.4/11.8 [#237](https://github.com/lando/php/issues/237)
 * Updated to [@lando/nginx@1.6.0](https://github.com/lando/nginx/releases/tag/v1.6.0)
 
