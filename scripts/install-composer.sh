@@ -24,8 +24,10 @@ elif [ "$VERSION" = 'preview' ]; then
   php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer --preview
 elif [ "$VERSION" = 'snapshot' ]; then
   php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer --snapshot
-else
+elif [ -n "$VERSION" ]; then
   php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer --version="$VERSION"
+else
+  php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 fi
 
 # Remove the setup script
