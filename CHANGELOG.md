@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Updated to [@lando/nginx@1.6.0](https://github.com/lando/nginx/releases/tag/v1.6.0)
+
 ## v1.11.1 - [February 20, 2026](https://github.com/lando/php/releases/tag/v1.11.1)
 
 * Fixed database type detection when no version is specified
