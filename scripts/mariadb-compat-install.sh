@@ -34,9 +34,6 @@ default-character-set=utf8mb4
 # Prevent SSL errors when connecting to servers without SSL
 disable-ssl-verify-server-cert
 
-[mysqldump]
-# MySQL 8 uses this; MariaDB safely ignores it via loose- prefix
-loose-skip-column-statistics
 MYCNF
 
 echo "MariaDB compatibility wrappers installed"
