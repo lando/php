@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.11.2 - [February 25, 2026](https://github.com/lando/php/releases/tag/v1.11.2)
+
 * Fixed composer install crash caused by legacy prestissimo removal running as wrong user
 * Improved composer install script to default to latest stable
 * Fixed `mysqldump` warning for unknown option on MariaDB 11.4/11.8 [#237](https://github.com/lando/php/issues/237)
