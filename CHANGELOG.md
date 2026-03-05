@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Fixed xdebug log file ownership issue when `build_as_root` or `run_as_root` creates `/tmp/xdebug.log` as root [#242](https://github.com/lando/php/pull/242)
+
 ## v1.11.2 - [February 25, 2026](https://github.com/lando/php/releases/tag/v1.11.2)
 
 * Fixed composer install crash caused by legacy prestissimo removal running as wrong user

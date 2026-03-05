@@ -248,6 +248,10 @@ module.exports = {
         options.composer_version = options.composer_version.toString();
       }
 
+      // Pre-create xdebug log with world-writable permissions so root-owned builds
+      // don't block www-data from writing to it later
+      addBuildStep(['touch /tmp/xdebug.log && chmod 666 /tmp/xdebug.log'], options._app, options.name, 'build_as_root_internal');
+
       // Add build step to enable xdebug
       if (options.xdebug) {
         addBuildStep(['docker-php-ext-enable xdebug'], options._app, options.name, 'build_as_root_internal');
