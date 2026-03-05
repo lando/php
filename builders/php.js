@@ -250,7 +250,10 @@ module.exports = {
 
       // Add build step to enable xdebug
       if (options.xdebug) {
-        addBuildStep(['docker-php-ext-enable xdebug'], options._app, options.name, 'build_as_root_internal');
+        addBuildStep([
+          'docker-php-ext-enable xdebug',
+          'touch /tmp/xdebug.log && chmod 666 /tmp/xdebug.log',
+        ], options._app, options.name, 'build_as_root_internal');
       }
 
       // Add build step to install our Composer global packages
