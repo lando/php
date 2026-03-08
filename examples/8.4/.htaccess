@@ -1,0 +1,8 @@
+<IfModule mod_headers.c>
+  Header set X-Lando-Test "blazes"
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 hour"
+</IfModule>
