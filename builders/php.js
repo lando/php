@@ -170,7 +170,7 @@ module.exports = {
       '/helpers',
     ],
     confSrc: path.resolve(__dirname, '..', 'config'),
-    command: ['sh -c \'a2enmod rewrite && apache2-foreground\''],
+    command: ['sh -c \'a2enmod rewrite headers expires && apache2-foreground\''],
     composer_version: true,
     phpServer: 'apache',
     defaultFiles: {
