@@ -49,6 +49,12 @@ lando exec defaults -- composer --version --no-ansi | tee >(cat 1>&2) | grep -q 
 lando php -i | grep memory_limit | grep -e "-1"
 lando exec defaults -- php -i | grep "memory_limit" | grep -e "-1"
 
+# Should have mod_headers enabled and working
+lando exec defaults -- curl -sI http://localhost | grep -i "X-Lando-Test: blazes"
+
+# Should have mod_expires enabled and working
+lando exec defaults -- curl -sI http://localhost | grep -i "Expires:"
+
 # Should not enable xdebug by default
 lando exec defaults -- php -m | grep xdebug || echo $? | grep 1
 
