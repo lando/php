@@ -220,7 +220,7 @@ See also: [Lando + PhpStorm + Xdebug Guide](https://docs.lando.dev/guides/lando-
 
 When `start_with_request` is set to `trigger` (the default), you need a browser extension to activate Xdebug:
 
-- **Chrome/Edge:** [Xdebug Helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc)
+- **Chrome/Edge:** [Xdebug Helper](https://chromewebstore.google.com/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc)
 - **Firefox:** [Xdebug Helper](https://addons.mozilla.org/en-US/firefox/addon/xdebug-helper-for-firefox/)
 
 Alternatively, append `?XDEBUG_SESSION_START=LANDO` to any URL to start a debug session.
