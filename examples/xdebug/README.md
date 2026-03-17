@@ -39,7 +39,7 @@ lando exec xdebug-true -- test -f /etc/lando/service/helpers/xdebug.sh
 
 # Should be able to toggle xdebug off at runtime
 lando exec xdebug-true -- /etc/lando/service/helpers/xdebug.sh off
-lando exec xdebug-true -- php -i | grep "xdebug.mode" | grep off
+lando exec xdebug-true -- grep "xdebug.mode = off" /usr/local/etc/php/conf.d/zzz-lando-xdebug.ini
 
 # Should be able to toggle xdebug back on
 lando exec xdebug-true -- /etc/lando/service/helpers/xdebug.sh debug
@@ -52,13 +52,13 @@ lando exec xdebug-true -- /etc/lando/service/helpers/xdebug.sh | grep -i "mode"
 lando exec xdebug-true -- php -i | grep "xdebug.mode" | grep debug
 
 # Should set mode from string (backward compat)
-lando exec xdebug-string -- php -i | grep "xdebug.mode" | grep "debug,develop"
+lando exec xdebug-string -- grep "xdebug.mode = debug,develop" /usr/local/etc/php/conf.d/yyy-lando-xdebug.ini
 
 # Should set mode from object config
 lando exec xdebug-object -- php -i | grep "xdebug.mode" | grep debug
 
 # Should set start_with_request from object config
-lando exec xdebug-object -- php -i | grep "xdebug.start_with_request" | grep yes
+lando exec xdebug-object -- grep "xdebug.start_with_request = yes" /usr/local/etc/php/conf.d/yyy-lando-xdebug.ini
 
 # Should apply config pass-through settings
 lando exec xdebug-passthrough -- php -i | grep "xdebug.max_nesting_level" | grep 256
