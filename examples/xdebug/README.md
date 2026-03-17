@@ -23,7 +23,7 @@ Run the following commands to validate things are rolling as they should.
 
 ```bash
 # Should not have xdebug 2 deprecation warnings
-lando exec xdebug-true -- php -v 2>&1 | grep -v "has been renamed" | grep -v "remote_autostart"
+lando exec xdebug-true -- php -v 2>&1 | grep -c "has been renamed\|remote_autostart" | grep 0
 
 # Should use host.lando.internal in XDEBUG_CONFIG
 lando exec xdebug-true -- env | grep XDEBUG_CONFIG | grep host.lando.internal
