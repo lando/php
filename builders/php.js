@@ -51,15 +51,15 @@ const nginxConfig = options => ({
   version: options.via.split(':')[1],
 });
 
-const xdebugConfig = phpSemver => {
+const xdebugConfig = (phpSemver, normalizedConfig) => {
   const config = [
-    'client_host=host.lando.internal',
+    `client_host=${normalizedConfig.client_host}`,
     'discover_client_host=1',
-    'log=/tmp/xdebug.log',
+    `log=${normalizedConfig.log === false ? '' : normalizedConfig.log}`,
   ];
 
   if (phpSemver && semver.lt(phpSemver, '7.2.0')) {
-    config.push('remote_enable=true', 'remote_host=host.lando.internal');
+    config.push('remote_enable=true', `remote_host=${normalizedConfig.client_host}`);
   }
 
   return config.join(' ');
@@ -311,8 +311,7 @@ const phpBuilder = {
         environment: _.merge({}, options.environment, {
           PATH: options.path.join(':'),
           LANDO_WEBROOT: `/app/${options.webroot}`,
-          XDEBUG_CONFIG: xdebugConfig(phpSemver),
-          XDEBUG_MODE: options._xdebugConfig.mode,
+          XDEBUG_CONFIG: xdebugConfig(phpSemver, options._xdebugConfig),
         }),
         networks: (_.startsWith(options.via, 'nginx')) ? {default: {aliases: ['fpm']}} : {default: {}},
         ports: (_.startsWith(options.via, 'apache') && options.version !== 'custom') ? ['80'] : [],
