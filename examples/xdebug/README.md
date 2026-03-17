@@ -52,13 +52,13 @@ lando exec xdebug-true -- /etc/lando/service/helpers/xdebug.sh | grep -i "mode"
 lando exec xdebug-true -- php -i | grep "xdebug.mode" | grep debug
 
 # Should set mode from string (backward compat)
-lando exec xdebug-string -- grep "xdebug.mode = debug,develop" /usr/local/etc/php/conf.d/yyy-lando-xdebug.ini
+lando info -s xdebug-string --deep | grep "debug,develop"
 
 # Should set mode from object config
 lando exec xdebug-object -- php -i | grep "xdebug.mode" | grep debug
 
 # Should set start_with_request from object config
-lando exec xdebug-object -- grep "xdebug.start_with_request = yes" /usr/local/etc/php/conf.d/yyy-lando-xdebug.ini
+lando info -s xdebug-object --deep | grep start_with_request | grep yes
 
 # Should apply config pass-through settings
 lando exec xdebug-passthrough -- php -i | grep "xdebug.max_nesting_level" | grep 256
