@@ -52,7 +52,7 @@ lando exec xdebug-true -- /etc/lando/service/helpers/xdebug.sh | grep -i "mode"
 lando exec xdebug-true -- php -i | grep "xdebug.mode" | grep debug
 
 # Should set mode from string (backward compat)
-lando exec xdebug-string -- env | grep XDEBUG_MODE | grep "debug,develop"
+lando exec xdebug-string -- php -i | grep "xdebug.mode" | grep "debug,develop"
 
 # Should set mode from object config
 lando exec xdebug-object -- php -i | grep "xdebug.mode" | grep debug
