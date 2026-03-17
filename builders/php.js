@@ -228,6 +228,16 @@ module.exports = {
       // If xdebug is set to "true" then map it to "debug"
       if (options.xdebug === true) options.xdebug = 'debug';
 
+      options._app.config.tooling = options._app.config.tooling || {};
+      if (_.get(options, '_app.config.tooling.xdebug') === undefined) {
+        options._app.config.tooling.xdebug = {
+          service: options.name,
+          description: 'Toggle Xdebug mode',
+          cmd: '/etc/lando/service/helpers/xdebug.sh',
+          user: 'root',
+        };
+      }
+
       // for older generation models
       if (_.includes(options.gen2, options.version)) options.suffix = '2';
 
