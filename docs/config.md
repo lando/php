@@ -84,11 +84,24 @@ services:
     webroot: docroot
 ```
 
-## Using xdebug
+## Using Xdebug
 
-You can enable the `xdebug` extension by setting `xdebug: true` and doing a `lando rebuild`. When the extension is enabled Lando will automatically set the needed configuration for remote debugging. This means that `xdebug` _should_ be ready to receive connections out of the box.
+Xdebug is pre-installed in all Lando PHP images but disabled by default for performance. You can enable it in several ways.
 
-If you are using `xdebug` version 3, which is installed by default for `php` 7.2+ you can optionally specify the mode.
+### Quick start
+
+The simplest way to enable Xdebug is:
+
+```yaml
+services:
+  myservice:
+    type: php:8.4
+    xdebug: true
+```
+
+This sets `xdebug.mode=debug` and configures Xdebug to connect back to your host machine automatically. Run `lando rebuild` after changing this setting.
+
+You can also specify the [Xdebug mode](https://xdebug.org/docs/all_settings#mode) directly:
 
 ```yaml
 services:
@@ -97,25 +110,135 @@ services:
     xdebug: "debug,develop"
 ```
 
-For this version of `xdebug` setting `xdebug: true` will set `xdebug.mode=debug`. You can read more about `xdebug.mode` [here](https://xdebug.org/docs/all_settings#mode).
+### Toggling Xdebug without rebuilding
 
-### Configuring xdebug
+Xdebug adds overhead to every PHP request. Rather than leaving it on all the time, you can toggle it instantly:
 
-If you'd like to override Lando's out of the box `xdebug` config the easiest way to do that is by setting the `XDEBUG_CONFIG` environment variable as a service level override.
+```bash
+# Enable step debugging
+lando xdebug debug
+
+# Enable debugging + development helpers
+lando xdebug debug,develop
+
+# Enable profiling
+lando xdebug profile
+
+# Disable Xdebug
+lando xdebug off
+
+# Check current status
+lando xdebug
+```
+
+These commands take effect immediately — no rebuild required. They work by writing to an ini file and reloading the web server.
+
+::: tip Performance tip
+Set `xdebug: false` in your `.lando.yml` and use `lando xdebug debug` only when you need it. This gives you full speed by default and instant debugging when needed.
+:::
+
+### Advanced configuration
+
+For fine-grained control, use the object format:
 
 ```yaml
 services:
   myservice:
     type: php:8.4
-    xdebug: "debug,develop"
-    overrides:
-      environment:
-        XDEBUG_CONFIG: "discover_client_host=0 client_host=localhost"
+    xdebug:
+      mode: debug
+      start_with_request: "yes"
+      client_host: auto
+      client_port: 9003
+      log: /tmp/xdebug.log
+      idekey: LANDO
+      config:
+        max_nesting_level: 256
 ```
 
-Note that you cannot set _every_ `xdebug` configuration option via `XDEBUG_CONFIG`, see [this](https://xdebug.org/docs/all_settings). If you need to configure something outside of the scope of `XDEBUG_CONFIG` we recommend you use a custom `php.ini`.
+| Option | Default | Description |
+|--------|---------|-------------|
+| `mode` | `off` | Xdebug mode(s). See [xdebug.mode](https://xdebug.org/docs/all_settings#mode). |
+| `start_with_request` | `trigger` | When to start debugging. `trigger` requires a browser extension or `XDEBUG_SESSION` cookie. `yes` starts on every request. |
+| `client_host` | `auto` | Host for Xdebug to connect to. `auto` uses `host.lando.internal` which works on all platforms including WSL2. |
+| `client_port` | `9003` | Port your IDE listens on. |
+| `log` | `/tmp/xdebug.log` | Log file path, or `false` to disable logging. |
+| `idekey` | _(empty)_ | IDE key for filtering debug sessions. |
+| `config` | `{}` | Pass-through for any [Xdebug setting](https://xdebug.org/docs/all_settings). Keys are prefixed with `xdebug.` automatically. |
 
-You can also modify or unset `XDEBUG_MODE` in a similar way. For example if you wanted to manage `xdebug.mode` in your own `php.ini` you could so something like
+All options are optional. Omitted keys use the defaults shown above.
+
+::: tip Backward compatibility
+The boolean (`true`/`false`) and string (`"debug,develop"`) formats continue to work exactly as before. The object format is additive.
+:::
+
+### Checking Xdebug configuration
+
+You can view your Xdebug configuration in the `lando info` output:
+
+```bash
+lando info -s myservice --deep
+```
+
+This will show the current Xdebug mode, client host, client port, and other settings.
+
+### Setting up your IDE
+
+Lando configures Xdebug to connect to your host on port `9003` by default. Here's how to set up your IDE:
+
+#### Visual Studio Code
+
+Install the [PHP Debug extension](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) and add this to `.vscode/launch.json`:
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Listen for Xdebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9003,
+      "pathMappings": {
+        "/app/": "${workspaceFolder}/"
+      }
+    }
+  ]
+}
+```
+
+#### PhpStorm
+
+1. Go to **Settings → PHP → Debug** and set the Xdebug port to `9003`
+2. Go to **Settings → PHP → Servers**, add a server named `appserver` (or your service name)
+3. Set the host to your Lando app URL and map your project root to `/app`
+4. Click **Start Listening for PHP Debug Connections** in the toolbar
+
+See also: [Lando + PhpStorm + Xdebug Guide](https://docs.lando.dev/guides/lando-phpstorm.html)
+
+### Using with a browser extension
+
+When `start_with_request` is set to `trigger` (the default), you need a browser extension to activate Xdebug:
+
+- **Chrome/Edge:** [Xdebug Helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc)
+- **Firefox:** [Xdebug Helper](https://addons.mozilla.org/en-US/firefox/addon/xdebug-helper-for-firefox/)
+
+Alternatively, append `?XDEBUG_SESSION_START=LANDO` to any URL to start a debug session.
+
+If you prefer Xdebug to activate on every request without a browser extension:
+
+```yaml
+services:
+  myservice:
+    type: php:8.4
+    xdebug:
+      mode: debug
+      start_with_request: "yes"
+```
+
+### Overriding via environment variables
+
+You can still override Xdebug settings using environment variables if needed:
 
 ```yaml
 services:
@@ -124,40 +247,26 @@ services:
     xdebug: true
     overrides:
       environment:
-        XDEBUG_MODE:
-    config:
-      php: config/php.ini
+        XDEBUG_CONFIG: "discover_client_host=0 client_host=localhost"
 ```
 
-### Setting up your IDE for XDEBUG
+Note that you cannot set _every_ Xdebug configuration option via `XDEBUG_CONFIG`. See the [Xdebug documentation](https://xdebug.org/docs/all_settings) for details. For full control, use the object config format above or a custom `php.ini`.
 
-While Lando will handle the server side configuration for you, there is often a considerable amount of pain lurking in the client side configuration. To that end, some helpful info about a few popular clients is shown below:
+### Troubleshooting
 
-**PHPStorm**
+**Xdebug not triggering?**
+- Check that your IDE is listening on port `9003`
+- Try `lando xdebug` to verify Xdebug is enabled and check the current mode
+- Try appending `?XDEBUG_SESSION_START=LANDO` to your URL
+- Check `/tmp/xdebug.log` inside the container for connection errors: `lando exec myservice -- cat /tmp/xdebug.log`
 
-[Lando + PhpStorm + Xdebug](https://docs.lando.dev/guides/lando-phpstorm.html)
+**Connection refused?**
+- Lando uses `host.lando.internal` to connect back to your host. This should work on macOS, Linux, and WSL2.
+- If you're on an unusual setup, try setting `client_host` explicitly in the config object.
 
-**VSCODE**
-
-[Setup XDebug in Visual Studio Code Guide](https://docs.lando.dev/guides/lando-with-vscode.html)
-
-### Troubleshooting Xdebug
-
-::: tip Problems starting XDEBUG
-If you are visiting your site and xdebug is not triggering, it might be worth appending `?XDEBUG_SESSION_START=LANDO` to your request and seeing if that does the trick.
-:::
-
-If you have set `xdebug: true` in your recipe or service config and run `lando rebuild` but are still having issues getting `xdebug` to work correctly, we recommend that you remove `xdebug: true`, run `lando rebuild` and then set the relevant `xdebug` config directly using a custom a `php.ini` (see examples above on how to set a custom config file). Your config file should minimally include something as shown below:
-
-```yaml
-xdebug.max_nesting_level = 256
-xdebug.show_exception_trace = 0
-xdebug.collect_params = 0
-xdebug.remote_enable = 1
-xdebug.remote_host = YOUR HOST IP ADDRESS
-```
-
-You can use `lando info --deep | grep IPAddress` to help discover the correct host ip address but please note that this can change and will likely differ from dev to dev.
+**Slow performance?**
+- Use `lando xdebug off` when you're not actively debugging.
+- Or set `xdebug: false` in your Landofile and toggle with `lando xdebug debug` only when needed.
 
 ## Installing composer
 
