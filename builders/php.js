@@ -284,7 +284,7 @@ const phpBuilder = {
       }
 
       options._xdebugConfig = normalizeXdebugConfig(options.xdebug);
-      options.xdebug = options._xdebugConfig.mode;
+      options.xdebug = options._xdebugConfig.mode !== 'off' ? options._xdebugConfig.mode : false;
       if (options._xdebugConfig.mode !== 'off') {
         const xdebugFile = path.join(options.confDest, options.defaultFiles.xdebug);
         fs.mkdirSync(options.confDest, {recursive: true});
