@@ -64,6 +64,36 @@ const xdebugConfig = phpSemver => {
   return config.join(' ');
 };
 
+/**
+ * Normalizes xdebug configuration into a consistent object shape.
+ * @param {boolean|string|Object} xdebug - The user-provided xdebug configuration.
+ * @return {Object} The normalized xdebug configuration.
+ */
+const normalizeXdebugConfig = xdebug => {
+  const defaults = {
+    mode: 'off',
+    start_with_request: 'trigger',
+    client_host: 'host.lando.internal',
+    client_port: 9003,
+    log: '/tmp/xdebug.log',
+    idekey: '',
+    config: {},
+  };
+
+  if (xdebug === true) return _.merge({}, defaults, {mode: 'debug'});
+  if (xdebug === false || _.isNil(xdebug)) return _.merge({}, defaults, {mode: 'off'});
+  if (_.isString(xdebug)) return _.merge({}, defaults, {mode: xdebug});
+
+  if (_.isPlainObject(xdebug)) {
+    const normalized = _.merge({}, defaults, xdebug);
+    if (normalized.client_host === 'auto') normalized.client_host = 'host.lando.internal';
+    normalized.config = _.isPlainObject(normalized.config) ? normalized.config : {};
+    return normalized;
+  }
+
+  return _.merge({}, defaults, {mode: xdebug});
+};
+
 const detectDatabaseClient = (options, debug = () => {}) => {
   if (options.db_client === false) return null;
   if (options.db_client && options.db_client !== 'auto') return options.db_client;
@@ -156,7 +186,7 @@ const parseConfig = options => {
 };
 
 // Builder
-module.exports = {
+const phpBuilder = {
   name: 'php',
   config: {
     version: '7.4',
@@ -225,8 +255,8 @@ module.exports = {
         options.command.unshift('docker-php-entrypoint');
       }
 
-      // If xdebug is set to "true" then map it to "debug"
-      if (options.xdebug === true) options.xdebug = 'debug';
+      options._xdebugConfig = normalizeXdebugConfig(options.xdebug);
+      options.xdebug = options._xdebugConfig.mode;
 
       options._app.config.tooling = options._app.config.tooling || {};
       if (_.get(options, '_app.config.tooling.xdebug') === undefined) {
@@ -248,7 +278,7 @@ module.exports = {
           PATH: options.path.join(':'),
           LANDO_WEBROOT: `/app/${options.webroot}`,
           XDEBUG_CONFIG: xdebugConfig(phpSemver),
-          XDEBUG_MODE: (options.xdebug === false) ? 'off' : options.xdebug,
+          XDEBUG_MODE: options._xdebugConfig.mode,
         }),
         networks: (_.startsWith(options.via, 'nginx')) ? {default: {aliases: ['fpm']}} : {default: {}},
         ports: (_.startsWith(options.via, 'apache') && options.version !== 'custom') ? ['80'] : [],
@@ -269,7 +299,7 @@ module.exports = {
       addBuildStep(['touch /tmp/xdebug.log && chmod 666 /tmp/xdebug.log'], options._app, options.name, 'build_as_root_internal');
 
       // Add build step to enable xdebug
-      if (options.xdebug) {
+      if (options._xdebugConfig.mode !== 'off') {
         addBuildStep(['docker-php-ext-enable xdebug'], options._app, options.name, 'build_as_root_internal');
       }
 
@@ -325,3 +355,6 @@ module.exports = {
     }
   },
 };
+
+module.exports = phpBuilder;
+module.exports.normalizeXdebugConfig = normalizeXdebugConfig;
