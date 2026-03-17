@@ -319,7 +319,15 @@ const phpBuilder = {
         volumes: options.volumes,
         command: options.command.join(' '),
       };
-      options.info = {via: options.via};
+      options.info = {
+        via: options.via,
+        xdebug: {
+          mode: options._xdebugConfig.mode,
+          client_host: options._xdebugConfig.client_host,
+          client_port: options._xdebugConfig.client_port,
+          start_with_request: options._xdebugConfig.start_with_request,
+        },
+      };
 
       // Determine the appropriate composer version to install if not specified
       if (options.composer_version === true || options.composer_version === '') {
