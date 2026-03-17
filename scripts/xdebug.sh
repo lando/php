@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eu
+set -u
 
 XDEBUG_INI="/usr/local/etc/php/conf.d/zzz-lando-xdebug.ini"
 GREEN='\033[0;32m'
@@ -9,7 +9,11 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 reload_web_server() {
-  kill -USR2 "$(pgrep -o php-fpm)" 2>/dev/null || /etc/init.d/apache2 reload 2>/dev/null || true
+  if pgrep -o php-fpm >/dev/null 2>&1; then
+    kill -USR2 "$(pgrep -o php-fpm)" 2>/dev/null || true
+  elif [ -f /etc/init.d/apache2 ]; then
+    /etc/init.d/apache2 reload 2>/dev/null || true
+  fi
 }
 
 print_usage() {

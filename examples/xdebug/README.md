@@ -23,7 +23,7 @@ Run the following commands to validate things are rolling as they should.
 
 ```bash
 # Should not have xdebug 2 deprecation warnings
-lando exec xdebug-true -- php -v 2>&1 | grep -c "has been renamed\|remote_autostart" | grep 0
+lando exec xdebug-true -- php -v 2>&1 | grep "has been renamed\|remote_autostart" && exit 1 || true
 
 # Should use host.lando.internal in XDEBUG_CONFIG
 lando exec xdebug-true -- env | grep XDEBUG_CONFIG | grep host.lando.internal
@@ -39,29 +39,29 @@ lando exec xdebug-true -- test -f /etc/lando/service/helpers/xdebug.sh
 
 # Should be able to toggle xdebug off at runtime
 lando exec xdebug-true -- /etc/lando/service/helpers/xdebug.sh off
-lando exec xdebug-true -- php -r "echo ini_get('xdebug.mode');" | grep off
+lando exec xdebug-true -- php -i | grep "xdebug.mode" | grep off
 
 # Should be able to toggle xdebug back on
 lando exec xdebug-true -- /etc/lando/service/helpers/xdebug.sh debug
-lando exec xdebug-true -- php -r "echo ini_get('xdebug.mode');" | grep debug
+lando exec xdebug-true -- php -i | grep "xdebug.mode" | grep debug
 
 # Should show status with no arguments
 lando exec xdebug-true -- /etc/lando/service/helpers/xdebug.sh | grep -i "mode"
 
 # Should enable xdebug when set to true (backward compat)
-lando exec xdebug-true -- php -r "echo ini_get('xdebug.mode');" | grep debug
+lando exec xdebug-true -- php -i | grep "xdebug.mode" | grep debug
 
 # Should set mode from string (backward compat)
-lando exec xdebug-string -- php -r "echo ini_get('xdebug.mode');" | grep "debug,develop"
+lando exec xdebug-string -- env | grep XDEBUG_MODE | grep "debug,develop"
 
 # Should set mode from object config
-lando exec xdebug-object -- php -r "echo ini_get('xdebug.mode');" | grep debug
+lando exec xdebug-object -- php -i | grep "xdebug.mode" | grep debug
 
 # Should set start_with_request from object config
-lando exec xdebug-object -- php -r "echo ini_get('xdebug.start_with_request');" | grep yes
+lando exec xdebug-object -- php -i | grep "xdebug.start_with_request" | grep yes
 
 # Should apply config pass-through settings
-lando exec xdebug-passthrough -- php -r "echo ini_get('xdebug.max_nesting_level');" | grep 256
+lando exec xdebug-passthrough -- php -i | grep "xdebug.max_nesting_level" | grep 256
 
 # Should not load xdebug when object mode is off
 lando exec xdebug-off-object -- php -m | grep xdebug || echo $? | grep 1
