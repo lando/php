@@ -285,12 +285,10 @@ const phpBuilder = {
 
       options._xdebugConfig = normalizeXdebugConfig(options.xdebug);
       options.xdebug = options._xdebugConfig.mode;
-      if (options._xdebugConfig.mode !== 'off') {
-        const xdebugFile = path.join(options.confDest, options.defaultFiles.xdebug);
-        fs.mkdirSync(options.confDest, {recursive: true});
-        fs.writeFileSync(xdebugFile, generateXdebugIni(options._xdebugConfig));
-        options.volumes.push(`${xdebugFile}:${options.remoteFiles.xdebug}`);
-      }
+      const xdebugFile = path.join(options.confDest, options.defaultFiles.xdebug);
+      fs.mkdirSync(options.confDest, {recursive: true});
+      fs.writeFileSync(xdebugFile, generateXdebugIni(options._xdebugConfig));
+      options.volumes.push(`${xdebugFile}:${options.remoteFiles.xdebug}`);
 
       options._app.config.tooling = options._app.config.tooling || {};
       if (_.get(options, '_app.config.tooling.xdebug') === undefined) {
