@@ -3,7 +3,7 @@ services:
   83scripted:
     type: php:8.3
     build_as_root:
-      - install-php-extensions swoole
+      - install-php-extensions swoole-5.1.6
   buildsteps:
     type: php:8.3
     build_as_root:

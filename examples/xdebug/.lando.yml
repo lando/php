@@ -1,23 +1,36 @@
-name: lando-phpxdebug
+name: lando-php-xdebug
 services:
-  xdebug2:
-    type: php:5.6
+  # Backward compat: boolean true
+  xdebug-true:
+    type: php:8.4
     xdebug: true
-  xdebug3on:
-    type: php
-    xdebug: true
-  xdebug3off:
-    type: php
+  # Backward compat: boolean false
+  xdebug-false:
+    type: php:8.4
     xdebug: false
-  xdebug3:
-    type: php
+  # Backward compat: string mode
+  xdebug-string:
+    type: php:8.4
     xdebug: "debug,develop"
-  manual:
-    type: php
-    xdebug: true
-    build_as_root:
-      - pecl uninstall xdebug
-      - pecl install xdebug-3.0.4
+  # New object format
+  xdebug-object:
+    type: php:8.4
+    xdebug:
+      mode: debug
+      start_with_request: "yes"
+      client_port: 9003
+  # Object with config pass-through
+  xdebug-passthrough:
+    type: php:8.4
+    xdebug:
+      mode: debug
+      config:
+        max_nesting_level: 256
+  # Object format disabled
+  xdebug-off-object:
+    type: php:8.4
+    xdebug:
+      mode: "off"
 
 # This is important because it lets lando know to test against the plugin in this repo
 # DO NOT REMOVE THIS!

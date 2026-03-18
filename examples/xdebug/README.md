@@ -3,7 +3,7 @@
 This example exists primarily to test the following documentation:
 
 * [PHP Service](https://docs.lando.dev/config/php.html)
-* [Using XDebug](https://docs.lando.dev/config/php.html#using-xdebug)
+* [Using Xdebug](https://docs.lando.dev/config/php.html#using-xdebug)
 
 And probably other stuff
 
@@ -22,20 +22,58 @@ lando start
 Run the following commands to validate things are rolling as they should.
 
 ```bash
-# Should enable xdebug 2 for php 5.6
-lando exec xdebug2 -- php --re xdebug | head -1 | grep "xdebug version 2."
+# Should not have xdebug 2 deprecation warnings
+lando exec xdebug-true -- php -v 2>&1 | grep "has been renamed\|remote_autostart" && exit 1 || true
 
-# Should enable xdebug 3 for php 7.2+
-lando exec xdebug3on -- php --re xdebug | head -1 | grep "xdebug version 3."
+# Should use host.lando.internal in XDEBUG_CONFIG
+lando exec xdebug-true -- env | grep XDEBUG_CONFIG | grep host.lando.internal
 
-# Should not enable xdebug by when set to false
-lando exec xdebug3off -- php -m | grep xdebug || echo $? | grep 1
+# Should have world-writable xdebug log
+lando exec xdebug-true -- stat -c "%a" /tmp/xdebug.log | grep 666
 
-# Should use develop, debug if defined
-lando exec xdebug3 -- env | grep 'XDEBUG_MODE' | grep 'debug,develop'
+# Should not load xdebug when disabled
+lando exec xdebug-false -- php -m | grep xdebug || echo $? | grep 1
 
-# Should use xdebug version 3.0.4 if installed
-lando exec manual -- php --re xdebug | head -1 | grep "xdebug version 3.0.4"
+# Should have xdebug script available
+lando exec xdebug-true -- test -f /etc/lando/service/helpers/xdebug.sh
+
+# Should be able to toggle xdebug off at runtime
+lando exec xdebug-true -- /etc/lando/service/helpers/xdebug.sh off
+lando exec xdebug-true -- grep "xdebug.mode = off" /usr/local/etc/php/conf.d/zzz-lando-xdebug.ini
+
+# Should be able to toggle xdebug back on
+lando exec xdebug-true -- /etc/lando/service/helpers/xdebug.sh debug
+lando exec xdebug-true -- php -i | grep "xdebug.mode" | grep debug
+
+# Should show status with no arguments
+lando exec xdebug-true -- /etc/lando/service/helpers/xdebug.sh | grep -i "mode"
+
+# Should enable xdebug when set to true (backward compat)
+lando exec xdebug-true -- php -i | grep "xdebug.mode" | grep debug
+
+# Should set mode from string (backward compat)
+lando info -s xdebug-string --deep | grep "debug,develop"
+
+# Should set mode from object config
+lando exec xdebug-object -- php -i | grep "xdebug.mode" | grep debug
+
+# Should set start_with_request from object config
+lando info -s xdebug-object --deep | grep start_with_request | grep yes
+
+# Should apply config pass-through settings
+lando exec xdebug-passthrough -- php -i | grep "xdebug.max_nesting_level" | grep 256
+
+# Should not load xdebug when object mode is off
+lando exec xdebug-off-object -- php -m | grep xdebug || echo $? | grep 1
+
+# Should have generated xdebug ini file
+lando exec xdebug-true -- test -f /usr/local/etc/php/conf.d/yyy-lando-xdebug.ini
+
+# Should show xdebug info in lando info
+lando info -s xdebug-true --deep | grep xdebug
+
+# Should show mode in info output
+lando info -s xdebug-true --deep | grep debug
 ```
 
 ## Destroy tests
