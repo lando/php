@@ -2,6 +2,9 @@
 
 set -u
 
+# This is a runtime override file, separate from the host-mounted yyy-lando-xdebug.ini which
+# holds the full xdebug config from .lando.yml. The zzz prefix ensures this loads after yyy,
+# so writing only xdebug.mode here overrides the mode without clobbering other settings.
 XDEBUG_INI="/usr/local/etc/php/conf.d/zzz-lando-xdebug.ini"
 GREEN='\033[0;32m'
 RED='\033[0;31m'
