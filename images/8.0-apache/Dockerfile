@@ -4,6 +4,8 @@ FROM php:8.0-apache-bullseye
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
+ENV IPE_PROCESSOR_COUNT=1
+
 RUN \
   # MariaDB client compatibility (https://github.com/lando/php/issues/120)
   mkdir -p /etc/apt/keyrings \
