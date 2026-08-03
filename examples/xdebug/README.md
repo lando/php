@@ -34,6 +34,9 @@ lando exec xdebug3off -- php -m | grep xdebug || echo $? | grep 1
 # Should use develop, debug if defined
 lando exec xdebug3 -- env | grep 'XDEBUG_MODE' | grep 'debug,develop'
 
+# Should use client_port 9003
+lando exec xdebug3 -- php -i | grep xdebug.client_port | grep 9003
+
 # Should use xdebug version 3.0.4 if installed
 lando exec manual -- php --re xdebug | head -1 | grep "xdebug version 3.0.4"
 ```
