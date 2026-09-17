@@ -75,6 +75,22 @@ lando exec php-mariadb -- mysql -h mariadb -u testuser -ptestpass testdb -e "SEL
 ```
 
 ```bash
+# MariaDB SSL wrappers live on PATH and inject skip-ssl for --defaults-file
+lando exec php-mariadb -- which mariadb | grep -q "/usr/local/bin/mariadb"
+lando exec php-mariadb -- grep -q skip-ssl-verify-server-cert /usr/local/bin/mariadb
+```
+
+```bash
+# --defaults-file ignores lando.cnf; wrappers still connect (Drush-style)
+lando exec php-mariadb -- bash -c 'f=/tmp/lando-defaults-file.cnf; printf "%s\n" "[client]" "user=testuser" "password=testpass" "host=mariadb" > "$f"; mariadb --defaults-file="$f" testdb -e "SELECT 1"'
+```
+
+```bash
+# mysql name wrapper also works with --defaults-file
+lando exec php-mariadb -- bash -c 'f=/tmp/lando-defaults-file.cnf; printf "%s\n" "[client]" "user=testuser" "password=testpass" "host=mariadb" > "$f"; mysql --defaults-file="$f" testdb -e "SELECT 1"'
+```
+
+```bash
 # mysqldump works without column-statistics errors (skip-column-statistics)
 lando exec php-mysql84 -- mysqldump -h mysql84 -u testuser -ptestpass testdb --no-data > /dev/null
 ```
