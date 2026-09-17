@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Fixed MariaDB 11 client TLS errors when tools pass `--defaults-file` (e.g. Drush `sql:*`) [#252](https://github.com/lando/php/issues/252)
+
 ## v1.12.0 - [March 8, 2026](https://github.com/lando/php/releases/tag/v1.12.0)
 
 * Enabled `mod_headers` and `mod_expires` Apache modules by default [#243](https://github.com/lando/php/issues/243)

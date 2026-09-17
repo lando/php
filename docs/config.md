@@ -310,6 +310,8 @@ For PHP 8.3+, Lando automatically detects MySQL or MariaDB services in your app 
 | MariaDB 10.x/11.x | MariaDB client with compatibility wrappers |
 | None | Default mariadb-client from image |
 
+MariaDB 11.x clients require TLS by default. The MariaDB compatibility install writes `disable-ssl-verify-server-cert` to `lando.cnf` and adds PATH wrappers that pass `--skip-ssl-verify-server-cert`, so tools that use `--defaults-file` (for example Drush `sql:*`) can still reach local databases that do not speak TLS. Rebuild the PHP service after upgrading the plugin.
+
 ### Automatic detection
 
 When you have a MySQL or MariaDB service in your Landofile, the PHP service will automatically install the appropriate client:

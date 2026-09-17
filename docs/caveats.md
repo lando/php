@@ -33,6 +33,7 @@ When connecting to MySQL or MariaDB databases, you may encounter issues if the c
 
 * **MySQL 8.4+**: Removed the `mysql_native_password` authentication plugin, requiring a MySQL 8.x client
 * **MariaDB 10.11+**: Deprecated the `mysql` command in favor of `mariadb`, causing warning messages
+* **MariaDB 11.x clients**: Require TLS by default. Lando writes `disable-ssl-verify-server-cert` to `lando.cnf` and also installs PATH wrappers that add `--skip-ssl-verify-server-cert`, so tools that pass `--defaults-file` (for example Drush `sql:*`) can still reach local databases that do not speak TLS. Rebuild the PHP service to apply.
 
 For PHP 8.3+, Lando automatically detects your database service and installs a compatible client. See [Database client configuration](./config.md#database-client) for details.
 
