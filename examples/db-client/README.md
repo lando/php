@@ -75,9 +75,9 @@ lando exec php-mariadb -- mysql -h mariadb -u testuser -ptestpass testdb -e "SEL
 ```
 
 ```bash
-# MariaDB SSL wrappers live on PATH and inject skip-ssl for --defaults-file
+# MariaDB SSL wrappers live on PATH and append skip-ssl after caller args
 lando exec php-mariadb -- which mariadb | grep -q "/usr/local/bin/mariadb"
-lando exec php-mariadb -- grep -q skip-ssl-verify-server-cert /usr/local/bin/mariadb
+lando exec php-mariadb -- grep -E -q 'exec .+"\$@" --skip-ssl-verify-server-cert' /usr/local/bin/mariadb
 ```
 
 ```bash
