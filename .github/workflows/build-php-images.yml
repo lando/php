@@ -25,27 +25,35 @@ jobs:
           - image: php
             tag: 8.5-fpm-7
             context: images/8.5-fpm
+            min_php: 8.5.12
           - image: php
             tag: 8.5-apache-7
             context: images/8.5-apache
+            min_php: 8.5.12
           - image: php
             tag: 8.4-fpm-7
             context: images/8.4-fpm
+            min_php: 8.4.27
           - image: php
             tag: 8.4-apache-7
             context: images/8.4-apache
+            min_php: 8.4.27
           - image: php
             tag: 8.3-fpm-7
             context: images/8.3-fpm
+            min_php: 8.3.36
           - image: php
             tag: 8.3-apache-7
             context: images/8.3-apache
+            min_php: 8.3.36
           - image: php
             tag: 8.2-fpm-7
             context: images/8.2-fpm
+            min_php: 8.2.35
           - image: php
             tag: 8.2-apache-7
             context: images/8.2-apache
+            min_php: 8.2.35
           - image: php
             tag: 8.1-fpm-7
             context: images/8.1-fpm
@@ -119,5 +127,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.release.outputs.tag_suffix }}
+          pull: true
+          build-args: MIN_PHP=${{ matrix.min_php }}
           cache-from: type=gha,scope=${{ matrix.image }}-${{ matrix.tag }}
           cache-to: type=gha,mode=max,scope=${{ matrix.image }}-${{ matrix.tag }}
