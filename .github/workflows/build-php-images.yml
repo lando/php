@@ -15,13 +15,13 @@ on:
 
 jobs:
   buildx:
-    runs-on: ubuntu-24.04
+    runs-on: ${{ matrix.platform.runner }}
     env:
       TERM: xterm
     strategy:
       fail-fast: false
       matrix:
-        include:
+        target: &targets
           - image: php
             tag: 8.5-fpm-7
             context: images/8.5-fpm
@@ -103,11 +103,15 @@ jobs:
             tag: 5.6-apache-7
             context: images/5.6-apache
 
+        platform:
+          - runner: ubuntu-24.04
+            arch: amd64
+          - runner: ubuntu-24.04-arm
+            arch: arm64
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v4
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
       - name: Set tag suffix
@@ -120,14 +124,60 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.release.outputs.tag_suffix }}
+      - name: Build and push devwithlando/${{ matrix.target.image }}:${{ matrix.target.tag }}${{ steps.release.outputs.tag_suffix }}
+        id: build
         uses: docker/build-push-action@v7
         with:
-          context: ${{ matrix.context }}
-          platforms: linux/amd64,linux/arm64
+          context: ${{ matrix.target.context }}
+          platforms: linux/${{ matrix.platform.arch }}
           push: true
-          tags: devwithlando/${{ matrix.image }}:${{ matrix.tag }}${{ steps.release.outputs.tag_suffix }}
+          outputs: type=image,name=devwithlando/${{ matrix.target.image }},push-by-digest=true,name-canonical=true,push=true
           pull: true
-          build-args: MIN_PHP=${{ matrix.min_php }}
-          cache-from: type=gha,scope=${{ matrix.image }}-${{ matrix.tag }}
-          cache-to: type=gha,mode=max,scope=${{ matrix.image }}-${{ matrix.tag }}
+          build-args: MIN_PHP=${{ matrix.target.min_php }}
+          cache-from: type=gha,scope=${{ matrix.target.image }}-${{ matrix.target.tag }}-${{ matrix.platform.arch }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.target.image }}-${{ matrix.target.tag }}-${{ matrix.platform.arch }}
+
+      - name: Export digest
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/digests"
+          touch "$RUNNER_TEMP/digests/${DIGEST#sha256:}"
+      - name: Upload digest
+        uses: actions/upload-artifact@v6
+        with:
+          name: digests-${{ matrix.target.tag }}-${{ matrix.platform.arch }}
+          path: ${{ runner.temp }}/digests/*
+          retention-days: 1
+
+  merge:
+    needs: buildx
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        target: *targets
+    steps:
+      - name: Download digests
+        uses: actions/download-artifact@v7
+        with:
+          path: ${{ runner.temp }}/digests
+          pattern: digests-${{ matrix.target.tag }}-*
+          merge-multiple: true
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+      - name: Login to DockerHub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Publish multiarch tag
+        working-directory: ${{ runner.temp }}/digests
+        env:
+          IMAGE: devwithlando/${{ matrix.target.image }}
+          TAG: ${{ matrix.target.tag }}${{ github.event_name == 'pull_request' && '-edge' || '' }}
+        run: |
+          digests=(*)
+          test "${#digests[@]}" -eq 2
+          docker buildx imagetools create --tag "$IMAGE:$TAG" "${digests[@]/#/$IMAGE@sha256:}"
+          docker buildx imagetools inspect "$IMAGE:$TAG"
