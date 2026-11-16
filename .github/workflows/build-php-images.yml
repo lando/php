@@ -151,6 +151,8 @@ jobs:
           retention-days: 1
 
   merge:
+    # A failed unrelated target must not block complete security-image pairs.
+    if: ${{ !cancelled() }}
     needs: buildx
     runs-on: ubuntu-24.04
     strategy:
@@ -158,12 +160,16 @@ jobs:
       matrix:
         target: *targets
     steps:
-      - name: Download digests
+      - name: Download amd64 digest
         uses: actions/download-artifact@v7
         with:
-          path: ${{ runner.temp }}/digests
-          pattern: digests-${{ matrix.target.tag }}-*
-          merge-multiple: true
+          name: digests-${{ matrix.target.tag }}-amd64
+          path: ${{ runner.temp }}/digests/amd64
+      - name: Download arm64 digest
+        uses: actions/download-artifact@v7
+        with:
+          name: digests-${{ matrix.target.tag }}-arm64
+          path: ${{ runner.temp }}/digests/arm64
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
       - name: Login to DockerHub
@@ -177,7 +183,14 @@ jobs:
           IMAGE: devwithlando/${{ matrix.target.image }}
           TAG: ${{ matrix.target.tag }}${{ github.event_name == 'pull_request' && '-edge' || '' }}
         run: |
-          digests=(*)
-          test "${#digests[@]}" -eq 2
+          shopt -s nullglob
+          amd64=(amd64/*)
+          arm64=(arm64/*)
+          test "${#amd64[@]}" -eq 1
+          test "${#arm64[@]}" -eq 1
+          digests=("${amd64[0]##*/}" "${arm64[0]##*/}")
+          for digest in "${digests[@]}"; do
+            [[ "$digest" =~ ^[a-f0-9]{64}$ ]]
+          done
           docker buildx imagetools create --tag "$IMAGE:$TAG" "${digests[@]/#/$IMAGE@sha256:}"
           docker buildx imagetools inspect "$IMAGE:$TAG"
