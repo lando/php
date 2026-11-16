@@ -1,6 +1,8 @@
 # docker build -t devwithlando/php:8.2-fpm-7 .
 
 FROM php:8.2-fpm-bookworm
+ARG MIN_PHP=
+RUN [ -z "$MIN_PHP" ] || dpkg --compare-versions "$PHP_VERSION" ge "$MIN_PHP" || { echo "PHP $PHP_VERSION < $MIN_PHP"; exit 1; }
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 

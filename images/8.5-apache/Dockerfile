@@ -4,6 +4,8 @@ FROM mysql:8.0 AS mysql-client-80
 FROM mysql:8.4 AS mysql-client-84
 
 FROM php:8.5-apache-trixie
+ARG MIN_PHP=
+RUN [ -z "$MIN_PHP" ] || dpkg --compare-versions "$PHP_VERSION" ge "$MIN_PHP" || { echo "PHP $PHP_VERSION < $MIN_PHP"; exit 1; }
 
 ARG TARGETARCH
 

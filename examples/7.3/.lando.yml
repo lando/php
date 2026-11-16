@@ -9,6 +9,12 @@ services:
     type: php:7.3
     via: cli
     build_as_root:
+      - >-
+        sed -i
+        -e 's|security.debian.org/debian-security|archive.debian.org/debian-security|g'
+        -e 's|deb.debian.org/debian-security|archive.debian.org/debian-security|g'
+        /etc/apt/sources.list
+      - echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-release-date
       - curl -sL https://deb.nodesource.com/setup_20.x | bash -
       - apt-get update -y
       - apt-get install -y nodejs

@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Added minimum PHP version build checks for supported PHP `8.2`–`8.5` images [#255](https://github.com/lando/php/pull/255)
+
 ## v1.12.0 - [March 8, 2026](https://github.com/lando/php/releases/tag/v1.12.0)
 
 * Enabled `mod_headers` and `mod_expires` Apache modules by default [#243](https://github.com/lando/php/issues/243)

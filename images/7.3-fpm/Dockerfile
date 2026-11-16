@@ -2,6 +2,10 @@
 
 FROM php:7.3-fpm-bullseye
 
+RUN sed -i -e 's|security.debian.org/debian-security|archive.debian.org/debian-security|g' \
+  -e 's|deb.debian.org/debian-security|archive.debian.org/debian-security|g' /etc/apt/sources.list \
+  && echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99ignore-release-date
+
 # Install dependencies we need
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && apt -y update && apt-get install -y \

@@ -11,7 +11,7 @@ jobs:
         os:
           - windows-2022
           - ubuntu-24.04
-          - macos-15
+          - macos-15-intel
         node-version:
           - '20'
     steps:

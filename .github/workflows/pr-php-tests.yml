@@ -63,10 +63,11 @@ jobs:
           lando-plugin: true
           version: dev
           sync: false
-      - name: Setup lando ${{ github.event.inputs.lando-version }}
+      - name: Setup lando ${{ github.event.inputs.lando-version || matrix.lando-version }}
         uses: lando/setup-lando@v3
         with:
-          lando-version: ${{ github.event.inputs.lando-version }}
+          lando-version: ${{ github.event.inputs.lando-version || matrix.lando-version }}
+          lando-version-file: ''
           config: |
             setup.skipCommonPlugins=true
             setup.plugins.@lando/php=/home/runner/work/php/php
@@ -78,3 +79,5 @@ jobs:
           cleanup-header: "Destroy tests"
           shell: bash
           stdin: true
+          # npm ci --production skips the local dev Leia; pin the global fallback to the lockfile version (latest needs Node >=24).
+          version: '0.6.7'
