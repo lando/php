@@ -11,6 +11,8 @@ on:
     paths:
       - 'images/**'
       - '.github/workflows/build-php-images.yml'
+  schedule:
+    - cron: '0 3 * * 1'
   workflow_dispatch:
 
 jobs:
