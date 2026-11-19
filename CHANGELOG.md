@@ -1,6 +1,10 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
 * Added minimum PHP version build checks for supported PHP `8.2`–`8.5` images [#255](https://github.com/lando/php/pull/255)
+* Added support for PHP 8.6
+* PHP 8.6 images ship MySQL 8.4 and 9.7 clients instead of the EOL 8.0 client
+* PHP 8.6 images do not include the `imap` extension as it is unmaintained and does not support PHP 8.6
+* Added MySQL 9.x client support and fall back to the 8.4 client when the requested client is not available in the image
 
 ## v1.12.0 - [March 8, 2026](https://github.com/lando/php/releases/tag/v1.12.0)
 

@@ -1,0 +1,3 @@
+WEBDIR
+
+<?php phpinfo(); ?>
