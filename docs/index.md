@@ -19,6 +19,7 @@ services:
 
 ## Supported versions
 
+*   [8.6](https://hub.docker.com/r/devwithlando/php)
 *   [8.5](https://hub.docker.com/r/devwithlando/php)
 *   [8.4](https://hub.docker.com/r/devwithlando/php)
 *   [8.3](https://hub.docker.com/r/devwithlando/php)

@@ -10,8 +10,11 @@ VERSION="${1:-8.4}"
 echo "Installing MySQL $VERSION client..."
 
 # Map version to the closest available pre-downloaded version
-# We have 8.0 and 8.4 available
+# Images ship a subset of 8.0, 8.4 and 9.7
 case "$VERSION" in
+  9.*)
+    CLIENT_VERSION="9.7"
+    ;;
   8.4*|8.3*)
     CLIENT_VERSION="8.4"
     ;;
@@ -26,6 +29,13 @@ case "$VERSION" in
 esac
 
 CLIENT_DIR="/usr/local/mysql-client/$CLIENT_VERSION"
+
+# Newer images drop EOL clients so fall back to 8.4 which can still talk to older servers
+if [ ! -d "$CLIENT_DIR" ] && [ -d "/usr/local/mysql-client/8.4" ]; then
+  echo "MySQL $CLIENT_VERSION client not available in this image, using 8.4 client"
+  CLIENT_VERSION="8.4"
+  CLIENT_DIR="/usr/local/mysql-client/$CLIENT_VERSION"
+fi
 
 if [ -d "$CLIENT_DIR" ]; then
   # Remove MariaDB client symlinks if they exist in /usr/local/bin

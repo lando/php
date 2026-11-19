@@ -23,6 +23,12 @@ jobs:
       matrix:
         target: &targets
           - image: php
+            tag: 8.6-fpm-7
+            context: images/8.6-fpm
+          - image: php
+            tag: 8.6-apache-7
+            context: images/8.6-apache
+          - image: php
             tag: 8.5-fpm-7
             context: images/8.5-fpm
             min_php: 8.5.12
